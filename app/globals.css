@@ -1,13 +1,12 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --color-primary: #163d4a;
+  --color-primary-variant: #8f95a4;
+  --color-border: #c8d6db;
+  --color-background: #ffffff;
 }
 
 html,
@@ -17,11 +16,10 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-background);
+  color: var(--color-primary);
 }
 
 * {
@@ -35,8 +33,32 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@layer base {
+  .explore {
+    @apply font-mono text-6xl font-bold;
+  }
+  h1 {
+    @apply font-sans text-7xl font-bold;
+  }
+  h2 {
+    @apply font-serif text-5xl font-bold;
+  }
+  h3 {
+    @apply font-sans text-3xl font-bold;
+  }
+  h4 {
+    @apply font-sans text-lg font-semibold;
+  }
+  h5 {
+    @apply font-sans text-base font-semibold;
+  }
+  h6 {
+    @apply font-sans text-base font-bold uppercase;
+  }
+  p {
+    @apply font-sans text-base;
+  }
+  button {
+    @apply font-sans text-base font-bold;
   }
 }
