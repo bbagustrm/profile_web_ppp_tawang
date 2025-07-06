@@ -1,6 +1,7 @@
 import Image from "next/image";
 import {ArrowRight, MapPin} from "lucide-react";
 import { Button } from "@radix-ui/themes";
+import Link from "next/link";
 
 export default function HeroSection() {
     return (
@@ -21,7 +22,7 @@ export default function HeroSection() {
                 <h1>PPP Tawang</h1>
                 <span className="space-y-5"></span>
                 <Button className="button-default ">
-                    Explore
+                    <Link href="/about">Jelajahi Program</Link>
                     <ArrowRight size={24}/>
                 </Button>
 

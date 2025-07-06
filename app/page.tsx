@@ -4,6 +4,7 @@ import BeritaSection from "@/app/components/BeritaSection";
 import Image from "next/image";
 import {ArrowRight} from "lucide-react";
 import {Button} from "@radix-ui/themes";
+import Link from "next/link";
 
 export default function HomePage() {
     return (
@@ -29,19 +30,19 @@ export default function HomePage() {
                     <h2>Model Design 3D Koridor</h2>
                     <span className="space-y-5"></span>
                     <Button className="button-default ">
-                        Jelajahi Program
+                        <Link href="/koridor">Jelajahi Program</Link>
                         <ArrowRight size={24}/>
                     </Button>
                 </div>
             </div>
-            <div className="container mx-auto px-4 py-24 space-y-16">
+            <div className="container mx-auto px-4 py-16 space-y-16">
                 <div className="flex items-center justify-between">
                     <div className="flex flex-col gap-4">
                         <h6>Festival & Event</h6>
                         <h2>Berita Terbaru</h2>
                     </div>
                     <Button className="button-bordered h-fit">
-                        Lihat Berita Lainnya
+                        <Link href="/news">Jelajahi Program</Link>
                         <ArrowRight size={24}/>
                     </Button>
                 </div>
