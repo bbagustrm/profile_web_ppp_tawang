@@ -15,11 +15,12 @@ module.exports = {
         serif: ["var(--font-serif)", "serif"],
         mono: ["var(--font-mono)", "monospace"],
       },
-      color: {
-        'primary': 'var(--color-primary)',
-        'primary-variant': 'var(--color-primary-variant)',
-        'border': 'var(--color-border)',
-        'background': 'var(--color-background)',
+      colors: {
+        primary: 'var(--color-primary)',
+        variant: 'var(--color-primary-variant)',
+        border: 'var(--color-border)',
+        background: 'var(--color-background)',
+
       }
     },
   },
