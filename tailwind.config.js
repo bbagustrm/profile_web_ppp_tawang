@@ -17,11 +17,20 @@ module.exports = {
       },
       colors: {
         primary: 'var(--color-primary)',
-        variant: 'var(--color-primary-variant)',
+        variant: 'var(--color-variant)',
         border: 'var(--color-border)',
         background: 'var(--color-background)',
-
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' }
+        }
+      },
+      animation: {
+        fadeIn: 'fadeIn 0.5s ease-out'
       }
+
     },
   },
   plugins: [],

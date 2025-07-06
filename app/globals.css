@@ -5,9 +5,9 @@
 
 :root {
   --color-primary: #163d4a;
-  --color-primary-variant: #8f95a4;
+  --color-variant: #8f95a4;
   --color-border: #c8d6db;
-  --color-background: #ffffff;
+  --color-background: #fafafa;
 }
 
 html,

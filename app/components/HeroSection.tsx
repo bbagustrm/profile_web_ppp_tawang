@@ -20,7 +20,7 @@ export default function HeroSection() {
                 <div className="explore">Explore</div>
                 <h1>PPP Tawang</h1>
                 <span className="space-y-5"></span>
-                <Button className="button-default">
+                <Button className="button-default ">
                     Explore
                     <ArrowRight size={24}/>
                 </Button>

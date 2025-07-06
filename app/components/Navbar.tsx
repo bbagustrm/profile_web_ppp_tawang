@@ -5,7 +5,7 @@ import Link from 'next/link'
 import {CloudSun} from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
-import {Button} from "@radix-ui/themes";
+import {Button} from "@radix-ui/themes"
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false)
@@ -44,18 +44,21 @@ export default function Navbar() {
                         <h5>Kab. Kendal</h5>
                     </div>
                 </div>
-                <div className="flex items-center space-x-8">
+                <div className="flex items-center space-x-8 group">
                     {navItems.map((item) => (
                         <Link
                             key={item.href}
                             href={item.href}
                         >
                             <Button
-                                className={`button-link relative py-6 ${
-                                    pathname === item.href
-                                        ? `border-b-2  ${isScrolled ? 'border-primary border-b-[3px]' : 'border-white'}`
-                                        : ''
-                                }`}
+                                className={`button-link relative py-6 
+                                    ${pathname === item.href
+                                    ? `border-b-2 ${isScrolled ? 'border-primary' : 'border-white'} 
+                                           group-hover:[&:not(:hover)]:border-transparent`
+                                    : ''
+                                }
+                                    hover:border-b-2 ${isScrolled ? 'hover:border-primary' : 'hover:border-white'}
+                                `}
                             >
                                 {item.label}
                             </Button>
@@ -71,5 +74,5 @@ export default function Navbar() {
                 </div>
             </div>
         </div>
-    );
+    )
 }

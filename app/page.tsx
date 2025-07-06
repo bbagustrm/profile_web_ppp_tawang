@@ -1,11 +1,51 @@
 import HeroSection from "@/app/components/HeroSection";
+import DenahSection from "@/app/components/DenahSection";
+import BeritaSection from "@/app/components/BeritaSection";
+import Image from "next/image";
+import {ArrowRight} from "lucide-react";
+import {Button} from "@radix-ui/themes";
 
 export default function HomePage() {
     return (
         <div className="relative min-h-screen">
             <HeroSection/>
-            <div className="container mx-auto px-4">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequatur eligendi error esse excepturi fuga id incidunt minima nisi non nulla, odit porro possimus provident repudiandae, tenetur vero. Ad at cumque debitis deleniti, dolores doloribus dolorum est explicabo hic id itaque iure laboriosam laudantium natus, pariatur praesentium, quisquam ratione rem sit unde vel veniam vitae. Dicta modi molestiae porro quia repellendus! Ad autem consequatur deserunt dolor eveniet itaque laboriosam laudantium nesciunt porro quae quam, sint tenetur ut. Ab accusantium amet autem, facilis fuga hic iste laboriosam maiores minima natus nemo nostrum nulla optio quos, repudiandae sequi temporibus unde velit voluptatem! Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias consectetur cum, cupiditate debitis eum fugiat iusto modi nam necessitatibus odio quia quibusdam quos reiciendis sapiente suscipit tempora! Ab accusamus ad aperiam assumenda blanditiis commodi deleniti distinctio ea eaque earum eius expedita facere fuga impedit ipsum itaque iure labore laudantium magnam magni maxime molestiae nam natus nemo nobis non, numquam omnis optio quis quos repellat sequi sint tenetur, ut, vitae voluptas voluptatum? Ad amet architecto obcaecati, quaerat quia sit voluptatibus. Beatae delectus dolorem doloremque exercitationem facere laboriosam repellendus sint sit ut veniam. Ad alias architecto dignissimos eligendi, ipsa laudantium minus, nihil pariatur repellat repellendus repudiandae tenetur. Laboriosam maiores nostrum nulla quae tenetur. Ad adipisci aperiam, atque commodi cumque dolorem error, eveniet excepturi fuga illum iste itaque laudantium maxime molestiae mollitia nulla obcaecati optio perspiciatis praesentium, provident qui ratione sunt tempora ut vel velit veniam voluptates! Accusamus cupiditate itaque magnam minus obcaecati, ratione ut. Autem hic, iure. Distinctio, nostrum, repellendus? At autem dolorem facilis magnam! Animi at laborum recusandae. Ab accusamus, assumenda deleniti dolore doloribus, ea eius enim est explicabo facilis harum, iste maiores natus nostrum odio quibusdam ratione repudiandae sapiente tempore vero. Dolorum in minus placeat quibusdam quidem quis quod. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquid cum distinctio doloremque ea eaque eligendi ex harum incidunt iusto laboriosam laudantium libero magnam nobis non nulla numquam odio officia praesentium quaerat qui quo quod ratione recusandae saepe similique temporibus vel voluptas voluptate, voluptatum. Doloremque facere harum perspiciatis? Ab adipisci amet aspernatur aut corporis eos error exercitationem explicabo, fugiat hic incidunt ipsa magni minus nam neque nostrum officiis quas quasi qui quibusdam quis quisquam rem sed totam ullam vel veniam? Accusamus amet, corporis deleniti doloribus ducimus, esse facere harum inventore mollitia neque perferendis quae repellendus, ut. Architecto at aut beatae consequuntur deserunt dolore dolores earum enim error eum excepturi fuga fugit hic ipsum itaque, libero magnam necessitatibus nihil nulla officiis omnis placeat quam reiciendis repudiandae similique veniam voluptatibus voluptatum? Accusamus amet aperiam blanditiis deserunt, distinctio eligendi esse illum labore maiores molestiae nesciunt nulla placeat possimus quod, sequi. Atque blanditiis deleniti distinctio dolore eius fugiat illum necessitatibus nemo sint voluptates! Autem, est, officia? Explicabo iure labore minus non, quasi quos repudiandae? Asperiores dolores iusto maiores numquam officiis placeat quaerat! Cum delectus dolor dolores dolorum ducimus eligendi eos ex expedita impedit in inventore ipsam iste itaque, labore minima molestiae molestias mollitia nam natus necessitatibus nesciunt nihil nisi nostrum officiis quia recusandae reiciendis repudiandae tempore, temporibus totam! Aliquid architecto commodi, dolor inventore iure nihil obcaecati odio optio perferendis quod sapiente, sequi temporibus voluptate? Alias, aliquid aut delectus dolores dolorum fugit hic incidunt minima mollitia nobis nostrum obcaecati placeat possimus quam quisquam, reiciendis sit? Blanditiis eius neque nisi voluptas voluptatum. Consequuntur ducimus esse iste temporibus! Ab accusamus adipisci alias aliquam aliquid amet, animi asperiores consequuntur corporis cumque deleniti dignissimos distinctio dolor doloremque dolores doloribus earum explicabo facilis fuga harum hic illo incidunt itaque labore laboriosam laborum nemo odit officiis omnis perspiciatis placeat saepe sit soluta vero voluptatem voluptatibus voluptatum? Accusamus aliquid beatae, distinctio enim ipsam magni mollitia odio officia optio, perspiciatis quae quasi, quia! Atque dignissimos, distinctio earum error ex excepturi illum laudantium magni nesciunt non odit quas quisquam quos recusandae, rem repellat repellendus sequi sint sunt tempora vel voluptas voluptate voluptatem! Ab accusantium ad aliquid amet commodi debitis delectus dicta eius est et eum explicabo harum hic illum ipsa itaque labore maiores, maxime minima molestiae mollitia nesciunt odio pariatur provident quaerat qui quis repellat saepe, sed sequi sint suscipit temporibus ullam ut vel veniam voluptate. Accusamus error impedit libero modi nisi reiciendis velit? Consequatur dicta impedit iste laborum magni nulla repudiandae. Accusantium architecto asperiores dolore et fuga inventore quo! Dicta magnam minima pariatur. Ab aliquam asperiores cupiditate eum expedita explicabo impedit incidunt minima. Accusamus, accusantium architecto at culpa cum dicta eligendi facere illo iusto magnam magni maxime obcaecati pariatur provident sapiente vitae voluptatibus? Amet animi aperiam beatae cum dicta earum eius eligendi eveniet ex fugit, harum iste magni minus mollitia nihil non numquam obcaecati perspiciatis possimus quaerat quasi recusandae repellendus similique sit tempore. Aut cumque dignissimos, dolores esse illum labore laborum molestiae nostrum, odit, omnis perspiciatis quia reiciendis soluta ullam unde vero voluptas.</p>
+            <div className="container mx-auto px-4 py-24 space-y-16">
+                <div className="flex flex-col items-center gap-4">
+                    <h6>Spotlight</h6>
+                    <h2>Denah dan Lokasi</h2>
+                </div>
+                <DenahSection/>
+            </div>
+            <div className="relative w-full h-[300px]">
+                <Image
+                    src="/hero.png"
+                    alt="Hero Image"
+                    fill
+                    priority
+                    className="object-cover brightness-50"
+                />
+                <div className="absolute inset-0 flex flex-col justify-center px-32 text-white space-y-4">
+                    <h4>Program Berkelanjutan</h4>
+                    <h2>Model Design 3D Koridor</h2>
+                    <span className="space-y-5"></span>
+                    <Button className="button-default ">
+                        Jelajahi Program
+                        <ArrowRight size={24}/>
+                    </Button>
+                </div>
+            </div>
+            <div className="container mx-auto px-4 py-24 space-y-16">
+                <div className="flex items-center justify-between">
+                    <div className="flex flex-col gap-4">
+                        <h6>Festival & Event</h6>
+                        <h2>Berita Terbaru</h2>
+                    </div>
+                    <Button className="button-bordered h-fit">
+                        Lihat Berita Lainnya
+                        <ArrowRight size={24}/>
+                    </Button>
+                </div>
+                <BeritaSection/>
             </div>
         </div>
     );
