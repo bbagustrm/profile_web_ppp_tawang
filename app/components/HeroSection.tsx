@@ -14,7 +14,7 @@ export default function HeroSection() {
                 priority
                 className="object-cover brightness-50"
             />
-            <div className="absolute inset-0 flex flex-col justify-center px-24 md:px-32 text-white space-y-4">
+            <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-20 lg:px-32 text-white space-y-4">
                 <div className="space-x-2 flex items-center">
                     <MapPin size={24} className="md:w-7 md:h-7"/>
                     <h4>Kab. Kendal</h4>

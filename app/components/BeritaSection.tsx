@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import {CalendarDays, ArrowLeft, ArrowRight} from "lucide-react";
-import {useMemo, useState} from "react";
+import {useMemo, useState, useEffect} from "react";
 
 const newsData = [
     {
@@ -48,58 +48,88 @@ const newsData = [
         image: "/img6.jpg"
     }
 ];
+
 export default function BeritaSection() {
     const [currentSlide, setCurrentSlide] = useState(0);
-    const SLIDES_TO_SHOW = 3;
+    const [windowWidth, setWindowWidth] = useState<number | null>(null);
 
-    // Calculate whether we should show navigation
+    const getSlidesToShow = () => {
+        if (windowWidth === null) return 1;
+        if (windowWidth >= 1280) return 4; // xl
+        if (windowWidth >= 1024) return 3; // lg
+        if (windowWidth >= 768) return 2;  // md
+        return 1; // mobile
+    };
+
+    useEffect(() => {
+        setWindowWidth(window.innerWidth);
+
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+            setCurrentSlide(0); // Reset slide position on resize
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     const { showNavigation, isAtStart, isAtEnd } = useMemo(() => {
         const totalSlides = newsData.length;
-
-        // Hide navigation if there are fewer or equal slides than what we want to show
-        const showNavigation = totalSlides > SLIDES_TO_SHOW;
-
-        // Check if we're at the start or end of the slides
+        const slidesToShow = getSlidesToShow();
+        const showNavigation = totalSlides > slidesToShow;
         const isAtStart = currentSlide === 0;
-        const isAtEnd = currentSlide >= totalSlides - SLIDES_TO_SHOW;
+        const lastPossibleSlide = totalSlides - slidesToShow;
+        const isAtEnd = currentSlide >= lastPossibleSlide;
 
         return { showNavigation, isAtStart, isAtEnd };
-    }, [currentSlide]);
+    }, [currentSlide, windowWidth]);
 
     const handlePrevSlide = () => {
-        setCurrentSlide((prev) =>
-            prev === 0 ? newsData.length - SLIDES_TO_SHOW : prev - 1
-        );
+        setCurrentSlide((prev) => Math.max(0, prev - 1));
     };
 
     const handleNextSlide = () => {
-        setCurrentSlide((prev) =>
-            prev >= newsData.length - SLIDES_TO_SHOW ? 0 : prev + 1
-        );
+        const slidesToShow = getSlidesToShow();
+        const lastPossibleSlide = newsData.length - slidesToShow;
+        if (currentSlide >= lastPossibleSlide) {
+            return;
+        }
+        setCurrentSlide((prev) => Math.min(prev + 1, lastPossibleSlide));
     };
 
+    if (windowWidth === null) {
+        return <div className="container mx-auto py-16">Loading...</div>;
+    }
+
     return (
-        <div className="container mx-auto py-16">
+        <div className="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
             <div className="relative group">
                 <div className="relative overflow-hidden">
                     <div
                         className="flex gap-4 transition-transform duration-500 ease-out"
                         style={{
-                            transform: `translateX(-${currentSlide * (100 / SLIDES_TO_SHOW)}%)`,
+                            transform: `translateX(calc(-${currentSlide * 100}% - ${currentSlide * 16}px))`,
                         }}
                     >
                         {newsData.map((news) => (
                             <div
                                 key={news.id}
-                                className="flex-none w-[calc((100%-2rem)/3)]"
+                                className="flex-none"
+                                style={{
+                                    width: windowWidth < 768
+                                        ? '100%'
+                                        : windowWidth < 1024
+                                            ? 'calc((100% - 16px)/2)'
+                                            : 'calc((100% - 32px)/3)'
+                                }}
                             >
-                                <div className="relative aspect-square rounded-lg overflow-hidden transition duration-200 group/item">
+                                <div className="relative h-[360px] md:h-[400px] lg:h-[360px] rounded-lg overflow-hidden transition duration-200 group/item">
                                     <Image
                                         src={news.image}
                                         alt={news.title}
                                         fill
                                         priority
-                                        className="object-cover brightness-75 transition duration-200 group-hover/item:brightness-[.4]"
+                                        className="object-cover brightness-50 transition duration-200 group-hover/item:brightness-[.4]"
                                     />
                                     <div className="absolute inset-0 flex flex-col justify-end text-white p-8 space-y-2">
                                         <h3 className="text-xl font-bold">{news.title}</h3>
@@ -114,32 +144,30 @@ export default function BeritaSection() {
                         ))}
                     </div>
 
-                    {/* Navigation Buttons - Only show if there are more slides than SLIDES_TO_SHOW */}
-                    {showNavigation && (
+                    {/* Navigation Buttons */}
+                    {showNavigation && windowWidth !== null && (
                         <>
-                            {/* Previous Button - Hide when at start */}
                             {!isAtStart && (
                                 <button
                                     onClick={handlePrevSlide}
-                                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2
-                                             text-white bg-black/50 rounded-full
-                                             opacity-0 group-hover:opacity-100
-                                             transition-opacity duration-300
-                                             hover:bg-black/70"
+                                    className="absolute left-4 lg:left-10 top-1/2 -translate-y-1/2 z-10 p-2
+                                         text-white bg-black/50 rounded-full opacity-0
+                                         group-hover:opacity-100 transition-opacity duration-300
+                                         hover:bg-black/70 -translate-x-1/2"
                                 >
                                     <ArrowLeft size={24} />
                                 </button>
                             )}
 
-                            {/* Next Button - Hide when at end */}
                             {!isAtEnd && (
                                 <button
                                     onClick={handleNextSlide}
-                                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2
-                                             text-white bg-black/50 rounded-full
-                                             opacity-0 group-hover:opacity-100
-                                             transition-opacity duration-300
-                                             hover:bg-black/70"
+                                    disabled={isAtEnd || currentSlide >= (newsData.length - getSlidesToShow())}
+                                    className="absolute right-4 lg:right-10 top-1/2 -translate-y-1/2 z-10 p-2
+                                         text-white bg-black/50 rounded-full opacity-0
+                                         group-hover:opacity-100 transition-opacity duration-300
+                                         hover:bg-black/70 translate-x-1/2
+                                         disabled:opacity-0 disabled:pointer-events-none"
                                 >
                                     <ArrowRight size={24} />
                                 </button>
@@ -148,15 +176,17 @@ export default function BeritaSection() {
                     )}
                 </div>
 
-                {/* Dots Navigation - Only show if there are more slides than SLIDES_TO_SHOW */}
-                {showNavigation && (
+                {/* Dots Navigation */}
+                {showNavigation && windowWidth !== null && (
                     <div className="flex justify-center gap-2 mt-4">
-                        {Array.from({ length: Math.ceil(newsData.length / SLIDES_TO_SHOW) }).map((_, index) => (
+                        {Array.from({
+                            length: Math.ceil(newsData.length / getSlidesToShow())
+                        }).map((_, index) => (
                             <button
                                 key={index}
-                                onClick={() => setCurrentSlide(index * SLIDES_TO_SHOW)}
+                                onClick={() => setCurrentSlide(index * getSlidesToShow())}
                                 className={`w-2 h-2 rounded-full transition-all duration-300
-                                    ${Math.floor(currentSlide / SLIDES_TO_SHOW) === index
+                                    ${Math.floor(currentSlide / getSlidesToShow()) === index
                                     ? 'bg-primary w-4'
                                     : 'bg-gray-300 hover:bg-gray-400'
                                 }`}
