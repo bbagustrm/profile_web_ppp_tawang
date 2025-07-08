@@ -10,8 +10,8 @@ export default function HomePage() {
     return (
         <div className="relative min-h-screen">
             <HeroSection/>
-            <div className="container mx-auto px-4 py-24 space-y-16">
-                <div className="flex flex-col items-center gap-4">
+            <div className="container mx-auto py-24 px-8 lg:px-16 xl:px-24">
+                <div className="flex flex-col items-center gap-4 mb-24">
                     <h6>Spotlight</h6>
                     <h2>Denah dan Lokasi</h2>
                 </div>

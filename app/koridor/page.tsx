@@ -119,14 +119,6 @@ export default function KoridorPage() {
                         
                     </div>
 
-                    <div className="mt-4 text-sm text-gray-600">
-                        <p className="font-medium mb-2">Controls:</p>
-                        <ul className="list-disc list-inside ml-4 space-y-1">
-                            <li>Left Click + Drag: Rotate</li>
-                            <li>Right Click + Drag: Pan</li>
-                            <li>Scroll: Zoom</li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>

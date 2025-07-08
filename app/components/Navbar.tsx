@@ -27,17 +27,17 @@ export default function Navbar() {
 
     const navItems = [
         { href: '/', label: 'Home' },
-        { href: '/about', label: 'About' },
-        { href: '/news', label: 'News' }
+        { href: '/news', label: 'Berita Terbaru' },
+        { href: '/about', label: 'About Us' },
     ]
 
     return (
-        <div className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
+        <div className={`w-full fixed top-0 px-4 py-3 lg:py-0 left-0 z-50 transition-all duration-300 ${
             isScrolled
                 ? 'bg-white text-primary shadow-md'
                 : 'bg-transparent text-white'
         }`}>
-            <div className="container w-full mx-auto flex justify-between items-center p-4">
+            <div className="container w-full mx-auto flex justify-between items-center">
                 <div className="flex space-x-3 items-center">
                     <Image src="/logo.png" alt="logo" width={48} height={48} className="rounded-full"/>
                     <div className="flex flex-col">
@@ -47,7 +47,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center space-x-8 group">
+                <div className="hidden lg:flex items-center space-x-8 group">
                     {navItems.map((item) => (
                         <Link
                             key={item.href}
@@ -69,23 +69,34 @@ export default function Navbar() {
                     ))}
                 </div>
 
-                {/* Mobile Menu Button */}
-                <button
-                    className="md:hidden z-50"
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                >
-                    {isMenuOpen ? (
-                        <X size={24} className="text-white" />
-                    ) : (
-                        <Menu size={24} />
-                    )}
-                </button>
+                {/* Mobile Menu Button dan Weather */}
+                <div className="lg:hidden flex items-center space-x-4 z-50 absolute top-6 right-6">
+                    {/* Menu Button */}
+                    <button
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    >
+                        {isMenuOpen ? (
+                            <X size={24} className="text-white" />
+                        ) : (
+                            <Menu size={24} />
+                        )}
+                    </button>
+                </div>
+
 
                 {/* Mobile Navigation */}
                 {isMenuOpen && (
-                    <div className="md:hidden fixed inset-0 bg-black bg-opacity-50">
-                        <div className={`fixed right-0 top-0 h-full w-64 shadow-lg transform transition-transform duration-300 ease-in-out bg-primary text-white`}>
-                            <div className="flex flex-col pt-20 px-4 space-y-4">
+                    <div className="lg:hidden fixed inset-0 bg-black bg-opacity-50">
+                        <div className={`fixed right-0 top-0 h-full w-64 px-4 py-2 shadow-lg transform transition-transform duration-300 ease-in-out bg-primary text-white`}>
+                            {/* Weather Component */}
+                            <div className="flex items-center space-x-2">
+                                <CloudSun size={20}/>
+                                <div className="flex flex-col text-sm">
+                                    <h5>Berawan</h5>
+                                    <h5>24-30°C</h5>
+                                </div>
+                            </div>
+                            <div className="flex flex-col pt-10  space-y-4">
                                 {navItems.map((item) => (
                                     <Link
                                         key={item.href}
@@ -108,7 +119,7 @@ export default function Navbar() {
                     </div>
                 )}
 
-                <div className="hidden md:flex space-x-3 items-center">
+                <div className="hidden lg:flex space-x-3 items-center">
                     <CloudSun size={32}/>
                     <div className="flex flex-col">
                         <h5>Berawan</h5>
