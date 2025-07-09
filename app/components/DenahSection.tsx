@@ -35,7 +35,7 @@ const contentData = [
 export default function DenahSection() {
     const [activeTab, setActiveTab] = useState('pasar');
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+    const [windowWidth, setWindowWidth] = useState(0);
 
     const getSlidesToShow = () => {
         if (windowWidth >= 1280) return 4; // xl
@@ -48,6 +48,13 @@ export default function DenahSection() {
         const handleResize = () => {
             setWindowWidth(window.innerWidth);
             setCurrentSlide(0); // Reset slide position on resize
+
+            const handleResize = () => {
+                setWindowWidth(window.innerWidth);
+            };
+
+            window.addEventListener('resize', handleResize);
+            return () => window.removeEventListener('resize', handleResize);
         };
 
         window.addEventListener('resize', handleResize);
