@@ -1,5 +1,5 @@
 import React from "react";
-import SidebarAdmin from "@/app/components/SidebarAdmin";
+import NavbarAuth from "@/app/components/NavbarAuth";
 
 export default function LayoutAuth({
     children,
@@ -7,10 +7,9 @@ export default function LayoutAuth({
     children: React.ReactNode;
 }>){
     return (
-        <div className="w-full flex">
-            <SidebarAdmin/>
+        <div>
+            <NavbarAuth/>
             {children}
         </div>
-
     )
 }

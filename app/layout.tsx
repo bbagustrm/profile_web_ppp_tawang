@@ -36,9 +36,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${fontSans.variable} ${fontSerif.variable} ${fontMono.variable}`}>
           <Theme>
-              <Navbar/>
               {children}
-              <Footer/>
           </Theme>
       </body>
     </html>
