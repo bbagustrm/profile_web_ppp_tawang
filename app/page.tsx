@@ -10,7 +10,7 @@ import Footer from "@/app/components/Footer";
 
 export default function HomePage() {
     return (
-        <>
+        <div>
             <Navbar/>
             <div className="relative min-h-screen">
                 <HeroSection/>
@@ -54,6 +54,6 @@ export default function HomePage() {
                 </div>
             </div>
             <Footer/>
-        </>
+        </div>
     );
 }

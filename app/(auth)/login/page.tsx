@@ -1,4 +1,3 @@
-// app/(auth)/login/page.tsx
 'use client';
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
@@ -13,6 +12,8 @@ export default function LoginPage() {
 
     const router = useRouter();
     const supabase = createClientComponentClient();
+
+    console.log('✅ Login page loaded');
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
