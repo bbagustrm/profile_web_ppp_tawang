@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Playfair, Kaushan_Script } from "next/font/google";
 import "./globals.css";
 import React from "react";
-import Navbar from "@/app/components/Navbar";
-import Footer from "@/app/components/Footer";
 import { Theme } from "@radix-ui/themes";
 
 const fontSans = Plus_Jakarta_Sans({

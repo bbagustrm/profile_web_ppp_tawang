@@ -24,7 +24,7 @@ export default function HeroSection() {
                 <span className="space-y-3 md:space-y-5"></span>
                 <Button className="button-default w-fit text-center justify-center md:justify-start">
                     <Link href="/about" className="flex items-center space-x-2">
-                        <span>Jelajahi Program</span>
+                        <span>Explore Now</span>
                         <ArrowRight size={20} className="md:w-6 md:h-6"/>
                     </Link>
                 </Button>
