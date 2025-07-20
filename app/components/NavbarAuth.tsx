@@ -1,5 +1,4 @@
 import Image from "next/image";
-import {CloudSun} from "lucide-react";
 
 export default function NavbarAuth() {
     return (
@@ -13,13 +12,6 @@ export default function NavbarAuth() {
                     </div>
                 </div>
 
-                <div className="hidden lg:flex space-x-3 items-center">
-                    <CloudSun size={32}/>
-                    <div className="flex flex-col">
-                        <h5>Berawan</h5>
-                        <h5>24-30°C</h5>
-                    </div>
-                </div>
             </div>
         </div>
     )
