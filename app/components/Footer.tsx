@@ -27,27 +27,30 @@ export default function Footer() {
                             </div>
                             <div className="flex items-center gap-3">
                                 <Phone size={20} />
-                                <p>(024) 8888888</p>
+                                <p>(0294)3645668</p>
                             </div>
                             <div className="flex items-center gap-3">
-                                <Mail size={20} />
-                                <p>info@ppptawang.com</p>
+                                <Phone size={20} />
+                                <p>(0294)3645669</p>
                             </div>
                         </div>
                     </div>
 
                     {/* Quick Links Section - Hidden on mobile and md */}
                     <div className="hidden lg:flex w-[20%] flex-col gap-6">
-                        <h4 className="text-xl">Content</h4>
+                        <h4 className="text-xl">Jelajahi</h4>
                         <div className="flex flex-col gap-4 text-variant">
-                            <Link href="/" className="hover:text-white transition-colors">
-                                <p>Denah dan Lokasi</p>
-                            </Link>
-                            <Link href="/" className="hover:text-white transition-colors">
-                                <p>Program Berkelanjutan</p>
+                            <Link href="/layanan" className="hover:text-white transition-colors">
+                                <p>Layanan Kami</p>
                             </Link>
                             <Link href="/news" className="hover:text-white transition-colors">
                                 <p>Berita Terbaru</p>
+                            </Link>
+                            <Link href="/sejarah" className="hover:text-white transition-colors">
+                                <p>Arsip Sejarah</p>
+                            </Link>
+                            <Link href="/umkm" className="hover:text-white transition-colors">
+                                <p>UMKM</p>
                             </Link>
                         </div>
                     </div>
@@ -71,19 +74,6 @@ export default function Footer() {
                             <Link href="/about" className="hover:text-white transition-colors">
                                 <p>Fasilitas</p>
                             </Link>
-                        </div>
-                    </div>
-
-                    {/* Map Section */}
-                    <div className="w-full hidden md:flex md:w-[calc(50%-1rem)] lg:w-[30%] flex-col gap-6">
-                        <h4 className="text-xl">Lokasi</h4>
-                        <div className="relative w-full aspect-video rounded-lg overflow-hidden">
-                            <Image
-                                src="/map0.png"
-                                alt="location map"
-                                fill
-                                className="object-cover"
-                            />
                         </div>
                     </div>
                 </div>
