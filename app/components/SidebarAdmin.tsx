@@ -16,7 +16,7 @@ export default function SidebarAdmin() {
     }
 
     return (
-        <div className="h-screen w-64 bg-primary text-white flex flex-col py-8 px-4 justify-between">
+        <div className="h-screen fixed w-64 bg-primary text-white flex flex-col py-8 px-4 justify-between">
             <div>
                 <div className="flex flex-col items-center mb-10">
                     <Image src="/logo.png" alt="Logo" width={64} height={64} className="rounded-full" />

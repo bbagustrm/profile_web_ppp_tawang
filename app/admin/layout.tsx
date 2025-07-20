@@ -8,8 +8,12 @@ export default function LayoutAuth({
 }>){
     return (
         <div className="w-full flex">
-            <SidebarAdmin/>
-            {children}
+            <div className="w-[20%]">
+                <SidebarAdmin/>
+            </div>
+            <div className="w-[80%]">
+                {children}
+            </div>
         </div>
 
     )
