@@ -2,10 +2,11 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ArrowRight } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { Button } from "@/components/ui/button"
+
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false)
@@ -70,8 +71,13 @@ export default function Navbar() {
                         </Link>
                     ))}
                     <Link href="/admin">
-                        <Button className={`px-8 ml-8 ${isScrolled ? 'text-white bg-primary ' : 'text-primary  bg-white'}`}>Login</Button>
+                        <Button className={`px-8 ml-8 ${isScrolled ? 'text-white bg-primary ' : 'text-primary bg-white hover:text-white'}`}>
+                            Login
+                            <ArrowRight size={20} className="md:w-6 md:h-6"/>
+
+                        </Button>
                     </Link>
+
                 </div>
 
                 <div className="lg:hidden flex items-center space-x-4 z-50 absolute top-6 right-6">
@@ -116,7 +122,10 @@ export default function Navbar() {
                                 ))}
                             </div>
                             <Link href="/admin">
-                                <Button className='w-full text-primary font-semibold bg-white'>Login</Button>
+                                <Button variant="default" size="icon" className=' size-8 w-full text-primary font-semibold bg-white hover:text-white'>
+                                    Login
+                                    <ArrowRight size={20} className="md:w-6 md:h-6"/>
+                                </Button>
                             </Link>
                         </div>
                     </div>
