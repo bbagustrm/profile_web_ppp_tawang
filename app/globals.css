@@ -16,6 +16,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  @apply font-sans;
 }
 
 body {
@@ -56,7 +57,7 @@ a {
     @apply font-sans text-sm font-semibold;
   }
   h6 {
-    @apply font-sans text-sm font-semibold;
+    @apply font-sans text-xs font-semibold;
   }
   p {
     @apply font-sans text-sm;

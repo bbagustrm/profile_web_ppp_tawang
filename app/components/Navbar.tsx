@@ -36,7 +36,7 @@ export default function Navbar() {
     return (
         <div className={`w-full fixed top-0 px-4 py-3 lg:py-0 left-0 z-50 transition-all duration-300 ${
             isScrolled
-                ? 'bg-white text-primary shadow-md'
+                ? 'bg-white text-[#163d4a] shadow-md'
                 : 'bg-transparent text-white'
         }`}>
             <div className="container w-full mx-auto flex justify-between items-center">
@@ -57,13 +57,13 @@ export default function Navbar() {
                         >
                             <Button
                                 variant="link"
-                                className={`relative p-8 rounded-none text-white hover:no-underline
+                                className={`relative p-8 rounded-none text-white hover:no-underline transition-colors duration-300
                                     ${pathname === item.href
-                                    ? `border-b-2 ${isScrolled ? 'border-primary' : 'border-white'} 
+                                    ? `border-b-2 ${isScrolled ? 'border-[#163d4a]' : 'border-white'} 
                                            group-hover:[&:not(:hover)]:border-transparent`
                                     : ''
                                 }
-                                    hover:border-b-2 ${isScrolled ? 'hover:border-primary text-primary' : 'hover:border-white text-white'}
+                                    hover:border-b-2 ${isScrolled ? 'hover:border-[#163d4a] text-[#163d4a]' : 'hover:border-white text-white'}
                                 `}
                             >
                                 {item.label}
@@ -71,7 +71,7 @@ export default function Navbar() {
                         </Link>
                     ))}
                     <Link href="/admin">
-                        <Button className={`ml-8 ${isScrolled ? 'text-white bg-primary ' : 'text-primary bg-white hover:text-white'}`}>
+                        <Button className={`transition-colors duration-300 ml-8 ${isScrolled ? ' ' : 'text-[#163d4a] bg-white hover:bg-[#163d4a]/90 hover:text-white'}`}>
                             Login
                             <ArrowRight size={20} className="md:w-6 md:h-6"/>
                         </Button>
@@ -96,7 +96,7 @@ export default function Navbar() {
                 {/* Mobile Navigation */}
                 {isMenuOpen && (
                     <div className="lg:hidden fixed inset-0 bg-black bg-opacity-50">
-                        <div className={`flex flex-col justify-between fixed right-0 top-0 h-full w-64 px-4 pt-2 pb-8 shadow-lg transform transition-transform duration-300 ease-in-out bg-primary text-white`}>
+                        <div className={`flex flex-col justify-between fixed right-0 top-0 h-full w-64 px-4 pt-2 pb-8 shadow-lg transform transition-transform duration-300 ease-in-out bg-[#163d4a] text-white`}>
                             <div className="flex flex-col pt-10  space-y-4">
                                 {navItems.map((item) => (
                                     <Link
@@ -121,7 +121,7 @@ export default function Navbar() {
                                 ))}
                             </div>
                             <Link href="/admin">
-                                <Button variant="default" size="icon" className=' size-8 w-full text-primary font-semibold bg-white hover:text-white'>
+                                <Button variant="secondary" size="icon" className=' size-8 w-full font-semibold'>
                                     Login
                                     <ArrowRight size={20} className="md:w-6 md:h-6"/>
                                 </Button>
