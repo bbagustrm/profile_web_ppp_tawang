@@ -94,7 +94,7 @@ export default function DenahSection() {
     };
 
     return (
-        <div className="container mx-auto space-y-16">
+        <div id="DenahSection" className="container mx-auto space-y-16">
             <div className="flex flex-col-reverse lg:flex-row gap-12 justify-between">
                 {/* Map */}
                 <div className="w-full mx-auto md:w-[60%] lg:w-[40%] xl:w-[30%] xl:pt-0 ">

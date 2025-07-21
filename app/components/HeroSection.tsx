@@ -1,7 +1,14 @@
+'use client'
 
+import {
+    HoverCard,
+    HoverCardContent,
+    HoverCardTrigger,
+} from "@/components/ui/hover-card"
 import Image from "next/image";
-import {ArrowRight, MapPin} from "lucide-react";
-import { Button } from "@radix-ui/themes";
+import { MapPin, Cube } from "phosphor-react";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button"
 import Link from "next/link";
 
 export default function HeroSection() {
@@ -12,22 +19,68 @@ export default function HeroSection() {
                 alt="Hero Image"
                 fill
                 priority
-                className="object-cover brightness-50"
+                className="object-cover brightness-75"
             />
-            <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-20 lg:px-32 text-white space-y-4">
-                <div className="space-x-2 flex items-center">
-                    <MapPin size={24} className="md:w-7 md:h-7"/>
-                    <h4>Kab. Kendal</h4>
+            <div className="absolute inset-0 flex justify-between items-center px-8 md:px-20 lg:px-32 space-y-4">
+                <div className="flex flex-col space-y-4 text-white">
+                    <div className="space-x-2 flex items-center ">
+                        <MapPin size={28} weight="fill" />
+                        <h5>Kab. Kendal</h5>
+                    </div>
+                    <div className="explore ">Explore</div>
+                    <h1 className="">PPP Tawang</h1>
+                    <span className="space-y-3 md:space-y-5"></span>
+                    <div className="flex gap-4">
+                        <Link href="#DenahSection">
+                            <Button className={`text-primary bg-white hover:text-white`}>
+                                Explore Now
+                                <ArrowRight size={20} className="md:w-6 md:h-6"/>
+                            </Button>
+                        </Link>
+                        <Link href="/about">
+                            <Button variant='outline' className="bg-transparent ">
+                                About Us
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
-                <div className="explore">Explore</div>
-                <h1>PPP Tawang</h1>
-                <span className="space-y-3 md:space-y-5"></span>
-                <Button className="button-default w-fit text-center justify-center md:justify-start">
-                    <Link href="/about" className="flex items-center space-x-2">
-                        <span>Explore Now</span>
-                        <ArrowRight size={20} className="md:w-6 md:h-6"/>
-                    </Link>
-                </Button>
+
+                <div className="flex flex-col gap-4">
+                    <HoverCard>
+                        <HoverCardTrigger>
+                            <div className="bg-white size-10 rounded-full p-2 shadow-md cursor-pointer">
+                                <Cube size={24} weight="fill" />
+                            </div>
+                        </HoverCardTrigger>
+                        <HoverCardContent side="left" sideOffset={24} className="space-y-4">
+                            <h5>Model Design 3D</h5>
+                            <p>Program KKN Pembuatan Design Koridor untuk PPP Tawang</p>
+                            <Link href='/'>
+                                <Button variant='outline' className='mt-4'>
+                                    Jelajahi Program
+                                    <ArrowRight size={20} className="md:w-6 md:h-6"/>
+                                </Button>
+                            </Link>
+                        </HoverCardContent>
+                    </HoverCard>
+                    <HoverCard>
+                        <HoverCardTrigger>
+                            <div className="bg-white size-10 rounded-full p-2 shadow-md cursor-pointer">
+                                <MapPin size={24} weight="fill" />
+                            </div>
+                        </HoverCardTrigger>
+                        <HoverCardContent side="left" sideOffset={24} className="space-y-4">
+                            <h5>Kantor PPP Tawang</h5>
+                            <p>Komplek TPI Tawang, Gempolsewu, Kec. Rowosari, Kab. kendal</p>
+                            <Link href="https://maps.app.goo.gl/cjyPGziqbkpnWuzr7">
+                                <Button variant='outline' className='mt-4'>
+                                    Lihat di Google Maps
+                                    <ArrowRight size={20} className="md:w-6 md:h-6"/>
+                                </Button>
+                            </Link>
+                        </HoverCardContent>
+                    </HoverCard>
+                </div>
             </div>
         </div>
     );

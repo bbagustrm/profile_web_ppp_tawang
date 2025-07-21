@@ -71,10 +71,9 @@ export default function Navbar() {
                         </Link>
                     ))}
                     <Link href="/admin">
-                        <Button className={`px-8 ml-8 ${isScrolled ? 'text-white bg-primary ' : 'text-primary bg-white hover:text-white'}`}>
+                        <Button className={`ml-8 ${isScrolled ? 'text-white bg-primary ' : 'text-primary bg-white hover:text-white'}`}>
                             Login
                             <ArrowRight size={20} className="md:w-6 md:h-6"/>
-
                         </Button>
                     </Link>
 
