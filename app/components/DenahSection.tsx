@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge"
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
-``
+
 const contentData = [
     {
         id: 'kantor',
