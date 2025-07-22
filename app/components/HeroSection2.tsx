@@ -1,10 +1,10 @@
 import Image from "next/image";
 
-export default function HeroSection2({ title, description } : {title: string, description: string}) {
+export default function HeroSection2({ title, image, description } : {title: string,image: string, description: string}) {
     return (
         <div className="relative w-full h-72">
             <Image
-                src="/hero.png"
+                src={image || "/hero.png"}
                 alt="Hero Image"
                 fill
                 priority
