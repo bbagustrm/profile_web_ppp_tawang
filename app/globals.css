@@ -39,10 +39,10 @@ a {
 
 @layer base {
   .explore {
-    @apply font-mono text-6xl;
+    @apply font-mono text-5xl md:text-6xl;
   }
   h1 {
-    @apply font-sans text-5xl font-bold;
+    @apply font-sans text-4xl md:text-5xl font-bold;
   }
   h2 {
     @apply font-serif text-4xl font-bold;

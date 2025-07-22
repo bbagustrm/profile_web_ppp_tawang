@@ -108,10 +108,10 @@ export default function Navbar() {
                                             variant="link"
                                             className={`relative py-8 w-full justify-start rounded-none text-white hover:no-underline
                                             ${pathname === item.href
-                                                ? `border-b-2 border-white group-hover:[&:not(:hover)]:border-transparent`
+                                                ? `border-b-2 border-neutral-400`
                                                 : ''
                                             }
-                                            hover:border-b-2 hover:border-white text-white'}
+                                            hover:border-b-2 hover:border-neutral-400 text-white'}
                                             `}
                                         >
                                             {item.label}
@@ -121,7 +121,7 @@ export default function Navbar() {
                                 ))}
                             </div>
                             <Link href="/admin">
-                                <Button variant="secondary" size="icon" className=' size-8 w-full font-semibold'>
+                                <Button variant="secondary" size="icon" className='py-6 size-8 w-full font-semibold'>
                                     Login
                                     <ArrowRight size={20} className="md:w-6 md:h-6"/>
                                 </Button>

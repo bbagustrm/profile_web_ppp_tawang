@@ -1,10 +1,10 @@
 'use client'
 
 import {
-    HoverCard,
-    HoverCardContent,
-    HoverCardTrigger,
-} from "@/components/ui/hover-card"
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover"
 import {
     Carousel,
     CarouselContent,
@@ -13,8 +13,7 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import {
-    Card,
-    CardContent,
+    Card
 } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Image from "next/image";
@@ -34,7 +33,7 @@ export default function HeroSection() {
                 className="object-cover brightness-75"
             />
             <div className="absolute inset-0 flex flex-col justify-between">
-                <div className="h-full flex justify-between items-center px-8 md:px-20 lg:px-32 space-y-4 translate-y-8">
+                <div className="h-full flex flex-row gap-8 md:gap-0 justify-between items-center px-8 md:px-20 lg:px-32 space-y-4 translate-y-8">
                     <div className="flex flex-col space-y-4 text-white">
                         <div className="space-x-2 flex items-center ">
                             <MapPin size={28} weight="fill" />
@@ -58,13 +57,13 @@ export default function HeroSection() {
                         </div>
                     </div>
                     <div className="flex flex-col gap-4">
-                        <HoverCard>
-                            <HoverCardTrigger>
-                                <div className="bg-white size-10 rounded-full p-2 shadow-md cursor-pointer">
+                        <Popover>
+                            <PopoverTrigger>
+                                <div className="bg-white size-10 rounded-full p-2 shadow-md cursor-pointer hover:bg-neutral-200">
                                     <Cube size={24} weight="fill" />
                                 </div>
-                            </HoverCardTrigger>
-                            <HoverCardContent side="left" sideOffset={24} className="space-y-4 text-[#163d4a]">
+                            </PopoverTrigger>
+                            <PopoverContent side="left" sideOffset={24} className="space-y-4 z-40 text-[#163d4a]">
                                 <h5>Model Design 3D</h5>
                                 <p>Program KKN Pembuatan Design Koridor untuk PPP Tawang</p>
                                 <Link href='/'>
@@ -73,15 +72,15 @@ export default function HeroSection() {
                                         <ArrowRight size={20} className="md:w-6 md:h-6"/>
                                     </Button>
                                 </Link>
-                            </HoverCardContent>
-                        </HoverCard>
-                        <HoverCard>
-                            <HoverCardTrigger>
-                                <div className="bg-white size-10 rounded-full p-2 shadow-md cursor-pointer">
+                            </PopoverContent>
+                        </Popover>
+                        <Popover>
+                            <PopoverTrigger>
+                                <div className="bg-white size-10 rounded-full p-2 shadow-md cursor-pointer hover:bg-neutral-200">
                                     <MapPin size={24} weight="fill" />
                                 </div>
-                            </HoverCardTrigger>
-                            <HoverCardContent side="left" sideOffset={24} className="space-y-4 text-[#163d4a]">
+                            </PopoverTrigger>
+                            <PopoverContent side="left" sideOffset={24} className="space-y-4 z-40 text-[#163d4a]">
                                 <h5>Kantor PPP Tawang</h5>
                                 <p>Komplek TPI Tawang, Gempolsewu, Kec. Rowosari, Kab. kendal</p>
                                 <Link href="https://maps.app.goo.gl/cjyPGziqbkpnWuzr7">
@@ -90,8 +89,8 @@ export default function HeroSection() {
                                         <ArrowRight size={20} className="md:w-6 md:h-6"/>
                                     </Button>
                                 </Link>
-                            </HoverCardContent>
-                        </HoverCard>
+                            </PopoverContent>
+                        </Popover>
                     </div>
                 </div>
                 <div className="px-16 py-6 border-t-2 border-white/20 bg-black/30 ">

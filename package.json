@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@radix-ui/react-hover-card": "^1.1.14",
+    "@radix-ui/react-popover": "^1.1.14",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/themes": "^3.2.1",
     "@react-three/drei": "^10.4.4",
