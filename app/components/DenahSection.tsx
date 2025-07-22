@@ -20,7 +20,7 @@ const contentData = [
     {
         id: 'kantor',
         title: 'Kantor PPP Tawang',
-        icon: <Buildings size={32} weight="fill" />,
+        icon: <Buildings size={32} weight="fill" className="text-teal-600"/>,
         time: '08.00 - 15.30 WIB',
         description: 'Kantor Pelabuhan Perikanan Pantai (PPP) Tawang melayani masyarakat setiap hari kerja mulai pukul 08.00 hingga 15.30 WIB. Berbagai layanan disediakan, mulai dari administrasi keluar masuk kapal perikanan, tambat labuh, bongkar muat dan pelelangan ikan, hingga pembinaan serta pengawasan mutu hasil tangkapan. Selain itu, kantor ini juga berperan dalam pemantauan dan pengendalian penangkapan ikan serta koordinasi pembinaan nelayan.',
         images: ['/img1.jpg', '/img2.jpg', '/img3.jpg', '/img4.jpg', '/img5.jpg', '/img6.jpg'],
@@ -29,7 +29,7 @@ const contentData = [
     {
         id: 'tpi',
         title: 'Tempat Pelelangan Ikan',
-        icon: <Fish size={32} weight="fill" />,
+        icon: <Fish size={32} weight="fill" className="text-teal-600" />,
         time: '13.00 - 15.00 WIB',
         description: 'Pasar ikan laut di sekitar PPP Tawang tidak hanya menjadi pusat jual beli hasil laut segar dan kering, tetapi juga destinasi favorit untuk mencari oleh-oleh khas pesisir. Buka setiap hari pukul 03.00–16.00 WIB, pasar ini menyediakan berbagai pilihan ikan segar hasil tangkapan langsung dari nelayan, serta aneka ikan kering seperti ikan asin, teri, dan udang kering yang awet dan cocok dibawa pulang.',
         images: ['/img1.jpg', '/img2.jpg', '/img3.jpg', '/img4.jpg', '/img5.jpg', '/img6.jpg'],
@@ -38,7 +38,7 @@ const contentData = [
     {
         id: 'pasar',
         title: 'Pasar Ikan Laut',
-        icon: <Storefront size={32} weight="fill" />,
+        icon: <Storefront size={32} weight="fill" className="text-teal-600"/>,
         time: '03.00 - 16.00 WIB',
         description: 'Pasar ikan laut di sekitar PPP Tawang tidak hanya menjadi pusat jual beli hasil laut segar dan kering, tetapi juga destinasi favorit untuk mencari oleh-oleh khas pesisir. Buka setiap hari pukul 03.00–16.00 WIB, pasar ini menyediakan berbagai pilihan ikan segar hasil tangkapan langsung dari nelayan, serta aneka ikan kering seperti ikan asin, teri, dan udang kering yang awet dan cocok dibawa pulang.',
         images: ['/img1.jpg', '/img2.jpg', '/img3.jpg', '/img4.jpg', '/img5.jpg', '/img6.jpg'],
@@ -47,7 +47,7 @@ const contentData = [
     {
         id: 'dermaga',
         title: 'Dermaga Kapal',
-        icon: <Boat size={32} weight="fill" />,
+        icon: <Boat size={32} weight="fill" className="text-teal-600"/>,
         time: 'Buka 24 Jam',
         description: 'Dermaga di PPP Tawang beroperasi 24 jam dan menjadi titik penting bagi aktivitas perikanan. Di sinilah para nelayan berlabuh setelah melaut, membawa hasil tangkapan segar yang kemudian akan dijual di Tempat Pelelangan Ikan (TPI). Dermaga ini mendukung kelancaran kegiatan bongkar muat serta menjadi awal dari rantai distribusi hasil laut segar di wilayah Tawang. ',
         images: ['/img1.jpg', '/img2.jpg', '/img3.jpg', '/img4.jpg', '/img5.jpg', '/img6.jpg'],
@@ -56,7 +56,7 @@ const contentData = [
     {
         id: 'kios',
         title: 'Kios dan Kuliner',
-        icon: <ForkKnife size={32} weight="fill" />,
+        icon: <ForkKnife size={32} weight="fill" className="text-teal-600"/>,
         time: 'Buka 08.00 - 18.00',
         description: 'Area kios dan kuliner di PPP Tawang buka setiap hari pukul 08.00 hingga 18.00 WIB, menghadirkan berbagai jajanan dan produk UMKM lokal yang menggugah selera. Berlokasi di tepi sungai, tempat ini sering dijadikan lokasi bersantai dan bermain oleh masyarakat, terutama di sore hari. Suasana sungai yang tenang berpadu dengan keramahan penjual dan ragam kuliner khas menjadikan area ini pilihan tepat untuk menikmati waktu bersama keluarga atau teman.',
         images: ['/img1.jpg', '/img2.jpg', '/img3.jpg', '/img4.jpg', '/img5.jpg', '/img6.jpg'],
@@ -108,10 +108,12 @@ export default function DenahSection() {
                         </ScrollArea>
                         {contentData.map((item) => (
                             <TabsContent key={item.id} value={item.id} className="space-y-6 animate-fadeIn">
-                                <div className="flex gap-4 items-center">
-                                    {item.icon}
-                                    <h3 className="text-xl font-semibold">{item.title}</h3>
-                                    <Badge variant="secondary" className='w-fit'>{item.time}</Badge>
+                                <div className="flex flex-col md:flex-row gap-4 md:items-center">
+                                    <div className='flex gap-4'>
+                                        {item.icon}
+                                        <h3 className="text-xl font-semibold">{item.title}</h3>
+                                    </div>
+                                    <Badge variant="secondary" className='w-fit text-right'>{item.time}</Badge>
                                 </div>
                                 <p>{item.description}</p>
                             </TabsContent>
@@ -121,7 +123,7 @@ export default function DenahSection() {
             </div>
 
             {activeContent?.images?.length ? (
-                <Carousel opts={{ align: "start" }} className="w-4/5 mx-auto lg:w-full">
+                <Carousel opts={{ align: "start" }} className="w-full mx-auto lg:w-full">
                     <CarouselContent className="gap-0">
                         {activeContent.images.map((img, index) => (
                             <CarouselItem
@@ -140,8 +142,8 @@ export default function DenahSection() {
                             </CarouselItem>
                         ))}
                     </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
+                    <CarouselPrevious className={"absolute top-1/2 left-4"} />
+                    <CarouselNext className={"absolute top-1/2 right-4"} />
                 </Carousel>
             ) : null}
 

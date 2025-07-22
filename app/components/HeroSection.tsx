@@ -44,7 +44,7 @@ export default function HeroSection() {
                         <span className="space-y-3 md:space-y-5"></span>
                         <div className="flex gap-4">
                             <Link href="#DenahSection">
-                                <Button className={`text-[#163d4a] bg-white hover:text-white hover:bg-[#163d4a]/90 transition-colors duration-300`}>
+                                <Button className={`text-[#163d4a] bg-white hover:text-white hover:bg-[#163d4a]/90 hover:border-[0.5px] hover:border-white transition-colors duration-300`}>
                                     Explore Now
                                     <ArrowRight size={20} className="md:w-6 md:h-6"/>
                                 </Button>
@@ -60,7 +60,7 @@ export default function HeroSection() {
                         <Popover>
                             <PopoverTrigger>
                                 <div className="bg-white size-10 rounded-full p-2 shadow-md cursor-pointer hover:bg-neutral-200">
-                                    <Cube size={24} weight="fill" />
+                                    <Cube size={24} weight="fill" className={"text-teal-600"}/>
                                 </div>
                             </PopoverTrigger>
                             <PopoverContent side="left" sideOffset={24} className="space-y-4 z-40 text-[#163d4a]">
@@ -77,7 +77,7 @@ export default function HeroSection() {
                         <Popover>
                             <PopoverTrigger>
                                 <div className="bg-white size-10 rounded-full p-2 shadow-md cursor-pointer hover:bg-neutral-200">
-                                    <MapPin size={24} weight="fill" />
+                                    <MapPin size={24} weight="fill" className={"text-teal-600"}/>
                                 </div>
                             </PopoverTrigger>
                             <PopoverContent side="left" sideOffset={24} className="space-y-4 z-40 text-[#163d4a]">
