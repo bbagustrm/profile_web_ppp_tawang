@@ -17,7 +17,7 @@ export default function PengaduanPage() {
         <>
             <Navbar/>
             <div className="relative min-h-screen">
-                <HeroSection2 title={"Pengaduan"} description={"Pengaduan dan Aspirasi Berbasis Digital"}/>
+                <HeroSection2 title={"Pengaduan"} image={"/hero.png"} description={"Pengaduan dan Aspirasi Berbasis Digital"}/>
                 <div className="container mx-auto mt-12 flex justify-center items-center px-4">
                     <Card className="w-full max-w-sm">
                         <CardHeader>

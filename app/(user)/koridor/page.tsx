@@ -74,6 +74,7 @@ export default function KoridorPage() {
             <div className="relative min-h-screen">
                 <HeroSection2
                     title={"Design Koridor"}
+                    image={"/hero.png"}
                     description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
                 />
                 <div className="container mx-auto px-4 py-8">
