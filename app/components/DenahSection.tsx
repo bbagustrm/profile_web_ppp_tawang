@@ -1,7 +1,6 @@
 'use client'
 
 import Image from "next/image";
-import { ExternalLink } from "lucide-react";
 import { useState } from "react";
 import {Buildings, Fish, Storefront, Boat, ForkKnife} from "phosphor-react";
 import {
@@ -16,8 +15,7 @@ import {
 } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge"
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
-import { Button } from "@/components/ui/button";
-
+``
 const contentData = [
     {
         id: 'kantor',
