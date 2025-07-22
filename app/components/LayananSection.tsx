@@ -35,7 +35,7 @@ export default function LayananSection() {
                 {/* Gambar Layanan */}
                 <div className="hidden md:block w-[400px] h-[300px] rounded-lg overflow-hidden border-2 border-border relative">
                     <Image
-                        src="/Layanan.jpeg"
+                        src="/layanan.jpeg"
                         alt="Layanan Image"
                         fill
                         className="object-cover"
