@@ -54,13 +54,13 @@ a {
     @apply font-sans text-xl font-semibold;
   }
   h5 {
-    @apply font-sans text-sm font-semibold;
+    @apply font-sans text-base font-semibold;
   }
   h6 {
-    @apply font-sans text-xs font-semibold;
+    @apply font-sans text-sm font-semibold;
   }
   p {
-    @apply font-sans text-sm;
+    @apply font-sans text-base;
   }
   button {
     @apply font-sans text-base font-bold;
