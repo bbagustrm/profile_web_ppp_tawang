@@ -3,14 +3,18 @@
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import { useState } from "react";
-import { Buildings, Fish, Storefront } from "phosphor-react";
+import {Buildings, Fish, Storefront, Boat, ForkKnife} from "phosphor-react";
 import {
     Tabs,
     TabsList,
     TabsTrigger,
     TabsContent,
 } from "@/components/ui/tabs";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+    ScrollArea,
+    ScrollBar,
+} from "@/components/ui/scroll-area"
+import { Badge } from "@/components/ui/badge"
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 
@@ -41,6 +45,24 @@ const contentData = [
         description: 'Pasar ikan laut di sekitar PPP Tawang tidak hanya menjadi pusat jual beli hasil laut segar dan kering, tetapi juga destinasi favorit untuk mencari oleh-oleh khas pesisir. Buka setiap hari pukul 03.00–16.00 WIB, pasar ini menyediakan berbagai pilihan ikan segar hasil tangkapan langsung dari nelayan, serta aneka ikan kering seperti ikan asin, teri, dan udang kering yang awet dan cocok dibawa pulang.',
         images: ['/img1.jpg', '/img2.jpg', '/img3.jpg', '/img4.jpg', '/img5.jpg', '/img6.jpg'],
         mapImage: '/map3.png'
+    },
+    {
+        id: 'dermaga',
+        title: 'Dermaga Kapal',
+        icon: <Boat size={32} weight="fill" />,
+        time: 'Buka 24 Jam',
+        description: 'Dermaga di PPP Tawang beroperasi 24 jam dan menjadi titik penting bagi aktivitas perikanan. Di sinilah para nelayan berlabuh setelah melaut, membawa hasil tangkapan segar yang kemudian akan dijual di Tempat Pelelangan Ikan (TPI). Dermaga ini mendukung kelancaran kegiatan bongkar muat serta menjadi awal dari rantai distribusi hasil laut segar di wilayah Tawang. ',
+        images: ['/img1.jpg', '/img2.jpg', '/img3.jpg', '/img4.jpg', '/img5.jpg', '/img6.jpg'],
+        mapImage: '/map3.png'
+    },
+    {
+        id: 'kios',
+        title: 'Kios dan Kuliner',
+        icon: <ForkKnife size={32} weight="fill" />,
+        time: 'Buka 08.00 - 18.00',
+        description: 'Area kios dan kuliner di PPP Tawang buka setiap hari pukul 08.00 hingga 18.00 WIB, menghadirkan berbagai jajanan dan produk UMKM lokal yang menggugah selera. Berlokasi di tepi sungai, tempat ini sering dijadikan lokasi bersantai dan bermain oleh masyarakat, terutama di sore hari. Suasana sungai yang tenang berpadu dengan keramahan penjual dan ragam kuliner khas menjadikan area ini pilihan tepat untuk menikmati waktu bersama keluarga atau teman.',
+        images: ['/img1.jpg', '/img2.jpg', '/img3.jpg', '/img4.jpg', '/img5.jpg', '/img6.jpg'],
+        mapImage: '/map3.png'
     }
 ];
 
@@ -52,7 +74,7 @@ export default function DenahSection() {
         <div id="DenahSection" className="container mx-auto space-y-16">
             <div className="flex flex-col-reverse lg:flex-row gap-12 justify-between">
                 {/* Map */}
-                <div className="w-full mx-auto md:w-[60%] lg:w-[40%] xl:w-[30%] xl:pt-0">
+                <div className="w-4/5 mx-auto md:w-[60%] lg:w-[40%] xl:w-[30%] xl:pt-0">
                     <div className="lg:sticky lg:top-8 lg:h-fit">
                         <div className="relative aspect-square rounded-lg overflow-hidden border-2 border-border">
                             <Image
@@ -62,38 +84,36 @@ export default function DenahSection() {
                                 priority
                                 className="object-cover transition-opacity duration-500"
                             />
-                            <div className="absolute inset-0 flex flex-col justify-end">
-                                <Button className="w-full justify-between px-4 rounded-none">
-                                    Lihat di Google Maps
-                                    <ExternalLink size={24} />
-                                </Button>
-                            </div>
                         </div>
                     </div>
                 </div>
 
                 {/* Deskripsi dan Tabs */}
-                <div className="w-full lg:w-[60%] xl:w-[70%] space-y-8">
-                    <Tabs defaultValue={"kantor"} onValueChange={setActiveTab}>
-                        <ScrollArea className="w-full whitespace-nowrap overflow-x-auto pb-2">
-                            <TabsList className="flex w-max gap-2 border-b-2 border-border bg-transparent">
+                <div className="w-full lg:w-[60%] xl:w-[70%]">
+                    <Tabs defaultValue={"kantor"} onValueChange={setActiveTab} className='w-full space-y-8 text-[#163d4a]'>
+                        <ScrollArea
+                            className="w-full h-full overflow-y-hidden "
+                            scrollHideDelay={0}
+                        >
+                            <TabsList className="h-full flex w-max bg-transparent">
                                 {contentData.map((item) => (
                                     <TabsTrigger
                                         key={item.id}
                                         value={item.id}
-                                        className="px-6 py-3 text-sm font-medium"
+                                        className=" px-6 py-4 text-sm font-medium bg-transparent border-b-2 rounded-none data-[state=active]:bg-transparent data-[state=active]:border-b-[#163d4a] data-[state=active]:text-[#163d4a] data-[state=active]:shadow-none"
                                     >
                                         {item.title}
                                     </TabsTrigger>
                                 ))}
                             </TabsList>
+                            <ScrollBar orientation="horizontal" />
                         </ScrollArea>
-
                         {contentData.map((item) => (
-                            <TabsContent key={item.id} value={item.id} className="space-y-8 animate-fadeIn">
+                            <TabsContent key={item.id} value={item.id} className="space-y-6 animate-fadeIn">
                                 <div className="flex gap-4 items-center">
                                     {item.icon}
                                     <h3 className="text-xl font-semibold">{item.title}</h3>
+                                    <Badge variant="secondary" className='w-fit'>{item.time}</Badge>
                                 </div>
                                 <p>{item.description}</p>
                             </TabsContent>
@@ -103,14 +123,14 @@ export default function DenahSection() {
             </div>
 
             {activeContent?.images?.length ? (
-                <Carousel opts={{ align: "start" }} className="w-full">
-                    <CarouselContent>
+                <Carousel opts={{ align: "start" }} className="w-4/5 mx-auto lg:w-full">
+                    <CarouselContent className="gap-0">
                         {activeContent.images.map((img, index) => (
                             <CarouselItem
                                 key={img}
                                 className="basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
                             >
-                                <div className="p-2">
+                                <div className="">
                                     <Image
                                         src={img}
                                         alt={`${activeContent.title} Image ${index + 1}`}

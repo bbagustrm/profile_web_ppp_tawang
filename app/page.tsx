@@ -14,8 +14,8 @@ export default function HomePage() {
             <div className="relative min-h-screen">
                 <HeroSection/>
                 <div className="container mx-auto py-24 px-8 lg:px-16 xl:px-24">
-                    <div className="flex flex-col md:items-center gap-4 mb-12 md:mb-16">
-                        <h6>Spotlight</h6>
+                    <div className="flex flex-col items-center gap-4 mb-12 md:mb-16">
+                        <h6>SPOTLIGHT</h6>
                         <h2>Denah dan Lokasi</h2>
                     </div>
                     <DenahSection/>
@@ -23,7 +23,7 @@ export default function HomePage() {
                 <div className="container mx-auto py-24 px-8 lg:px-16 xl:px-24">
                     <div className="flex flex-col items-center gap-12 md:flex-row md:justify-between     md:gap-24">
                         <div className="flex flex-col items-center md:items-start gap-4">
-                            <h6>Festival & Event</h6>
+                            <h6>FESTIVAL & EVENTS</h6>
                             <h2>Berita Terbaru</h2>
                         </div>
                         <Button className="button-bordered h-fit">
