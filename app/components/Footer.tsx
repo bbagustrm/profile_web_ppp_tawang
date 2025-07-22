@@ -1,10 +1,13 @@
+'use client'
+
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Phone } from "lucide-react";
+import {MapPin, Phone} from "phosphor-react";
+
 
 export default function Footer() {
     return (
-        <footer className="bg-primary text-white">
+        <footer className="bg-[#163d4a] text-white">
             <div className="container mx-auto px-8 lg:px-16 xl:px-24">
                 {/* Main Footer Content */}
                 <div className="py-12 flex flex-col gap-12 md:flex-row md:justify-between lg:flex-nowrap md:gap-8">
@@ -22,15 +25,15 @@ export default function Footer() {
                         </div>
                         <div className="space-y-4 text-variant">
                             <div className="flex items-start gap-3">
-                                <MapPin className="mt-1 shrink-0" size={20} />
+                                <MapPin className="mt-1 shrink-0" size={20} weight='fill' />
                                 <p>Gempolsewu, Rowosari, Kec. Kendal, Jawa Tengah 51354</p>
                             </div>
                             <div className="flex items-center gap-3">
-                                <Phone size={20} />
+                                <Phone size={20} weight='fill'/>
                                 <p>(0294)3645668</p>
                             </div>
                             <div className="flex items-center gap-3">
-                                <Phone size={20} />
+                                <Phone size={20} weight='fill'/>
                                 <p>(0294)3645669</p>
                             </div>
                         </div>

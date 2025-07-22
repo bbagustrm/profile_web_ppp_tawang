@@ -93,9 +93,9 @@ export default function HeroSection() {
                         </Popover>
                     </div>
                 </div>
-                <div className="px-16 py-6 border-t-2 border-white/20 bg-black/30 ">
+                <div className="py-6 border-t-2 border-white/20 bg-black/30 ">
                     <Carousel>
-                        <CarouselContent>
+                        <CarouselContent className='px-16'>
                             <CarouselItem className="basis-64 md:basis-1/3 lg:basis-1/4">
                                 <Card className="w-full relative overflow-hidden h-28">
                                     <Image
@@ -191,12 +191,11 @@ export default function HeroSection() {
                                             Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                         </p>
                                     </div>
-                                    <div className="absolute inset-0 bg-black/30 z-0" />
                                 </Card>
                             </CarouselItem>
                         </CarouselContent>
-                        <CarouselPrevious />
-                        <CarouselNext />
+                        <CarouselPrevious className={"absolute top-1/2 left-4"} />
+                        <CarouselNext className={"absolute top-1/2 right-4"} />
                     </Carousel>
                 </div>
             </div>

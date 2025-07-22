@@ -69,84 +69,90 @@ export default function DenahSection() {
     const activeContent = contentData.find((item) => item.id === activeTab);
 
     return (
-        <div id="DenahSection" className="container mx-auto space-y-16">
-            <div className="flex flex-col-reverse lg:flex-row gap-12 justify-between">
-                {/* Map */}
-                <div className="w-4/5 mx-auto md:w-[60%] lg:w-[40%] xl:w-[30%] xl:pt-0">
-                    <div className="lg:sticky lg:top-8 lg:h-fit">
-                        <div className="relative aspect-square rounded-lg overflow-hidden border-2 border-border">
-                            <Image
-                                src={activeContent?.mapImage || '/map1.png'}
-                                alt="Denah Image"
-                                fill
-                                priority
-                                className="object-cover transition-opacity duration-500"
-                            />
+        <div className="container mx-auto py-16 px-8 lg:px-16 xl:px-24">
+            <div className="flex flex-col items-center gap-4 mb-12 md:mb-16">
+                <h6>SPOTLIGHT</h6>
+                <h2>Denah dan Lokasi</h2>
+            </div>
+            <div id="DenahSection" className="container mx-auto space-y-16">
+                <div className="flex flex-col-reverse lg:flex-row gap-12 justify-between">
+                    {/* Map */}
+                    <div className="w-4/5 mx-auto md:w-[60%] lg:w-[40%] xl:w-[30%] xl:pt-0">
+                        <div className="lg:sticky lg:top-8 lg:h-fit">
+                            <div className="relative aspect-square rounded-lg overflow-hidden border-2 border-border">
+                                <Image
+                                    src={activeContent?.mapImage || '/map1.png'}
+                                    alt="Denah Image"
+                                    fill
+                                    priority
+                                    className="object-cover transition-opacity duration-500"
+                                />
+                            </div>
                         </div>
+                    </div>
+
+                    {/* Deskripsi dan Tabs */}
+                    <div className="w-full lg:w-[60%] xl:w-[70%]">
+                        <Tabs defaultValue={"kantor"} onValueChange={setActiveTab} className='w-full space-y-8 text-[#163d4a]'>
+                            <ScrollArea
+                                className="w-full h-full overflow-y-hidden "
+                                scrollHideDelay={0}
+                            >
+                                <TabsList className="h-full flex w-max bg-transparent">
+                                    {contentData.map((item) => (
+                                        <TabsTrigger
+                                            key={item.id}
+                                            value={item.id}
+                                            className=" px-6 py-4 text-sm font-medium bg-transparent border-b-2 rounded-none data-[state=active]:bg-transparent data-[state=active]:border-b-[#163d4a] data-[state=active]:text-[#163d4a] data-[state=active]:shadow-none"
+                                        >
+                                            {item.title}
+                                        </TabsTrigger>
+                                    ))}
+                                </TabsList>
+                                <ScrollBar orientation="horizontal" />
+                            </ScrollArea>
+                            {contentData.map((item) => (
+                                <TabsContent key={item.id} value={item.id} className="space-y-6 animate-fadeIn">
+                                    <div className="flex flex-col md:flex-row gap-4 md:items-center">
+                                        <div className='flex gap-4'>
+                                            {item.icon}
+                                            <h3 className="text-xl font-semibold">{item.title}</h3>
+                                        </div>
+                                        <Badge variant="secondary" className='w-fit text-right'>{item.time}</Badge>
+                                    </div>
+                                    <p>{item.description}</p>
+                                </TabsContent>
+                            ))}
+                        </Tabs>
                     </div>
                 </div>
 
-                {/* Deskripsi dan Tabs */}
-                <div className="w-full lg:w-[60%] xl:w-[70%]">
-                    <Tabs defaultValue={"kantor"} onValueChange={setActiveTab} className='w-full space-y-8 text-[#163d4a]'>
-                        <ScrollArea
-                            className="w-full h-full overflow-y-hidden "
-                            scrollHideDelay={0}
-                        >
-                            <TabsList className="h-full flex w-max bg-transparent">
-                                {contentData.map((item) => (
-                                    <TabsTrigger
-                                        key={item.id}
-                                        value={item.id}
-                                        className=" px-6 py-4 text-sm font-medium bg-transparent border-b-2 rounded-none data-[state=active]:bg-transparent data-[state=active]:border-b-[#163d4a] data-[state=active]:text-[#163d4a] data-[state=active]:shadow-none"
-                                    >
-                                        {item.title}
-                                    </TabsTrigger>
-                                ))}
-                            </TabsList>
-                            <ScrollBar orientation="horizontal" />
-                        </ScrollArea>
-                        {contentData.map((item) => (
-                            <TabsContent key={item.id} value={item.id} className="space-y-6 animate-fadeIn">
-                                <div className="flex flex-col md:flex-row gap-4 md:items-center">
-                                    <div className='flex gap-4'>
-                                        {item.icon}
-                                        <h3 className="text-xl font-semibold">{item.title}</h3>
+                {activeContent?.images?.length ? (
+                    <Carousel opts={{ align: "start" }} className="w-full mx-auto lg:w-full">
+                        <CarouselContent className="gap-0">
+                            {activeContent.images.map((img, index) => (
+                                <CarouselItem
+                                    key={img}
+                                    className="basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+                                >
+                                    <div className="">
+                                        <Image
+                                            src={img}
+                                            alt={`${activeContent.title} Image ${index + 1}`}
+                                            width={400}
+                                            height={300}
+                                            className="w-full h-[200px] md:h-[220px] lg:h-[180px] object-cover rounded-lg"
+                                        />
                                     </div>
-                                    <Badge variant="secondary" className='w-fit text-right'>{item.time}</Badge>
-                                </div>
-                                <p>{item.description}</p>
-                            </TabsContent>
-                        ))}
-                    </Tabs>
-                </div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselPrevious className={"absolute top-1/2 left-4"} />
+                        <CarouselNext className={"absolute top-1/2 right-4"} />
+                    </Carousel>
+                ) : null}
+
             </div>
-
-            {activeContent?.images?.length ? (
-                <Carousel opts={{ align: "start" }} className="w-full mx-auto lg:w-full">
-                    <CarouselContent className="gap-0">
-                        {activeContent.images.map((img, index) => (
-                            <CarouselItem
-                                key={img}
-                                className="basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
-                            >
-                                <div className="">
-                                    <Image
-                                        src={img}
-                                        alt={`${activeContent.title} Image ${index + 1}`}
-                                        width={400}
-                                        height={300}
-                                        className="w-full h-[200px] md:h-[220px] lg:h-[180px] object-cover rounded-lg"
-                                    />
-                                </div>
-                            </CarouselItem>
-                        ))}
-                    </CarouselContent>
-                    <CarouselPrevious className={"absolute top-1/2 left-4"} />
-                    <CarouselNext className={"absolute top-1/2 right-4"} />
-                </Carousel>
-            ) : null}
-
         </div>
     );
 }
