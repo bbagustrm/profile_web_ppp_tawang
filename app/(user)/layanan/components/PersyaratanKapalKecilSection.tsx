@@ -1,7 +1,6 @@
 import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import {CheckCircle, Circle} from "phosphor-react";
 import {Button} from "@/components/ui/button";
-import {ArrowRight} from "lucide-react";
 import Link from "next/link";
 
 export default function PersyaratanKapalKecilSection() {
