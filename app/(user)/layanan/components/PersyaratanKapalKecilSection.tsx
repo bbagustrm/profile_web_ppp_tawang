@@ -13,23 +13,23 @@ export default function PersyaratanKapalKecilSection() {
                 <CardContent className="space-y-2">
                     <div className="flex items-center gap-4">
                         <CheckCircle size={32} weight="fill" className={"text-teal-500"}/>
-                        <p>SIUP (Surat Izin Usaha Perikanan)</p>
+                        <p className='w-full'>SIUP (Surat Izin Usaha Perikanan)</p>
                     </div>
                     <div className="flex items-center gap-4">
                         <CheckCircle size={32} weight="fill" className={"text-teal-500"}/>
-                        <p>PPKP (Pas Kecil Kapal Perikanan)</p>
+                        <p className='w-full'>PPKP (Pas Kecil Kapal Perikanan)</p>
                     </div>
                     <div className="flex items-center gap-4">
                         <CheckCircle size={32} weight="fill" className={"text-teal-500"}/>
-                        <p>SKKP (Surat Keterangan Kapal Perikanan)</p>
+                        <p className='w-full'>SKKP (Surat Keterangan Kapal Perikanan)</p>
                     </div>
                     <div className="flex items-center gap-4">
                         <CheckCircle size={32} weight="fill" className={"text-teal-500"}/>
-                        <p>BKP (Buku Kapal Perikanan)</p>
+                        <p className='w-full'>BKP (Buku Kapal Perikanan)</p>
                     </div>
                     <div className="flex items-center gap-4">
                         <CheckCircle size={32} weight="fill" className={"text-teal-500"}/>
-                        <p>SIPI (Surat Izin Penangkapan Ikan)</p>
+                        <p className='w-full'>SIPI (Surat Izin Penangkapan Ikan)</p>
                     </div>
                 </CardContent>
             </Card>

@@ -68,7 +68,7 @@ export default function PersyaratanKapalKecilSection() {
                             </thead>
                             <tbody>
                             {tableData.rows.map((row, rowIndex) => (
-                                <tr key={rowIndex} className="odd:bg-yellow-100 even:bg-yellow-50">
+                                <tr key={rowIndex} className="odd:bg-white even:bg-yellow-50">
                                     <td className="border px-3 py-2 font-medium sticky left-0 bg-yellow-100 z-10">{row.name}</td>
                                     {row.data.map((cell, colIndex) => (
                                         <td key={colIndex} className="border px-3 py-2 text-center">

@@ -34,27 +34,27 @@ export default function SPBSection() {
                     <CardContent className="space-y-2">
                         <div className="flex items-center gap-4">
                             <CheckCircle size={32} weight="fill" className={"text-teal-500"}/>
-                            <p>Surat pernyataan kesiapan dari nahkoda</p>
+                            <p className='w-full'>Surat pernyataan kesiapan dari nahkoda</p>
                         </div>
                         <div className="flex items-center gap-4">
                             <CheckCircle size={32} weight="fill" className={"text-teal-500"}/>
-                            <p>Bukti bayar PPN untuk kapal dengan BBM non subsidi</p>
+                            <p className='w-full'>Bukti bayar PPN untuk kapal dengan BBM non subsidi</p>
                         </div>
                         <div className="flex items-center gap-4">
                             <CheckCircle size={32} weight="fill" className={"text-teal-500"}/>
-                            <p>Izin berusaha subsektor penangkapan ikan</p>
+                            <p className='w-full'>Izin berusaha subsektor penangkapan ikan</p>
                         </div>
                         <div className="flex items-center gap-4">
                             <CheckCircle size={32} weight="fill" className={"text-teal-500"}/>
-                            <p>SLO (Surat Laik Operasi) untuk kapal 5 GT</p>
+                            <p className='w-full'>SLO (Surat Laik Operasi) untuk kapal 5 GT</p>
                         </div>
                         <div className="flex items-center gap-4">
                             <CheckCircle size={32} weight="fill" className={"text-teal-500"}/>
-                            <p>STBLKK (Surat Tanda Bukti Lapor Kedatangan)</p>
+                            <p className='w-full'>STBLKK (Surat Tanda Bukti Lapor Kedatangan)</p>
                         </div>
                         <div className="flex items-center gap-4">
                             <CheckCircle size={32} weight="fill" className={"text-teal-500"}/>
-                            <p>Perjanjian kerja laut</p>
+                            <p className='w-full'>Perjanjian kerja laut</p>
                         </div>
                     </CardContent>
                 </Card>
