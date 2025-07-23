@@ -4,14 +4,14 @@ import { CheckCircle } from "phosphor-react";
 
 export default function MantulSection() {
     return (
-        <div className="w-full h-[540px] md:h-[520px] lg:h-[480px] relative">
+        <div className="w-full h-[540px] md:h-[480px] lg:h-[400px] relative">
             <Image
                 src="/mantul.png"
                 alt="Gambar"
                 fill
                 className="object-cover"
             />
-            <div className="absolute inset-0 z-10 px-8 lg:px-16 xl:px-24 container mx-auto flex flex-col lg:flex-row gap-8 md:justify-between items-start lg:items-center py-12">
+            <div className="absolute inset-0 z-10 px-8 lg:px-16 xl:px-24 container mx-auto flex flex-col lg:flex-row gap-8 lg:justify-between items-start lg:items-center py-12">
                 <div className="w-full lg:w-[40%] text-white space-y-6">
                     <div className="flex items-start gap-4">
                         <div className="w-1.5 h-20 bg-teal-500" />
@@ -22,8 +22,8 @@ export default function MantulSection() {
                     </div>
                 </div>
 
-                <Card className="w-full lg:w-[60%] text-white bg-transparent border-none">
-                    <CardContent className="space-y-4 p-6">
+                <Card className="w-full lg:w-[60%] text-white bg-transparent border-none ">
+                    <CardContent className="space-y-4 p-0">
                         {[
                             {
                                 title: "Mudah dan Murah",
