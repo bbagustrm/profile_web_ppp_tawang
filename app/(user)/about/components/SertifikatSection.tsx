@@ -1,5 +1,4 @@
 import Image from "next/image";
-import {Phone} from "phosphor-react";
 
 export default function SertifikatSection() {
     return (
