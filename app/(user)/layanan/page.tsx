@@ -27,7 +27,7 @@ export default function LayananPage() {
                 description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut tellus dolor."}
             />
             <div className="container mx-auto py-16 px-8 lg:px-16 xl:px-24 text-[#163d4a]">
-                <div className="flex justify-between items-center gap-4 flex-col md:flex-row">
+                <div className="flex justify-between md:items-center gap-12 flex-col md:flex-row">
                     <div className="flex items-start gap-4 ">
                         <div className="w-1.5 h-20 bg-teal-500" />
                         <div className="flex flex-col justify-center gap-4">
@@ -36,7 +36,7 @@ export default function LayananPage() {
                         </div>
                     </div>
                     <Select onValueChange={setSelectedLayanan}>
-                        <SelectTrigger className="w-96 rounded-lg bg-white border border-gray-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent">
+                        <SelectTrigger className="w-full md:w-96 rounded-lg bg-white border border-gray-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent">
                             <SelectValue placeholder="Pilih Layanan" />
                         </SelectTrigger>
                         <SelectContent>
