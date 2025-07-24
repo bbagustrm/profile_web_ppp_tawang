@@ -47,11 +47,13 @@ export default function SaranaPrasaranaSection() {
                 </div>
             </div>
             <Tabs value={selectedTab} onValueChange={setSelectedTab} className="w-full space-y-8 text-[#163d4a]">
-                <TabsList>
-                    <TabsTrigger value="fungsional1" className='px-8'>Fungsional 1</TabsTrigger>
-                    <TabsTrigger value="fungsional2" className='px-8'>Fungsional 2</TabsTrigger>
-                    <TabsTrigger value="fungsional3" className='px-8'>Fungsional 3</TabsTrigger>
-                </TabsList>
+                <div className="overflow-x-auto">
+                    <TabsList className="w-max whitespace-nowrap flex gap-2">
+                        <TabsTrigger value="fungsional1" className="px-8">Fungsional 1</TabsTrigger>
+                        <TabsTrigger value="fungsional2" className="px-8">Fungsional 2</TabsTrigger>
+                        <TabsTrigger value="fungsional3" className="px-8">Fungsional 3</TabsTrigger>
+                    </TabsList>
+                </div>
 
                 {Object.entries(data).map(([key, items]) => (
                     <TabsContent key={key} value={key}>

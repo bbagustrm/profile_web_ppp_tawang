@@ -36,7 +36,7 @@ export default function Navbar() {
             label: 'About Us',
             dropdown: true,
             items: [
-                { href: '/about', label: 'Profil' },
+                { href: '/about', label: 'Profile' },
                 { href: '/umkm', label: 'UMKM' },
                 { href: '/sejarah', label: 'Sejarah' },
             ]
