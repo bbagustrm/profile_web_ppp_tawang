@@ -1,8 +1,13 @@
+// app/admin/page.tsx
 'use client';
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
 
 export default function LoginPage() {
     const [email, setEmail] = useState('');
@@ -13,88 +18,79 @@ export default function LoginPage() {
     const router = useRouter();
     const supabase = createClientComponentClient();
 
-    console.log('✅ Login page loaded');
+    // ⛳️ Redirect ke /admin jika sudah login
+    useEffect(() => {
+        const checkSession = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session) {
+                router.push('/admin');
+            }
+        };
+        checkSession();
+    }, [router, supabase]);
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
         setError(null);
 
-        try {
-            const { error } = await supabase.auth.signInWithPassword({
-                email,
-                password,
-            });
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
 
-            if (error) throw error;
-
+        if (error) {
+            setError(error.message);
+        } else {
             router.push('/admin');
-            router.refresh();
-        } catch (error) {
-            if (error instanceof Error) {
-                setError(error.message);
-            } else {
-                setError('An error occurred during login');
-            }
-        } finally {
-            setLoading(false);
         }
+
+        setLoading(false);
     };
 
     return (
-        <div className="flex items-center justify-center bg-background mt-24">
-            <div className="max-w-md w-full space-y-8 p-8 bg-white border-border rounded-lg shadow-md">
-                <div className="text-center">
-                    <h3 className="text-3xl font-bold text-primary">Login Admin</h3>
-                    <p className="mt-2 text-sm text-primary">
-                        Masuk ke panel admin
-                    </p>
-                </div>
+        <div className="flex items-center justify-center min-h-screen bg-gray-50 px-4 text-[#163d4a]">
+            <Card className="w-full max-w-md shadow-md border">
+                <CardContent className="p-6 space-y-6">
+                    <div className="text-center">
+                        <h3 className="text-2xl font-bold text-primary">Login Admin</h3>
+                        <p className="text-sm text-muted-foreground mt-1">Masuk ke panel admin</p>
+                    </div>
 
-                <form onSubmit={handleLogin} className="mt-8 space-y-6">
                     {error && (
-                        <div className="bg-red-50 text-red-500 p-4 rounded-md text-sm">
-                            <h5>{error}</h5>
+                        <div className="bg-red-100 text-red-600 text-sm rounded-md p-3">
+                            {error}
                         </div>
                     )}
 
-                    <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-primary">
-                            <p>Email</p>
-                        </label>
-                        <input
-                            id="email"
-                            type="email"
-                            required
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="font-sans mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                        />
-                    </div>
+                    <form onSubmit={handleLogin} className="space-y-4">
+                        <div className="space-y-1">
+                            <Label htmlFor="email">Email</Label>
+                            <Input
+                                id="email"
+                                type="email"
+                                value={email}
+                                placeholder="you@example.com"
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
 
-                    <div>
-                        <label htmlFor="password" className="block text-sm font-medium text-primary">
-                            <p>Password</p>
-                        </label>
-                        <input
-                            id="password"
-                            type="password"
-                            required
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className="font-sans mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                        />
-                    </div>
+                        <div className="space-y-1">
+                            <Label htmlFor="password">Password</Label>
+                            <Input
+                                id="password"
+                                type="password"
+                                value={password}
+                                placeholder="********"
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </div>
 
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                        {loading ? 'Loading...' : 'Login'}
-                    </button>
-                </form>
-            </div>
+                        <Button type="submit" className="w-full" disabled={loading}>
+                            {loading ? 'Loading...' : 'Login'}
+                        </Button>
+                    </form>
+                </CardContent>
+            </Card>
         </div>
     );
 }
