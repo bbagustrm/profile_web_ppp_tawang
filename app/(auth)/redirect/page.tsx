@@ -4,10 +4,26 @@ import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
 import { ArrowRight } from "lucide-react"
 import { Card, CardContent } from '@/components/ui/card'
+import {useEffect} from "react";
+import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
+
 
 
 export default function RedirectPage() {
     const router = useRouter()
+    const supabase = createClientComponentClient()
+
+
+    // ⛳️ Redirect ke /admin jika sudah login
+    useEffect(() => {
+        const checkSession = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session) {
+                router.push('/admin');
+            }
+        };
+        checkSession();
+    }, [router, supabase]);
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-50 px-4 text-[#163d4a]">
