@@ -77,7 +77,7 @@ export default function Navbar() {
                                             `}
                                         >
                                             {item.label}
-                                            <ChevronDown size={24} className="text-white" />
+                                            <ChevronDown size={24} className={`${isScrolled ? 'hover:border-[#163d4a] text-[#163d4a]' : 'hover:border-white text-white'}`} />
                                         </Button>
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent className="bg-white text-[#163d4a] border-none mt-2">
