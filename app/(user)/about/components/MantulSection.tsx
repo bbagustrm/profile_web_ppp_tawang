@@ -4,7 +4,7 @@ import { CheckCircle } from "phosphor-react";
 
 export default function MantulSection() {
     return (
-        <div className="w-full h-[540px] md:h-[480px] lg:h-[400px] relative">
+        <div className="w-full h-[640px] md:h-[540px] lg:h-[480px] relative">
             <Image
                 src="/mantul.png"
                 alt="Gambar"
