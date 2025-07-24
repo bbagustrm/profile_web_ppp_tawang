@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function HeroSection2({ title, image, description } : {title: string,image: string, description: string}) {
     return (
-        <div className="relative w-full h-72">
+        <div className="relative w-full h-52 md:h-72">
             <Image
                 src={image || "/hero.png"}
                 alt="Hero Image"
@@ -12,7 +12,7 @@ export default function HeroSection2({ title, image, description } : {title: str
             />
             <div className="absolute inset-0 flex flex-col justify-center items-center px-16 translate-y-6 text-white space-y-4">
                 <h2 className="font-sans">{title}</h2>
-                <p>{description}</p>
+                <p className='hidden md:block'>{description}</p>
             </div>
         </div>
     );

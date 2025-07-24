@@ -26,7 +26,7 @@ export default function LayananPage() {
                 image={'/layanan.jpeg'}
                 description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut tellus dolor."}
             />
-            <div className="container mx-auto py-16 px-8 lg:px-16 xl:px-24 text-[#163d4a]">
+            <div className="container mx-auto pt-16 pb-4 px-8 lg:px-16 xl:px-24 text-[#163d4a]">
                 <div className="flex justify-between md:items-center gap-12 flex-col md:flex-row">
                     <div className="flex items-start gap-4 ">
                         <div className="w-1.5 h-20 bg-teal-500" />
@@ -48,7 +48,7 @@ export default function LayananPage() {
                 </div>
 
             </div>
-            <div className="py-16 px-8 lg:px-16 xl:px-24 text-[#163d4a] bg-gray-50">
+            <div className="pt-8 pb-16 px-8 lg:px-16 xl:px-24 text-[#163d4a] bg-gray-50">
                 {/* Conditional Section */}
                 {selectedLayanan === "default" && (
                     <div className="flex py-24 justify-center items-center ">
