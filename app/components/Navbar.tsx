@@ -6,13 +6,18 @@ import { Menu, X, ArrowRight } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { Button } from "@/components/ui/button"
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import {
     DropdownMenu,
     DropdownMenuTrigger,
     DropdownMenuContent,
     DropdownMenuItem,
 } from "@/components/ui/dropdown-menu"
+import {
+    Avatar,
+    AvatarFallback,
+} from "@/components/ui/avatar"
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false)
@@ -20,12 +25,25 @@ export default function Navbar() {
     const pathname = usePathname()
     const [isAboutOpen, setIsAboutOpen] = useState(false)
 
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+
     useEffect(() => {
+        const supabase = createClientComponentClient()
+
+        const getSession = async () => {
+            const { data: { session } } = await supabase.auth.getSession()
+            if (session) {
+                setIsLoggedIn(true)
+            }
+        }
+
+        getSession()
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 0)
         }
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
+
     }, [])
 
     const navItems = [
@@ -108,12 +126,20 @@ export default function Navbar() {
                             </Link>
                         ) : null
                     })}
-                    <Link href="/admin">
-                        <Button className={`transition-colors duration-300 ml-8 ${isScrolled ? '' : 'text-[#163d4a] bg-white hover:bg-[#163d4a]/90 hover:text-white'}`}>
-                            Login
-                            <ArrowRight size={20} className="md:w-6 md:h-6" />
-                        </Button>
-                    </Link>
+                    {isLoggedIn ? (
+                        <Link href="/admin">
+                            <Avatar className="ml-8 cursor-pointer">
+                                <AvatarFallback className="text-[#163d4a]">AD</AvatarFallback>
+                            </Avatar>
+                        </Link>
+                    ) : (
+                        <Link href="/admin">
+                            <Button className={`transition-colors duration-300 ml-8 ${isScrolled ? '' : 'text-[#163d4a] bg-white hover:bg-[#163d4a]/90 hover:text-white'}`}>
+                                Login
+                                <ArrowRight size={20} className="md:w-6 md:h-6" />
+                            </Button>
+                        </Link>
+                    )}
                 </div>
 
                 {/* Mobile Button */}
@@ -126,8 +152,8 @@ export default function Navbar() {
                 {/* Mobile Navigation */}
                 {isMenuOpen && (
                     <div className="lg:hidden fixed inset-0 bg-black bg-opacity-50">
-                        <div className="flex flex-col justify-between fixed right-0 top-0 h-full w-64 px-4 pt-2 pb-8 shadow-lg transform transition-transform duration-300 ease-in-out bg-[#163d4a] text-white">
-                            <div className="flex flex-col pt-10 space-y-2">
+                        <div className="flex flex-col justify-between items-end fixed right-0 top-0 h-full w-64 px-4 pt-2 pb-8 shadow-lg transform transition-transform duration-300 ease-in-out bg-[#163d4a] text-white">
+                            <div className="w-full flex flex-col pt-10 space-y-2 text-">
 
                                 {navItems.map((item) => {
                                     if (item.dropdown && item.items) {
@@ -180,16 +206,25 @@ export default function Navbar() {
                                 })}
                             </div>
 
-                            <Link href="/admin">
-                                <Button
-                                    variant="secondary"
-                                    size="icon"
-                                    className="py-6 size-8 w-full font-semibold"
-                                >
-                                    Login
-                                    <ArrowRight size={20} className="md:w-6 md:h-6" />
-                                </Button>
-                            </Link>
+                            {isLoggedIn ? (
+                                <Link href="/admin">
+                                    <Avatar className="ml-8 cursor-pointer">
+                                        <AvatarFallback className="text-[#163d4a]">AD</AvatarFallback>
+                                    </Avatar>
+                                </Link>
+                            ) : (
+                                <Link href="/admin">
+                                    <Button
+                                        variant="secondary"
+                                        size="icon"
+                                        className="py-6 size-8 w-full font-semibold"
+                                    >
+                                        Login
+                                        <ArrowRight size={20} className="md:w-6 md:h-6" />
+                                    </Button>
+                                </Link>
+                            )}
+
                         </div>
                     </div>
                 )}
