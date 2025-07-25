@@ -19,7 +19,6 @@ export default function LayoutAuth({
 
                 <main className="flex-1">
                     {children}
-                    <Analytics />
                 </main>
             </div>
         </SidebarProvider>
