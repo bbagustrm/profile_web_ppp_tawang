@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Playfair, Kaushan_Script } from "next/font/google";
 import "./globals.css";
 import React from "react";
 import { Theme } from "@radix-ui/themes";
+import { Analytics } from '@vercel/analytics/react'
 
 const fontSans = Plus_Jakarta_Sans({
   variable: "--font-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${fontSans.variable} ${fontSerif.variable} ${fontMono.variable}`}>
           <Theme>
+              <Analytics />
               {children}
           </Theme>
       </body>
