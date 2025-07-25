@@ -1,6 +1,8 @@
 import React from "react";
 import SidebarAdmin from "./components/SidebarAdmin";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { Analytics } from '@vercel/analytics/react'
+
 
 export default function LayoutAuth({
     children,
@@ -17,6 +19,7 @@ export default function LayoutAuth({
 
                 <main className="flex-1">
                     {children}
+                    <Analytics />
                 </main>
             </div>
         </SidebarProvider>
