@@ -20,7 +20,7 @@ export default function NewsPage() {
     return (
         <div>
             <Navbar />
-            <div className="relative min-h-screen">
+            <div className="relative min-h-screen bg-white">
                 <HeroSection2
                     title={"Berita Terbaru"}
                     image={"/berita.png"}
@@ -29,14 +29,14 @@ export default function NewsPage() {
                 <div className="container mx-auto py-16 px-8 text-[#163d4a]">
                     <div className="flex justify-between md:items-start gap-12 flex-col md:flex-row">
                         {/* Left Section */}
-                        <div className="w-full md:w-[70%] flex flex-col gap-6">
-                            <div className="flex flex-col md:flex-row gap-4">
-                                <Input placeholder="Cari berita..." className="w-full" />
-                                <Select defaultValue="terbaru">
+                        <div className="w-full md:w-[70%] flex flex-col gap-12">
+                            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+                                <Input placeholder="Cari berita..." className="w-1/2" />
+                                <Select defaultValue="terbaru" >
                                     <SelectTrigger className="w-full md:w-1/4">
                                         <SelectValue placeholder="Urutkan" />
                                     </SelectTrigger>
-                                    <SelectContent>
+                                    <SelectContent >
                                         <SelectItem value="terbaru">Terbaru</SelectItem>
                                         <SelectItem value="terlama">Terlama</SelectItem>
                                     </SelectContent>
@@ -52,7 +52,7 @@ export default function NewsPage() {
                                             alt="image"
                                             width={280}
                                             height={200}
-                                            className="w-full md:w-1/3 rounded-md object-cover"
+                                            className="w-full md:w-1/3 rounded-bl-md rounded-tl-md object-cover"
                                         />
                                         <CardContent className="flex-1 w-full md:w-1/3 py-4 space-y-2">
                                             <h3 className="text-lg font-semibold">Judul Berita</h3>
@@ -96,7 +96,7 @@ export default function NewsPage() {
                         </div>
 
                         {/* Right Section */}
-                        <div className="hidden md:block md:w-[30%] space-y-6">
+                        <div className="hidden md:block md:w-[30%] space-y-6 text-[#163d4a]">
                             <h4 className="text-teal-600 font-bold mb-4">Berita Terkini</h4>
 
                             {[1, 2, 3].map((item) => (

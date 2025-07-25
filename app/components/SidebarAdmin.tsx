@@ -16,7 +16,7 @@ export default function SidebarAdmin() {
     }
 
     return (
-        <div className="h-screen fixed w-64 bg-primary text-white flex flex-col py-8 px-4 justify-between">
+        <div className="h-screen fixed bg-[#163d4a] text-white flex flex-col py-8 px-4 justify-between">
             <div>
                 <div className="flex flex-col items-center mb-10">
                     <Image src="/logo.png" alt="Logo" width={64} height={64} className="rounded-full" />
@@ -32,7 +32,7 @@ export default function SidebarAdmin() {
                         href="/admin"
                         className="bg-white/10 hover:bg-white/20 text-white px-4 py-4 rounded-md text-sm font-medium"
                     >
-                        <h5>Berita Management</h5>
+                        <p>Berita Management</p>
                     </Link>
                 </nav>
             </div>

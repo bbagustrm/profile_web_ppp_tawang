@@ -9,17 +9,11 @@ import { Button } from "@/components/ui/button"
 import { ChevronDown } from 'lucide-react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import {
-    DropdownMenu,
-    DropdownMenuTrigger,
-    DropdownMenuContent,
-    DropdownMenuItem,
-} from "@/components/ui/dropdown-menu"
-import {
     Avatar,
     AvatarFallback,
 } from "@/components/ui/avatar"
 
-export default function Navbar() {
+export default function NavbarAdmin() {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const pathname = usePathname()
@@ -67,65 +61,11 @@ export default function Navbar() {
     }[]
 
     return (
-        <div className={`w-full fixed top-0 px-4 py-3 lg:py-0 left-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white text-[#163d4a] shadow-md' : 'bg-transparent text-white'}`}>
-            <div className="container w-full mx-auto flex justify-between items-center">
-                <Link href="/" className="flex space-x-3 items-center">
-                    <Image src="/logo.png" alt="logo" width={48} height={48} className="rounded-full" />
-                    <div className="flex flex-col">
-                        <p>PPP Tawang</p>
-                        <h5>Kab. Kendal</h5>
-                    </div>
-                </Link>
+        <div className={`sticky top-0 px-4 py-3 lg:py-2 bg-white text-[#163d4a] shadow-md`}>
+            <div className="container w-full mx-auto flex justify-end items-center">
 
                 {/* Desktop Navigation */}
-                <div className="hidden lg:flex items-center group">
-                    {navItems.map((item) => {
-                        if (item.dropdown && item.items) {
-                            return (
-                                <DropdownMenu key={item.label}>
-                                    <DropdownMenuTrigger asChild>
-                                        <Button
-                                            variant="link"
-                                            className={`relative p-8 rounded-none text-white hover:no-underline transition-colors duration-300
-                                            ${pathname.startsWith('/about') || pathname === '/umkm' || pathname === '/sejarah'
-                                                ? `border-b-2 ${isScrolled ? 'border-[#163d4a]' : 'border-white'} group-hover:[&:not(:hover)]:border-transparent`
-                                                : ''
-                                            }
-                                            hover:border-b-2 ${isScrolled ? 'hover:border-[#163d4a] text-[#163d4a]' : 'hover:border-white text-white'}
-                                            `}
-                                        >
-                                            {item.label}
-                                            <ChevronDown size={24} className={`${isScrolled ? 'hover:border-[#163d4a] text-[#163d4a]' : 'hover:border-white text-white'}`} />
-                                        </Button>
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent className="bg-white text-[#163d4a] border-none mt-2">
-                                        {item.items.map((subItem) => (
-                                            <DropdownMenuItem asChild key={subItem.href} className='px-8 '>
-                                                <Link href={subItem.href}>{subItem.label}</Link>
-                                            </DropdownMenuItem>
-                                        ))}
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
-                            )
-                        }
-
-                        return item.href ? (
-                            <Link key={item.href} href={item.href}>
-                                <Button
-                                    variant="link"
-                                    className={`relative p-8 rounded-none text-white hover:no-underline transition-colors duration-300
-                                    ${pathname === item.href
-                                        ? `border-b-2 ${isScrolled ? 'border-[#163d4a]' : 'border-white'} group-hover:[&:not(:hover)]:border-transparent`
-                                        : ''
-                                    }
-                                    hover:border-b-2 ${isScrolled ? 'hover:border-[#163d4a] text-[#163d4a]' : 'hover:border-white text-white'}
-                                `}
-                                >
-                                    {item.label}
-                                </Button>
-                            </Link>
-                        ) : null
-                    })}
+                <div className="hidden lg:flex items-center group ">
                     {isLoggedIn ? (
                         <Link href="/admin">
                             <Avatar className="ml-8 cursor-pointer">

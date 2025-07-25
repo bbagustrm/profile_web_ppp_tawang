@@ -1,5 +1,6 @@
 import React from "react";
-import SidebarAdmin from "@/app/components/SidebarAdmin";
+import SidebarAdmin from "./components/SidebarAdmin";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 
 export default function LayoutAuth({
     children,
@@ -7,14 +8,17 @@ export default function LayoutAuth({
     children: React.ReactNode;
 }>){
     return (
-        <div className="w-full flex">
-            <div className="w-[20%]">
-                <SidebarAdmin/>
-            </div>
-            <div className="w-[80%]">
-                {children}
-            </div>
-        </div>
+        <SidebarProvider>
+            <div className="w-full flex bg-gray-100 gap-8">
+                <div className="flex">
+                    <SidebarAdmin />
+                    <SidebarTrigger />
+                </div>
 
+                <main className="flex-1">
+                    {children}
+                </main>
+            </div>
+        </SidebarProvider>
     )
 }
