@@ -172,12 +172,19 @@ export default function BeritaForm({ berita }: BeritaFormProps) {
             }
 
             setTimeout(() => router.push('/admin'), 1000)
-        } catch (error: any) {
+        } catch (error: unknown) {
             console.error('Submit error:', error)
-            setErrors(prev => ({
-                ...prev,
-                submit: error.message || 'Terjadi kesalahan. Silakan coba lagi.'
-            }))
+            if (error instanceof Error) {
+                setErrors(prev => ({
+                    ...prev,
+                    submit: error.message || 'Terjadi kesalahan. Silakan coba lagi.'
+                }))
+            } else {
+                setErrors(prev => ({
+                    ...prev,
+                    submit: 'Terjadi kesalahan tak dikenal.'
+                }))
+            }
         } finally {
             setIsSubmitting(false)
         }
