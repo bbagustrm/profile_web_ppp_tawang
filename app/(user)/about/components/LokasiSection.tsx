@@ -23,7 +23,7 @@ export default function LokasiSection() {
                         </div>
                     </div>
                     <p>
-                        Pelabuhan Perikanan Pantai Tawang terletak di Dukuh Tawang, Desa Gempolsewu, Kecamatan Rowosari, Kabupaten Kendal, sekitar 26 km dari pusat kota, dan termasuk kawasan pengembangan perikanan tangkap serta industri berbasis kelautan. Berdasarkan Perda No. 25 Tahun 2007, wilayah ini masuk dalam Wilayah Pengembangan Perikanan III, dengan cakupan perairan Pantai Utara Jawa sepanjang ±42,2 km di tujuh kecamatan, termasuk Rowosari.
+                        Pelabuhan Perikanan Pantai Tawang terletak di Kawasan Tempat Pelelangan Ikan Tawang, Desa Gempolsewu, Kecamatan Rowosari, Kabupaten Kendal, sekitar 26 km dari pusat kota, dan termasuk kawasan pengembangan perikanan tangkap serta industri berbasis kelautan. Berdasarkan Perda No. 25 Tahun 2007, wilayah ini masuk dalam Wilayah Pengembangan Perikanan III, dengan cakupan perairan Pantai Utara Jawa sepanjang ±42,2 km di tujuh kecamatan, termasuk Rowosari.
                     </p>
                     <p>
                         Alamat: Komplek TPI Tawang, Gempolsewu, Kec. Rowosari, Kab. kendal

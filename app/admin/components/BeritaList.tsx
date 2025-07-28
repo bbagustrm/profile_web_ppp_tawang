@@ -22,7 +22,7 @@ import {
     MoreHorizontal,
     FileText,
     Calendar,
-    Image as ImageIcon
+    Image as ImageIcon,
 } from "lucide-react";
 import {
     DropdownMenu,
@@ -32,6 +32,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Link from "next/link"
 
 interface Berita {
     id: string;
@@ -64,6 +65,38 @@ export default function BeritaList() {
 
         fetchBerita();
     }, []);
+
+    const hapusBerita = async (id: string, imagePath: string | null | undefined) => {
+        const konfirmasi = confirm("Yakin ingin menghapus berita ini?");
+        if (!konfirmasi) return;
+
+        const { error: deleteError } = await supabase.from("berita").delete().eq("id", id);
+
+        if (deleteError) {
+            console.error("Gagal menghapus berita:", deleteError.message);
+            alert("Gagal menghapus berita.");
+            return;
+        }
+
+        // Ekstrak relative path dari imagePath (hapus domain dan prefix)
+        if (imagePath) {
+            const relativePath = imagePath.split("/").slice(-1)[0];
+            console.log(relativePath);
+            const { error: storageError } = await supabase
+                .storage
+                .from("news-images")
+                .remove(['1753730024606-8z1hd8lrtjg.png']);
+
+
+            if (storageError) {
+                console.error("Gagal menghapus gambar:", storageError.message);
+            }
+        }
+
+        setBerita((prev) => prev.filter((item) => item.id !== id));
+        alert("Berita berhasil dihapus.");
+    };
+
 
     return (
         <div className="space-y-6">
@@ -138,14 +171,16 @@ export default function BeritaList() {
                             <CardTitle className="text-xl font-bold text-[#163d4a]">
                                 Manajemen Berita
                             </CardTitle>
-                            <CardDescription className="text-slate-600">
+                            <CardDescription className="text-gray-600">
                                 Kelola dan pantau semua konten berita
                             </CardDescription>
                         </div>
-                        <Button className="bg-teal-500 hover:bg-teal-600 text-white shadow-md">
-                            <Plus className="w-4 h-4 mr-2" />
-                            Tambah Berita
-                        </Button>
+                        <Link href='/admin/create' className='flex items-center'>
+                            <Button className="bg-teal-500 hover:bg-teal-600 text-white shadow-md">
+                                <Plus className="w-4 h-4 mr-2" />
+                                Tambah Berita
+                            </Button>
+                        </Link>
                     </div>
                 </CardHeader>
                 <Separator className="mb-4" />
@@ -154,7 +189,7 @@ export default function BeritaList() {
                     {loading ? (
                         <div className="space-y-4">
                             {[...Array(5)].map((_, i) => (
-                                <Card key={i} className="p-4 border border-slate-100">
+                                <Card key={i} className="p-4 border border-gray-100">
                                     <div className="flex gap-4 items-center">
                                         <Skeleton className="h-16 w-16 rounded-lg" />
                                         <div className="space-y-2 flex-1">
@@ -171,38 +206,40 @@ export default function BeritaList() {
                             ))}
                         </div>
                     ) : berita.length === 0 ? (
-                        <div className="text-center py-12">
-                            <div className="mx-auto h-24 w-24 bg-slate-100 rounded-full flex items-center justify-center mb-4">
-                                <FileText className="h-12 w-12 text-slate-400" />
+                        <div className="flex flex-col items-center text-center py-12">
+                            <div className="mx-auto h-24 w-24 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                                <FileText className="h-12 w-12 text-gray-400" />
                             </div>
                             <h3 className="text-lg font-medium text-[#163d4a] mb-2">
                                 Belum ada berita
                             </h3>
-                            <p className="text-slate-500 mb-6">
+                            <p className="text-gray-500 mb-6">
                                 Mulai dengan menambahkan berita pertama Anda
                             </p>
-                            <Button className="bg-blue-600 hover:bg-blue-700">
-                                <Plus className="w-4 h-4 mr-2" />
-                                Tambah Berita Pertama
-                            </Button>
+                            <Link href='/admin/create' className='flex items-center'>
+                                <Button className="bg-teal-600 hover:bg-teal-500 text-white shadow-md">
+                                    <Plus className="w-4 h-4 mr-2" />
+                                    Tambah Berita
+                                </Button>
+                            </Link>
                         </div>
                     ) : (
-                        <div className="overflow-hidden rounded-lg border border-slate-200">
+                        <div className="overflow-hidden rounded-lg border border-gray-200">
                             <Table>
-                                <TableHeader className="bg-slate-50">
-                                    <TableRow className="hover:bg-slate-50">
-                                        <TableHead className="w-20 font-semibold text-slate-700">Gambar</TableHead>
-                                        <TableHead className="font-semibold text-slate-700">Judul</TableHead>
-                                        <TableHead className="font-semibold text-slate-700">Deskripsi</TableHead>
-                                        <TableHead className="whitespace-nowrap font-semibold text-slate-700">Tanggal Dibuat</TableHead>
-                                        <TableHead className="text-center font-semibold text-slate-700">Action</TableHead>
+                                <TableHeader className="bg-gray-50">
+                                    <TableRow className="hover:bg-gray-50">
+                                        <TableHead className="w-20 font-semibold text-gray-700"> </TableHead>
+                                        <TableHead className="font-semibold text-gray-700">Judul</TableHead>
+                                        <TableHead className="font-semibold text-gray-700">Deskripsi</TableHead>
+                                        <TableHead className="whitespace-nowrap font-semibold text-gray-700">Tanggal Dibuat</TableHead>
+                                        <TableHead className="text-center font-semibold text-gray-700">Action</TableHead>
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
                                     {berita.map((item) => (
                                         <TableRow
                                             key={item.id}
-                                            className="hover:bg-slate-50 transition-colors duration-150"
+                                            className="hover:bg-gray-50 transition-colors duration-150"
                                         >
                                             <TableCell className="p-4">
                                                 {item.image_path ? (
@@ -212,47 +249,49 @@ export default function BeritaList() {
                                                             alt={item.title}
                                                             width={64}
                                                             height={64}
-                                                            className="rounded-lg object-cover shadow-sm border border-slate-200"
+                                                            className="rounded-lg aspect-square object-cover shadow-sm border border-gray-200"
                                                         />
                                                     </div>
                                                 ) : (
-                                                    <div className="w-16 h-16 bg-slate-100 rounded-lg flex items-center justify-center border border-slate-200">
-                                                        <ImageIcon className="h-6 w-6 text-slate-400" />
+                                                    <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-200">
+                                                        <ImageIcon className="h-6 w-6 text-gray-400" />
                                                     </div>
                                                 )}
                                             </TableCell>
 
                                             <TableCell className="p-4">
-                                                <div className="space-y-1">
+                                                <div className="space-y-1 max-w-48">
                                                     <p className="font-semibold text-[#163d4a] leading-tight truncate">
                                                         {item.title}
                                                     </p>
-                                                    <p className="text-xs text-slate-500">
+                                                    <p className="text-xs text-gray-500">
                                                         ID: {item.id.slice(0, 8)}...
                                                     </p>
                                                 </div>
                                             </TableCell>
 
-                                            <TableCell className="p-4 max-w-md">
-                                                <p className="text-sm text-slate-600 leading-relaxed truncate">
+                                            <TableCell className="p-4">
+                                                <p className="text-sm text-gray-600 leading-relaxed line-clamp-2 max-w-72">
                                                     {item.content}
                                                 </p>
                                             </TableCell>
 
                                             <TableCell className="p-4">
                                                 <div className="text-sm">
-                                                    <p className="font-medium text-[#163d4a]">
+                                                    <h6 className="font-normal text-[#163d4a]">
                                                         {new Date(item.created_at).toLocaleDateString("id-ID", {
                                                             day: "numeric",
                                                             month: "short",
                                                             year: "numeric",
                                                         })}
-                                                    </p>
-                                                    <p className="text-xs text-slate-500">
+                                                        -
                                                         {new Date(item.created_at).toLocaleTimeString("id-ID", {
                                                             hour: "2-digit",
                                                             minute: "2-digit",
                                                         })}
+                                                    </h6>
+                                                    <p className="text-xs text-gray-500">
+
                                                     </p>
                                                 </div>
                                             </TableCell>
@@ -264,7 +303,7 @@ export default function BeritaList() {
                                                             <Button
                                                                 variant="outline"
                                                                 size="sm"
-                                                                className="border-slate-200 hover:bg-slate-50"
+                                                                className="border-gray-200 hover:bg-gray-50"
                                                             >
                                                                 <MoreHorizontal className="w-4 h-4" />
                                                             </Button>
@@ -273,14 +312,21 @@ export default function BeritaList() {
                                                             <DropdownMenuLabel>Aksi</DropdownMenuLabel>
                                                             <DropdownMenuSeparator />
                                                             <DropdownMenuItem>
-                                                                <Pencil className="w-4 h-4 mr-2" />
-                                                                Edit Berita
+                                                                <Link href={`/admin/edit/${item.id}`} className={'flex gap-2'}>
+                                                                    <Pencil className="w-4 h-4 mr-2" />
+                                                                    Edit Berita
+                                                                </Link>
                                                             </DropdownMenuItem>
+
                                                             <DropdownMenuSeparator />
-                                                            <DropdownMenuItem className="text-red-600 focus:text-red-600">
+                                                            <DropdownMenuItem
+                                                                className="text-red-600 focus:text-red-600"
+                                                                onClick={() => hapusBerita(item.id, item.image_path)}
+                                                            >
                                                                 <Trash2 className="w-4 h-4 mr-2" />
                                                                 Hapus Berita
                                                             </DropdownMenuItem>
+
                                                         </DropdownMenuContent>
                                                     </DropdownMenu>
                                                 </div>
@@ -294,8 +340,8 @@ export default function BeritaList() {
 
                     {/* Pagination info */}
                     {berita.length > 0 && (
-                        <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-200">
-                            <p className="text-sm text-slate-600">
+                        <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-200">
+                            <p className="text-sm text-gray-600">
                                 Menampilkan {berita.length} berita
                             </p>
                             <div className="flex items-center space-x-2">
