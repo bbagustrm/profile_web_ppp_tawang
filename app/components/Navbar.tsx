@@ -56,8 +56,7 @@ export default function Navbar() {
             items: [
                 { href: '/about', label: 'Profile' },
                 { href: '/sejarah', label: 'Sejarah' },
-                { href: '/umkm', label: 'UMKM' },
-            ]
+                ]
         }
     ] satisfies {
         href?: string;

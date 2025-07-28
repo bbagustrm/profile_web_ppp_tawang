@@ -24,7 +24,7 @@ export default function SidebarAdmin() {
     }
 
     return (
-        <Sidebar className="w-64 min-h-screen border-r flex flex-col justify-between text-[#163d4a]">
+        <Sidebar className="bg-white w-64 min-h-screen border-r flex flex-col justify-between text-[#163d4a] ">
             {/* Sidebar Header */}
             <SidebarHeader className="py-6 px-4">
                 <div className="flex flex-col items-center mb-10">
@@ -48,17 +48,6 @@ export default function SidebarAdmin() {
                     )}
                 >
                     Dashboard
-                </Link>
-                <Link
-                    href="/admin/berita-management"
-                    className={clsx(
-                        "text-sm font-medium px-3 py-2 rounded-md transition-colors",
-                        pathname === "/admin/berita-management"
-                            ? "bg-accent text-accent-foreground"
-                            : "hover:bg-accent hover:text-accent-foreground"
-                    )}
-                >
-                    Berita Management
                 </Link>
             </SidebarContent>
 
