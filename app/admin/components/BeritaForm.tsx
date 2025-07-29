@@ -89,9 +89,7 @@ export default function BeritaForm({ berita }: BeritaFormProps) {
 
     // Fungsi untuk strip HTML tags untuk validasi panjang text
     const stripHtml = (html: string) => {
-        const tmp = document.createElement("div");
-        tmp.innerHTML = html;
-        return tmp.textContent || tmp.innerText || "";
+        return html.replace(/<[^>]+>/g, '').trim()
     }
 
     const validateForm = () => {
