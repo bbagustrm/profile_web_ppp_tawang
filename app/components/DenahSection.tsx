@@ -23,8 +23,8 @@ const contentData = [
         icon: <Buildings size={32} weight="fill" className="text-teal-600"/>,
         time: '08.00 - 15.30 WIB',
         description: 'Kantor Pelabuhan Perikanan Pantai (PPP) Tawang melayani masyarakat setiap hari kerja mulai pukul 08.00 hingga 15.30 WIB. Berbagai layanan disediakan, mulai dari administrasi keluar masuk kapal perikanan, tambat labuh, bongkar muat dan pelelangan ikan, hingga pembinaan serta pengawasan mutu hasil tangkapan. Selain itu, kantor ini juga berperan dalam pemantauan dan pengendalian penangkapan ikan serta koordinasi pembinaan nelayan.',
-        images: ['/img1.jpg', '/img2.jpg', '/img3.jpg', '/img4.jpg', '/img5.jpg', '/img6.jpg'],
-        mapImage: '/map1.png'
+        images: ['/kantor/kantor1.png', '/kantor/kantor2.png', '/kantor/kantor3.png', '/kantor/kantor4.png', '/kantor/kantor5.png', '/kantor/kantor6.png', '/kantor/kantor7.png', '/kantor/kantor8.png'],
+        mapImage: '/map/kantor.png'
     },
     {
         id: 'tpi',
@@ -32,8 +32,8 @@ const contentData = [
         icon: <Fish size={32} weight="fill" className="text-teal-600" />,
         time: '13.00 - 15.00 WIB',
         description: 'Pasar ikan laut di sekitar PPP Tawang tidak hanya menjadi pusat jual beli hasil laut segar dan kering, tetapi juga destinasi favorit untuk mencari oleh-oleh khas pesisir. Buka setiap hari pukul 03.00–16.00 WIB, pasar ini menyediakan berbagai pilihan ikan segar hasil tangkapan langsung dari nelayan, serta aneka ikan kering seperti ikan asin, teri, dan udang kering yang awet dan cocok dibawa pulang.',
-        images: ['/img1.jpg', '/img2.jpg', '/img3.jpg', '/img4.jpg', '/img5.jpg', '/img6.jpg'],
-        mapImage: '/map2.png'
+        images: ['/tpi/tpi1.png', '/tpi/tpi2.png', '/tpi/tpi3.png', '/tpi/tpi4.png'],
+        mapImage: '/map/tpi.png'
     },
     {
         id: 'pasar',
@@ -41,8 +41,8 @@ const contentData = [
         icon: <Storefront size={32} weight="fill" className="text-teal-600"/>,
         time: '03.00 - 16.00 WIB',
         description: 'Pasar ikan laut di sekitar PPP Tawang tidak hanya menjadi pusat jual beli hasil laut segar dan kering, tetapi juga destinasi favorit untuk mencari oleh-oleh khas pesisir. Buka setiap hari pukul 03.00–16.00 WIB, pasar ini menyediakan berbagai pilihan ikan segar hasil tangkapan langsung dari nelayan, serta aneka ikan kering seperti ikan asin, teri, dan udang kering yang awet dan cocok dibawa pulang.',
-        images: ['/img1.jpg', '/img2.jpg', '/img3.jpg', '/img4.jpg', '/img5.jpg', '/img6.jpg'],
-        mapImage: '/map3.png'
+        images: ['/pasar/pasar1.png', '/pasar/pasar2.png', '/pasar/pasar3.png', '/pasar/pasar4.png', '/pasar/pasar5.png', '/pasar/pasar6.png'],
+        mapImage: '/map/pasar.png'
     },
     {
         id: 'dermaga',
@@ -50,8 +50,8 @@ const contentData = [
         icon: <Boat size={32} weight="fill" className="text-teal-600"/>,
         time: 'Buka 24 Jam',
         description: 'Dermaga di PPP Tawang beroperasi 24 jam dan menjadi titik penting bagi aktivitas perikanan. Di sinilah para nelayan berlabuh setelah melaut, membawa hasil tangkapan segar yang kemudian akan dijual di Tempat Pelelangan Ikan (TPI). Dermaga ini mendukung kelancaran kegiatan bongkar muat serta menjadi awal dari rantai distribusi hasil laut segar di wilayah Tawang. ',
-        images: ['/img1.jpg', '/img2.jpg', '/img3.jpg', '/img4.jpg', '/img5.jpg', '/img6.jpg'],
-        mapImage: '/map3.png'
+        images: ['/dermaga/dermaga1.png', '/dermaga/dermaga2.png', '/dermaga/dermaga3.png', '/dermaga/dermaga4.png', '/dermaga/dermaga5.png', '/dermaga/dermaga6.png'],
+        mapImage: '/map/dermaga.png'
     },
     {
         id: 'kios',
@@ -59,8 +59,8 @@ const contentData = [
         icon: <ForkKnife size={32} weight="fill" className="text-teal-600"/>,
         time: 'Buka 08.00 - 18.00',
         description: 'Area kios dan kuliner di PPP Tawang buka setiap hari pukul 08.00 hingga 18.00 WIB, menghadirkan berbagai jajanan dan produk UMKM lokal yang menggugah selera. Berlokasi di tepi sungai, tempat ini sering dijadikan lokasi bersantai dan bermain oleh masyarakat, terutama di sore hari. Suasana sungai yang tenang berpadu dengan keramahan penjual dan ragam kuliner khas menjadikan area ini pilihan tepat untuk menikmati waktu bersama keluarga atau teman.',
-        images: ['/img1.jpg', '/img2.jpg', '/img3.jpg', '/img4.jpg', '/img5.jpg', '/img6.jpg'],
-        mapImage: '/map3.png'
+        images: ['/umkm/umkm1.png'],
+        mapImage: '/map/umkm.png'
     }
 ];
 
