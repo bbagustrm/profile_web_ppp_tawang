@@ -34,6 +34,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link"
 
+import {
+    Pagination,
+    PaginationContent,
+    PaginationItem,
+    PaginationNext,
+    PaginationPrevious,
+} from "@/components/ui/pagination"
+
 interface Berita {
     id: string;
     title: string;
@@ -46,6 +54,22 @@ export default function BeritaList() {
     const [berita, setBerita] = useState<Berita[]>([]);
     const [loading, setLoading] = useState(true);
     const supabase = createClientComponentClient();
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const beritaPerPage = 10;
+
+    const filteredBerita = berita.filter((item) =>
+        item.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const beritaTampil = filteredBerita.slice(
+        (currentPage - 1) * beritaPerPage,
+        currentPage * beritaPerPage
+    );
+
+    const totalPages = Math.ceil(filteredBerita.length / beritaPerPage);
+
 
     useEffect(() => {
         const fetchBerita = async () => {
@@ -166,7 +190,7 @@ export default function BeritaList() {
             {/* Management Card */}
             <Card className="shadow-lg border-0 bg-white text-[#163d4a]">
                 <CardHeader className="pb-4">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div className="flex flex-col items-center sm:flex-row sm:justify-between gap-4">
                         <div>
                             <CardTitle className="text-xl font-bold text-[#163d4a]">
                                 Manajemen Berita
@@ -175,12 +199,25 @@ export default function BeritaList() {
                                 Kelola dan pantau semua konten berita
                             </CardDescription>
                         </div>
-                        <Link href='/admin/create' className='flex items-center'>
-                            <Button className="bg-teal-500 hover:bg-teal-600 text-white shadow-md">
-                                <Plus className="w-4 h-4 mr-2" />
-                                Tambah Berita
-                            </Button>
-                        </Link>
+                        <div className="flex items-center gap-4 sm:gap-6">
+                            <input
+                                type="text"
+                                placeholder="Cari judul berita..."
+                                className="border border-gray-300 rounded-md px-3 py-2 text-sm w-full sm:w-64"
+                                value={searchQuery}
+                                onChange={(e) => {
+                                    setCurrentPage(1); // reset ke halaman awal saat pencarian berubah
+                                    setSearchQuery(e.target.value);
+                                }}
+                            />
+                            <Link href='/admin/create' className='flex items-center'>
+                                <Button className="bg-teal-500 hover:bg-teal-600 text-white shadow-md">
+                                    <Plus className="w-4 h-4 mr-2" />
+                                    Tambah Berita
+                                </Button>
+                            </Link>
+                        </div>
+
                     </div>
                 </CardHeader>
                 <Separator className="mb-4" />
@@ -236,7 +273,7 @@ export default function BeritaList() {
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
-                                    {berita.map((item) => (
+                                    {beritaTampil.map((item) => (
                                         <TableRow
                                             key={item.id}
                                             className="hover:bg-gray-50 transition-colors duration-150"
@@ -338,22 +375,54 @@ export default function BeritaList() {
                         </div>
                     )}
 
-                    {/* Pagination info */}
-                    {berita.length > 0 && (
-                        <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-200">
-                            <p className="text-sm text-gray-600">
-                                Menampilkan {berita.length} berita
+                    {/*pagination*/}
+                    {filteredBerita.length > 0 && (
+                        <div className="flex flex-col sm:flex-row items-center justify-between mt-6 pt-4 border-t border-gray-200">
+                            <p className="text-sm text-gray-600 w-full">
+                                Menampilkan {(currentPage - 1) * beritaPerPage + 1} -{" "}
+                                {Math.min(currentPage * beritaPerPage, filteredBerita.length)} dari {filteredBerita.length} berita
                             </p>
-                            <div className="flex items-center space-x-2">
-                                <Button variant="outline" size="sm" disabled>
-                                    Previous
-                                </Button>
-                                <Button variant="outline" size="sm" disabled>
-                                    Next
-                                </Button>
-                            </div>
+
+                            <Pagination className="w-fit">
+                                <PaginationContent>
+
+                                    {/* Tombol Previous */}
+                                    <PaginationItem>
+                                        <PaginationPrevious
+                                            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                                            className={currentPage === 1 ? "opacity-50" : "cursor-pointer"}
+                                        />
+                                    </PaginationItem>
+
+                                    {/* Angka Halaman */}
+                                    {Array.from({ length: totalPages }, (_, i) => (
+                                        <PaginationItem key={i}>
+                                            <button
+                                                onClick={() => setCurrentPage(i + 1)}
+                                                className={`px-3 py-1 text-sm rounded-md border transition ${
+                                                    currentPage === i + 1
+                                                        ? "bg-teal-600 text-white border-teal-600"
+                                                        : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+                                                }`}
+                                            >
+                                                {i + 1}
+                                            </button>
+                                        </PaginationItem>
+                                    ))}
+
+                                    {/* Tombol Next */}
+                                    <PaginationItem>
+                                        <PaginationNext
+                                            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                                            className={currentPage === totalPages ? "opacity-50" : "cursor-pointer"}
+                                        />
+                                    </PaginationItem>
+
+                                </PaginationContent>
+                            </Pagination>
                         </div>
                     )}
+
                 </CardContent>
             </Card>
         </div>
