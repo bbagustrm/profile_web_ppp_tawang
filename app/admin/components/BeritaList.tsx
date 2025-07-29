@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { toast } from "sonner"
 import {
     Pencil,
     Trash2,
@@ -98,29 +99,28 @@ export default function BeritaList() {
 
         if (deleteError) {
             console.error("Gagal menghapus berita:", deleteError.message);
-            alert("Gagal menghapus berita.");
+            toast("Gagal menghapus berita.");
             return;
         }
 
-        // Ekstrak relative path dari imagePath (hapus domain dan prefix)
+        // Hapus gambar dari storage (optional - jika gagal tidak akan mempengaruhi proses)
         if (imagePath) {
-            const relativePath = imagePath.split("/").slice(-1)[0];
-            console.log(relativePath);
-            const { error: storageError } = await supabase
-                .storage
-                .from("news-images")
-                .remove(['1753730024606-8z1hd8lrtjg.png']);
+            try {
+                const filename = imagePath.includes('/')
+                    ? imagePath.split('/').pop()
+                    : imagePath;
 
-
-            if (storageError) {
-                console.error("Gagal menghapus gambar:", storageError.message);
+                if (filename) {
+                    await supabase.storage.from("news-images").remove([filename]);
+                }
+            } catch (error) {
+                console.log("Gambar tidak dapat dihapus dari storage:", error);
             }
         }
 
         setBerita((prev) => prev.filter((item) => item.id !== id));
-        alert("Berita berhasil dihapus.");
+        toast("Berita berhasil dihapus.")
     };
-
 
     return (
         <div className="space-y-6">
@@ -297,7 +297,7 @@ export default function BeritaList() {
                                             </TableCell>
 
                                             <TableCell className="p-4">
-                                                <div className="space-y-1 max-w-48">
+                                                <div className="space-y-1 max-w-64">
                                                     <p className="font-semibold text-[#163d4a] leading-tight truncate">
                                                         {item.title}
                                                     </p>
@@ -308,7 +308,7 @@ export default function BeritaList() {
                                             </TableCell>
 
                                             <TableCell className="p-4">
-                                                <p className="text-sm text-gray-600 leading-relaxed line-clamp-2 max-w-72">
+                                                <p className="text-sm text-gray-600 leading-relaxed line-clamp-1 max-w-72">
                                                     {item.content}
                                                 </p>
                                             </TableCell>

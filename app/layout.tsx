@@ -4,6 +4,8 @@ import "./globals.css";
 import React from "react";
 import { Theme } from "@radix-ui/themes";
 import { Analytics } from '@vercel/analytics/react'
+import { Toaster } from "@/components/ui/sonner"
+
 
 const fontSans = Plus_Jakarta_Sans({
   variable: "--font-sans",
@@ -38,6 +40,7 @@ export default function RootLayout({
               <Analytics />
               {children}
           </Theme>
+          <Toaster />
       </body>
     </html>
   );

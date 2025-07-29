@@ -8,10 +8,10 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-
+import { toast } from "sonner"
+import dynamic from 'next/dynamic'
 import {
     Upload,
     X,
@@ -21,6 +21,11 @@ import {
     AlertCircle,
     CheckCircle
 } from "lucide-react";
+
+const RichTextEditor = dynamic(() => import('./RichTextEditor'), {
+    ssr: false,
+    loading: () => <p className="text-slate-500 text-sm">Memuat editor...</p>
+})
 
 type BeritaFormProps = {
     berita?: {
@@ -82,6 +87,13 @@ export default function BeritaForm({ berita }: BeritaFormProps) {
         }
     }
 
+    // Fungsi untuk strip HTML tags untuk validasi panjang text
+    const stripHtml = (html: string) => {
+        const tmp = document.createElement("div");
+        tmp.innerHTML = html;
+        return tmp.textContent || tmp.innerText || "";
+    }
+
     const validateForm = () => {
         const newErrors: { [key: string]: string } = {}
 
@@ -93,9 +105,10 @@ export default function BeritaForm({ berita }: BeritaFormProps) {
             newErrors.judul = 'Judul maksimal 100 karakter'
         }
 
-        if (!isi.trim()) {
+        const plainTextContent = stripHtml(isi);
+        if (!plainTextContent.trim()) {
             newErrors.isi = 'Isi berita wajib diisi'
-        } else if (isi.length < 50) {
+        } else if (plainTextContent.length < 50) {
             newErrors.isi = 'Isi berita minimal 50 karakter'
         }
 
@@ -148,13 +161,13 @@ export default function BeritaForm({ berita }: BeritaFormProps) {
                     .from('berita')
                     .update({
                         title: judul.trim(),
-                        content: isi.trim(),
+                        content: isi, // Rich text HTML content
                         image_path: imageUrl
                     })
                     .eq('id', berita.id)
 
                 if (error) throw new Error('Gagal memperbarui berita')
-                alert('Berita berhasil diperbarui!')
+                toast('Berita berhasil diperbarui!')
             } else {
                 // INSERT berita baru
                 const { error } = await supabase
@@ -162,13 +175,13 @@ export default function BeritaForm({ berita }: BeritaFormProps) {
                     .insert([
                         {
                             title: judul.trim(),
-                            content: isi.trim(),
+                            content: isi, // Rich text HTML content
                             image_path: imageUrl
                         }
                     ])
 
                 if (error) throw new Error('Gagal menambahkan berita')
-                alert('Berita berhasil ditambahkan!')
+                toast('Berita berhasil ditambahkan!')
             }
 
             setTimeout(() => router.push('/admin'), 1000)
@@ -226,11 +239,11 @@ export default function BeritaForm({ berita }: BeritaFormProps) {
                 </div>
             </div>
 
-            {/* Upload Gambar */}
+            {/* Upload Gambar Featured */}
             <div className="space-y-2">
                 <Label className="text-sm font-semibold text-slate-700 flex items-center">
                     <ImageIcon className="w-4 h-4 mr-2 text-blue-600" />
-                    Gambar Berita
+                    Gambar Utama Berita
                     <span className="text-slate-400 ml-1 font-normal">(Opsional)</span>
                 </Label>
 
@@ -249,7 +262,7 @@ export default function BeritaForm({ berita }: BeritaFormProps) {
                                 <Upload className="w-6 h-6 text-slate-400" />
                             </div>
                             <p className="text-sm font-medium text-slate-700 mb-1">
-                                Klik untuk upload gambar
+                                Klik untuk upload gambar utama
                             </p>
                             <p className="text-xs text-slate-500">
                                 PNG, JPG, hingga 2MB
@@ -305,26 +318,25 @@ export default function BeritaForm({ berita }: BeritaFormProps) {
                 )}
             </div>
 
-            {/* Isi */}
+            {/* Rich Text Editor untuk Isi Berita */}
             <div className="space-y-2">
-                <Label htmlFor="isi" className="text-sm font-semibold text-slate-700 flex items-center">
+                <Label className="text-sm font-semibold text-slate-700 flex items-center">
                     <FileText className="w-4 h-4 mr-2 text-blue-600" />
                     Isi Berita <span className="text-red-500 ml-1">*</span>
                 </Label>
-                <Textarea
-                    id="isi"
-                    value={isi}
-                    onChange={(e) => setIsi(e.target.value)}
-                    rows={8}
-                    className={`resize-none ${errors.isi ? 'border-red-300 focus:ring-red-200' : ''}`}
-                    placeholder="Tulis isi berita secara lengkap dan informatif..."
+
+                <RichTextEditor
+                    content={isi}
+                    onChange={setIsi}
+                    placeholder="Tulis isi berita secara lengkap dan informatif. Anda dapat menambahkan format teks, gambar, dan link."
                 />
+
                 <div className="flex justify-between text-sm">
                     <span className={errors.isi ? 'text-red-600' : 'text-slate-500'}>
-                        {errors.isi || 'Minimal 50 karakter untuk isi berita'}
+                        {errors.isi || 'Minimal 50 karakter untuk isi berita (tanpa HTML tags)'}
                     </span>
-                    <span className={`text-xs ${isi.length < 50 ? 'text-red-600' : 'text-slate-400'}`}>
-                        {isi.length} karakter
+                    <span className={`text-xs ${stripHtml(isi).length < 50 ? 'text-red-600' : 'text-slate-400'}`}>
+                        {stripHtml(isi).length} karakter
                     </span>
                 </div>
             </div>
