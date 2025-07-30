@@ -7,33 +7,48 @@ import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious}
 import { Card, CardContent } from "@/components/ui/card"
 
 export default function SaranaPrasaranaSection() {
-    const [selectedTab, setSelectedTab] = useState("fungsional1")
+    const [selectedTab, setSelectedTab] = useState("pokok")
 
-    const fungsional1 = [
-        { title: "Sarana 1", image: "/img1.jpg" },
-        { title: "Sarana 2", image: "/img2.jpg" },
-        { title: "Sarana 3", image: "/img3.jpg" },
-        { title: "Sarana 4", image: "/img4.jpg" },
+    const pokok = [
+        { title: "Alur Pelayaran", image: "/sarpras/pokok/alur-pelayaran.png" },
+        { title: "Penahan Gelombang", image: "/sarpras/pokok/penahan-gelombang.png" },
+        { title: "Lahan PPP Tawang", image: "/sarpras/pokok/lahan.png" },
+        { title: "Jalan Komplek", image: "/sarpras/pokok/jalan-komplek.png" },
+        { title: "Dermaga", image: "/sarpras/pokok/dermaga.png" },
     ];
 
-    const fungsional2 = [
-        { title: "Sarana 5", image: "/img2.jpg" },
-        { title: "Sarana 6", image: "/img1.jpg" },
-        { title: "Sarana 7", image: "/img3.jpg" },
-        { title: "Sarana 8", image: "/img4.jpg" },
+    const fungsional = [
+        { title: "Tempat Pelelangan Ikan (TPI)", image: "/sarpras/fungsional/tpi.png" },
+        { title: "Suar", image: "/sarpras/fungsional/suar.png" },
+        { title: "Rambu Lampu Penuntun", image: "/sarpras/fungsional/rambu-penuntun.png" },
+        { title: "Telepon/Internet", image: "/sarpras/fungsional/telepon-internet.png" },
+        { title: "Air Bersih", image: "/sarpras/fungsional/air-bersih.png" },
+        { title: "Listrik", image: "/sarpras/fungsional/listrik.png" },
+        { title: "SPBN (BBM)", image: "/sarpras/fungsional/spbn.png" },
+        { title: "Kantor PPP Tawang", image: "/sarpras/fungsional/kantor.png" },
+        { title: "Pos Kamladu", image: "/sarpras/fungsional/poskamladu.png" },
+        { title: "Perbankan", image: "/sarpras/fungsional/perbankan.png" },
+        { title: "Kontainer Sampah", image: "/sarpras/fungsional/kontainer-sampah.png" },
     ];
 
-    const fungsional3 = [
-        { title: "Sarana 9", image: "/img5.jpg" },
-        { title: "Sarana 10", image: "/img6.jpg" },
-        { title: "Sarana 11", image: "/img1.jpg" },
-        { title: "Sarana 12", image: "/img2.jpg" },
+    const penunjang = [
+        { title: "Ruang Pelayanan", image: "/sarpras/penunjang/ruang-pelayanan.png" },
+        { title: "Ruang Pertemuan", image: "/sarpras/penunjang/ruang-pertemuan.png" },
+        { title: "Mushola", image: "/sarpras/penunjang/mushola.png" },
+        { title: "MCK", image: "/sarpras/penunjang/mck.png" },
+        { title: "Kios Depan", image: "/sarpras/penunjang/kios-depan.png" },
+        { title: "Kios Belakang", image: "/sarpras/penunjang/kios-belakang.png" },
+        { title: "Lapak", image: "/sarpras/penunjang/lapak.png" },
+        { title: "Gudang Blong/Garam/Es", image: "/sarpras/penunjang/gudang-garam.png" },
+        { title: "Pos Jaga", image: "/sarpras/penunjang/pos-jaga.png" },
+        { title: "Areal Parkir", image: "/sarpras/penunjang/area-parkir.png" },
+        { title: "Monitoring Cuaca BMKG", image: "/sarpras/penunjang/monitor-cuaca-bmkg.png" },
     ];
 
     const data = {
-        fungsional1,
-        fungsional2,
-        fungsional3
+        pokok,
+        fungsional,
+        penunjang
     }
     return (
         <div className="py-16 px-8 lg:px-16 xl:px-24 bg-white text-[#163d4a] space-y-16">
@@ -49,9 +64,9 @@ export default function SaranaPrasaranaSection() {
             <Tabs value={selectedTab} onValueChange={setSelectedTab} className="w-full space-y-8 text-[#163d4a]">
                 <div className="overflow-x-auto">
                     <TabsList className="w-max whitespace-nowrap flex gap-2">
-                        <TabsTrigger value="fungsional1" className="px-8">Fungsional 1</TabsTrigger>
-                        <TabsTrigger value="fungsional2" className="px-8">Fungsional 2</TabsTrigger>
-                        <TabsTrigger value="fungsional3" className="px-8">Fungsional 3</TabsTrigger>
+                        <TabsTrigger value="pokok" className="px-8">Pokok</TabsTrigger>
+                        <TabsTrigger value="fungsional" className="px-8">Fungsional</TabsTrigger>
+                        <TabsTrigger value="penunjang" className="px-8">Penunjang</TabsTrigger>
                     </TabsList>
                 </div>
 
