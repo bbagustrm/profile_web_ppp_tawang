@@ -82,7 +82,7 @@ export default function LayoutAuth({ children } : Readonly<{
                     <div className="flex justify-between md:items-start gap-12 flex-col md:flex-row">
                         {children}
                         {/* Right Section */}
-                        <div className="hidden md:block md:w-[30%] space-y-6 text-[#163d4a]">
+                        <div className="hidden ld::block lg:[30%] space-y-6 text-[#163d4a]">
                             <h4 className="text-teal-600 font-bold">Berita Terkini</h4>
                             <Separator orientation="horizontal" className="w-full"/>
                             {loading ? (

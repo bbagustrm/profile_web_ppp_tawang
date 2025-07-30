@@ -162,7 +162,7 @@ export default function NewsDetailPage() {
 
     // Main content
     return (
-        <div className="w-full md:w-[70%] space-y-6">
+        <div className="w-full lg:w-[70%] space-y-6">
             <Button
                 onClick={handleBack}
                 variant="outline"
