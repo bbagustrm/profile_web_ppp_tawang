@@ -21,8 +21,44 @@ import { MapPin, Cube } from "phosphor-react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button"
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
+import { Skeleton } from "@/components/ui/skeleton";
+
+
+interface Berita {
+    id: string;
+    title: string;
+    content: string;
+    image_path?: string | null;
+    created_at: string;
+}
 
 export default function HeroSection() {
+    const supabase = createClientComponentClient();
+    const [berita, setBerita] = useState<Berita[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchBerita = async () => {
+            const { data, error } = await supabase
+                .from("berita")
+                .select("*")
+                .order("created_at", { ascending: false })
+                .limit(8);
+
+            if (error) {
+                console.error("Gagal fetch berita:", error.message);
+            } else {
+                setBerita(data || []);
+            }
+
+            setLoading(false);
+        };
+
+        fetchBerita();
+    }, []);
+
     return (
         <div className="relative w-full h-screen">
             <Image
@@ -96,103 +132,40 @@ export default function HeroSection() {
                 <div className="py-6 border-t-2 border-white/20 bg-black/30 ">
                     <Carousel>
                         <CarouselContent className='px-16'>
-                            <CarouselItem className="basis-64 md:basis-1/3 lg:basis-1/4">
-                                <Card className="w-full relative overflow-hidden h-28">
-                                    <Image
-                                        src="/hero.png"
-                                        alt="Gambar"
-                                        fill
-                                        className="object-cover"
-                                    />
-                                    <div className="absolute inset-0 z-10 flex flex-col justify-end px-4 py-2 gap-2 text-white">
-                                        <Badge variant="secondary" className='w-fit' >Terbaru</Badge>
-                                        <p className="line-clamp-2 text-sm">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        </p>
-                                    </div>
-                                    <div className="absolute inset-0 bg-black/30 z-0" />
-                                </Card>
-                            </CarouselItem>
-                            <CarouselItem className="basis-64 md:basis-1/3 lg:basis-1/4">
-                                <Card className="w-full relative overflow-hidden h-28">
-                                    <Image
-                                        src="/hero.png"
-                                        alt="Gambar"
-                                        fill
-                                        className="object-cover"
-                                    />
-                                    <div className="absolute inset-0 z-10 flex flex-col justify-end px-4 py-2 gap-2 text-white">
-                                        <Badge variant="secondary" className='w-fit' >Terbaru</Badge>
-                                        <p className="line-clamp-2 text-sm">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        </p>
-                                    </div>
-                                    <div className="absolute inset-0 bg-black/30 z-0" />
-                                </Card>
-                            </CarouselItem>
-                            <CarouselItem className="basis-64 md:basis-1/3 lg:basis-1/4">
-                                <Card className="w-full relative overflow-hidden h-28">
-                                    <Image
-                                        src="/hero.png"
-                                        alt="Gambar"
-                                        fill
-                                        className="object-cover"
-                                    />
-                                    <div className="absolute inset-0 z-10 flex flex-col justify-end px-4 py-2 gap-2 text-white">
-                                        <p className="line-clamp-2 text-sm">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        </p>
-                                    </div>
-                                    <div className="absolute inset-0 bg-black/30 z-0" />
-                                </Card>
-                            </CarouselItem>
-                            <CarouselItem className="basis-64 md:basis-1/3 lg:basis-1/4">
-                                <Card className="w-full relative overflow-hidden h-28">
-                                    <Image
-                                        src="/hero.png"
-                                        alt="Gambar"
-                                        fill
-                                        className="object-cover"
-                                    />
-                                    <div className="absolute inset-0 z-10 flex flex-col justify-end px-4 py-2 gap-2 text-white">
-                                        <p className="line-clamp-2 text-sm">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        </p>
-                                    </div>
-                                    <div className="absolute inset-0 bg-black/30 z-0" />
-                                </Card>
-                            </CarouselItem>
-                            <CarouselItem className="basis-64 md:basis-1/3 lg:basis-1/4">
-                                <Card className="w-full relative overflow-hidden h-28">
-                                    <Image
-                                        src="/hero.png"
-                                        alt="Gambar"
-                                        fill
-                                        className="object-cover"
-                                    />
-                                    <div className="absolute inset-0 z-10 flex flex-col justify-end px-4 py-2 gap-2 text-white">
-                                        <p className="line-clamp-2 text-sm">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        </p>
-                                    </div>
-                                    <div className="absolute inset-0 bg-black/30 z-0" />
-                                </Card>
-                            </CarouselItem>
-                            <CarouselItem className="basis-64 md:basis-1/3 lg:basis-1/4">
-                                <Card className="w-full relative overflow-hidden h-28">
-                                    <Image
-                                        src="/hero.png"
-                                        alt="Gambar"
-                                        fill
-                                        className="object-cover"
-                                    />
-                                    <div className="absolute inset-0 z-10 flex flex-col justify-end px-4 py-2 gap-2 text-white">
-                                        <p className="line-clamp-2 text-sm">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        </p>
-                                    </div>
-                                </Card>
-                            </CarouselItem>
+                            {loading ? (
+                                [...Array(4)].map((_, i) => (
+                                    <CarouselItem key={i} className="basis-64 md:basis-1/3 lg:basis-1/4">
+                                        <Card className="w-full relative overflow-hidden h-28">
+                                            <Skeleton className="absolute inset-0 w-full h-full" />
+                                        </Card>
+                                    </CarouselItem>
+                                ))
+                            ) : berita.length > 0 ? (
+                                berita.map((item) => (
+                                    <CarouselItem key={item.id} className="basis-64 md:basis-1/3 lg:basis-1/4">
+                                        <Link href={`/news/${item.id}`} className="block group">
+                                            <Card className="w-full relative overflow-hidden h-28 brightness-75 group-hover:brightness-100 transition duration-300">
+                                                <Image
+                                                    src={item.image_path || "/placeholder.jpg"}
+                                                    alt={item.title}
+                                                    fill
+                                                    className="object-cover w-full h-full transition duration-300 brightness-75 "
+                                                />
+                                                <div className="absolute inset-0 z-10 flex flex-col justify-end px-4 py-2 gap-2 text-white">
+                                                    <Badge variant="secondary" className='w-fit'>Terbaru</Badge>
+                                                    <h5 className="line-clamp-1">{item.title}</h5>
+                                                    <p className="text-xs line-clamp-2">{item.content}</p>
+                                                </div>
+                                                <div className="absolute inset-0 bg-black/30 z-0" />
+                                            </Card>
+                                        </Link>
+                                    </CarouselItem>
+                                ))
+                            ) : (
+                                <CarouselItem className="basis-full text-center text-white py-4">
+                                    Tidak ada berita terbaru.
+                                </CarouselItem>
+                            )}
                         </CarouselContent>
                         <CarouselPrevious className={"absolute top-1/2 left-4"} />
                         <CarouselNext className={"absolute top-1/2 right-4"} />
