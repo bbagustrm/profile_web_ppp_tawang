@@ -76,9 +76,9 @@ export default function LayoutAuth({ children } : Readonly<{
                 <HeroSection2
                     title={"Berita Terbaru"}
                     image={"/berita.png"}
-                    description={"Dapatkan informasi terkini dan terpercaya seputar berbagai topik menarik"}
+                    description={"Informasi terkini dan terpercaya dari kami."}
                 />
-                <div className="container mx-auto py-16 px-8 text-[#163d4a]">
+                <div className="container mx-auto py-4 md:py-12 lg:py-16 md:px-8 text-[#163d4a]">
                     <div className="flex justify-between md:items-start gap-12 flex-col md:flex-row">
                         {children}
                         {/* Right Section */}

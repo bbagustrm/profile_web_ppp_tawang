@@ -17,7 +17,7 @@ export default function AboutPage() {
         <>
             <Navbar/>
             <div className="relative min-h-screen">
-                <HeroSection2 title={"Profile"} image={"/hero.png"} description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut tellus dolor."}/>
+                <HeroSection2 title={"Profile"} image={"/hero.png"} description={"Mengenal lebih dekat visi dan misi kami."}/>
                 <LokasiSection/>
                 <MantulSection/>
                 <VisiMisiSection/>

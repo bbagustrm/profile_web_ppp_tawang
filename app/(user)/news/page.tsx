@@ -178,9 +178,9 @@ export default function NewsPage() {
     };
 
     return (
-        <div className="w-full md:w-[70%] flex flex-col gap-12">
+        <div className="w-full md:w-[70%] flex flex-col gap-12 px-8 py-4">
             {/* Search & Sort */}
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex md:justify-between md:items-center gap-4">
                 <Input
                     placeholder="Cari berita..."
                     className="w-full md:w-1/2 bg-white"
@@ -188,7 +188,7 @@ export default function NewsPage() {
                     onChange={(e) => handleSearch(e.target.value)}
                 />
                 <Select value={sortOrder} onValueChange={handleSortChange}>
-                    <SelectTrigger className="w-1/6 bg-white">
+                    <SelectTrigger className="w-fit md:w-1/6 bg-white">
                         <SelectValue placeholder="Urutkan" />
                     </SelectTrigger>
                     <SelectContent>
@@ -228,7 +228,7 @@ export default function NewsPage() {
                                     className="w-full h-36 object-cover rounded-t-md transition-transform duration-300 ease-in-out group-hover:scale-105"
                                 />
                                 <CardContent className="py-4 px-4 space-y-2">
-                                    <h3 className="text-lg font-semibold group-hover:text-teal-600 transition-colors">
+                                    <h3 className="text-lg font-semibold group-hover:text-teal-600 transition-colors line-clamp-2">
                                         {item.title}
                                     </h3>
                                     <p className="text-xs text-gray-500">

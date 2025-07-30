@@ -26,7 +26,7 @@ export default function SPBSection() {
             </div>
             <div className='w-full flex flex-col md:flex-row gap-8'>
                 {/*left*/}
-                <Card className="w-full md:w-[60%] text-[#163d4a]">
+                <Card className="w-full md:w-[60%] text-[#163d4a] shadow-card">
                     <CardHeader className="space-y-4">
                         <CardTitle><h3>SPB (Surat Persetujuan Berlayar)</h3></CardTitle>
                         <CardDescription><p>SPB adalah dokumen resmi dari negara yang wajib dimiliki oleh kapal perikanan sebelum berlayar dari pelabuhan.</p></CardDescription>

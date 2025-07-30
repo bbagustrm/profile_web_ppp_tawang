@@ -3,8 +3,8 @@ import {Phone} from "phosphor-react";
 
 export default function LokasiSection() {
     return (
-        <div className="w-full py-16 px-8 lg:px-16 xl:px-24 bg-white text-[#163d4a]">
-            <div className="flex justify-between md:items-center md:gap-12 lg:gap-24 flex-col md:flex-row">
+        <div className="w-full py-16 px-8 md:px-16 lg:px-24 bg-white text-[#163d4a]">
+            <div className="container mx-auto flex justify-between md:items-center md:gap-12 lg:gap-24 flex-col md:flex-row">
                 <div className=" hidden lg:block lg:basis-1/4 aspect-square rounded-full border-2 border-border overflow-hidden relative">
                     <Image
                         src="/logo.png"

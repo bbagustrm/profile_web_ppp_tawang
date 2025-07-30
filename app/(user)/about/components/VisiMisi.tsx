@@ -1,7 +1,7 @@
 export default function VisiMisiSection() {
     return (
         <div className="w-full py-16 px-8 lg:px-16 xl:px-24 bg-white  text-[#163d4a]">
-            <div className="flex justify-between gap-24 md:gap-12 lg:gap-24 flex-col md:flex-row">
+            <div className="container mx-auto flex justify-between gap-24 md:gap-12 lg:gap-24 flex-col md:flex-row">
                 <div className="w-full lg:basis-1/2 space-y-16 ">
                     <div className="flex flex-col items-center gap-4">
                         <div className="w-20 h-1.5 bg-teal-500" />

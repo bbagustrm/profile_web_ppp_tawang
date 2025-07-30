@@ -4,14 +4,14 @@ import { CheckCircle } from "phosphor-react";
 
 export default function MantulSection() {
     return (
-        <div className="w-full h-[640px] md:h-[540px] lg:h-[480px] relative">
+        <div className="w-full h-[640px] md:h-[480px] lg:h-[480px] relative">
             <Image
                 src="/mantul.png"
                 alt="Gambar"
                 fill
                 className="object-cover"
             />
-            <div className="absolute inset-0 z-10 px-8 lg:px-16 xl:px-24 container mx-auto flex flex-col lg:flex-row gap-8 lg:justify-between items-start lg:items-center py-12">
+            <div className="absolute inset-0 z-10 container mx-auto px-8 md:px-0 lg:px-24 flex flex-col lg:flex-row gap-12 lg:justify-between items-start lg:items-center py-12">
                 <div className="w-full lg:w-[40%] text-white space-y-6">
                     <div className="flex items-start gap-4">
                         <div className="w-1.5 h-20 bg-teal-500" />

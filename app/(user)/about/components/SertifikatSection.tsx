@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function SertifikatSection() {
     return (
-        <div className="container mx-auto py-16 px-8 lg:px-16 xl:px-24  text-[#163d4a]">
+        <div className="container mx-auto py-16 px-8 md:px-0 lg:px-24  text-[#163d4a]">
             <div className="flex justify-between md:items-center md:gap-12 lg:gap-24 flex-col md:flex-row">
                 <div className=" hidden lg:block lg:basis-2/5 aspect-[4/3] rounded-md  overflow-hidden relative">
                     <Image
@@ -43,14 +43,18 @@ export default function SertifikatSection() {
                         </div>
                         <div className="flex gap-4">
                             <p>5.</p>
-                            <p>Penerbitan P2KP (Persetujuan Pengadaan Kapal Perikanan)</p>
+                            <p>Retribusi Sewa Lahan</p>
                         </div>
                         <div className="flex gap-4">
                             <p>6.</p>
-                            <p>Surat Masuk</p>
+                            <p>Penerbitan P2KP (Persetujuan Pengadaan Kapal Perikanan)</p>
                         </div>
                         <div className="flex gap-4">
                             <p>7.</p>
+                            <p>Surat Masuk</p>
+                        </div>
+                        <div className="flex gap-4">
+                            <p>8.</p>
                             <p>Surat Keluar</p>
                         </div>
                     </div>

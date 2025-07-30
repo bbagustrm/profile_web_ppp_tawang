@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function PersyaratanKapalKecilSection() {
     return (
         <div className="flex flex-col items-center gap-8">
-            <Card className="w-full text-[#163d4a]">
+            <Card className="w-full text-[#163d4a] shadow-card">
                 <CardHeader className="space-y-4">
                     <CardTitle><h3>Persyaratan Buku Kapal Perikanan Nelayan Kecil {"<"}  5 GT (E-BKP NK)</h3></CardTitle>
                 </CardHeader>
@@ -36,7 +36,7 @@ export default function PersyaratanKapalKecilSection() {
 
             <div className='w-full flex flex-col lg:flex-row  gap-4'>
                 {/*1. NPWP*/}
-                <Card className="w-full lg:w-1/3 text-[#163d4a]">
+                <Card className="w-full lg:w-1/3 text-[#163d4a] shadow-card">
                     <CardHeader className="space-y-4">
                         <CardTitle><h3>NPWP</h3></CardTitle>
                     </CardHeader>
@@ -59,7 +59,7 @@ export default function PersyaratanKapalKecilSection() {
                     </CardFooter>
                 </Card>
                 {/*1. NIB (Nomor Induk Berusaha)*/}
-                <Card className="w-full lg:w-1/3 text-[#163d4a]">
+                <Card className="w-full lg:w-1/3 text-[#163d4a] shadow-card">
                     <CardHeader className="space-y-4">
                         <CardTitle><h3>NIB (Nomor Induk Berusaha)</h3></CardTitle>
                     </CardHeader>
@@ -82,7 +82,7 @@ export default function PersyaratanKapalKecilSection() {
                     </CardFooter>
                 </Card>
 
-                <Card className="w-full lg:w-1/3 text-[#163d4a]">
+                <Card className="w-full lg:w-1/3 text-[#163d4a] shadow-card">
                     <CardHeader className="space-y-4">
                         <CardTitle><h3>NPWP</h3></CardTitle>
                     </CardHeader>

@@ -163,7 +163,16 @@ export default function NewsDetailPage() {
     // Main content
     return (
         <div className="w-full md:w-[70%] space-y-6">
-            <div className="bg-white rounded-lg shadow-lg border border-gray-100 overflow-hidden ">
+            <Button
+                onClick={handleBack}
+                variant="outline"
+                className="md:hidden ml-4 mb-8 flex items-center justify-center gap-2"
+            >
+                <ArrowLeft className="w-4 h-4" />
+                Kembali
+            </Button>
+
+            <div className="bg-white rounded-lg shadow-card border border-gray-100 overflow-hidden ">
                 {/* Image */}
                 {news?.image_path && (
                     <div className="">
@@ -223,15 +232,15 @@ export default function NewsDetailPage() {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-row justify-between pt-8 border-t border-gray-200">
-                <div className="flex items-center gap-4">
+            <div className="flex px-8 md:px-0 flex-col md:flex-row justify-between pt-8 gap-4 border-t border-gray-200">
+                <div className="flex items-center flex-wrap gap-4">
                     <Button
                         onClick={handleBack}
                         variant="outline"
                         className="flex items-center justify-center gap-2"
                     >
                         <ArrowLeft className="w-4 h-4" />
-                        Kembali ke Daftar Berita
+                        Kembali
                     </Button>
                     <Button
                         onClick={() => router.push('/news')}

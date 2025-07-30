@@ -64,7 +64,7 @@ export default function HeroSection() {
     }, []);
 
     return (
-        <div className="relative w-full h-screen">
+        <div className="relative w-full h-[768px]">
             <Image
                 src="/hero.png"
                 alt="Hero Image"

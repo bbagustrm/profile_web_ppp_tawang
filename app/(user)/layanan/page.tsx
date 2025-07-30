@@ -19,14 +19,14 @@ export default function LayananPage() {
     const [selectedLayanan, setSelectedLayanan] = useState("default")
 
     return (
-        <div className="relative min-h-screen bg-white">
+        <div className="w-full relative min-h-screen bg-white">
             <Navbar />
             <HeroSection2
                 title={"Layanan Kami"}
                 image={'/layanan.jpeg'}
-                description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut tellus dolor."}
+                description={"Pelayanan terbaik untuk kebutuhan masyarakat."}
             />
-            <div className="container mx-auto pt-16 pb-4 px-8 lg:px-16 xl:px-24 text-[#163d4a]">
+            <div className="container mx-auto pt-16 pb-8 px-8 md:px-0 text-[#163d4a]">
                 <div className="flex justify-between md:items-center gap-12 flex-col md:flex-row">
                     <div className="flex items-start gap-4 ">
                         <div className="w-1.5 h-20 bg-teal-500" />
@@ -48,7 +48,7 @@ export default function LayananPage() {
                 </div>
 
             </div>
-            <div className="pt-8 pb-16 px-8 lg:px-16 xl:px-24 text-[#163d4a] bg-gray-50">
+            <div className="container mx-auto pt-8 pb-16 px-8 md:px-0 text-[#163d4a]  min-h-screen">
                 {/* Conditional Section */}
                 {selectedLayanan === "default" && (
                     <div className="flex py-24 justify-center items-center ">

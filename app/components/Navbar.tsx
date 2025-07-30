@@ -213,13 +213,13 @@ export default function Navbar() {
                                     </Avatar>
                                 </Link>
                             ) : (
-                                <Link href="/admin">
+                                <Link href="/admin" className="w-full">
                                     <Button
                                         variant="secondary"
                                         size="icon"
-                                        className="py-6 size-8 w-full font-semibold"
+                                        className="w-full flex p-6 justify-between font-semibold"
                                     >
-                                        Login
+                                        <p >Login</p>
                                         <ArrowRight size={20} className="md:w-6 md:h-6" />
                                     </Button>
                                 </Link>

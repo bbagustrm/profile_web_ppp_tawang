@@ -1,7 +1,7 @@
 export default function PelayananJasaSection() {
     return (
-        <div className="w-full py-16 px-8 lg:px-16 xl:px-24 bg-white text-[#163d4a]">
-            <div className="flex flex-col gap-4">
+        <div className="w-full py-16 px-8 md:px-16 lg:px-24 bg-white text-[#163d4a]">
+            <div className="container mx-auto flex flex-col gap-4">
                 <div className="flex items-start gap-4 mb-8 ">
                     <div className="w-1.5 h-20 bg-teal-500" />
                     <div className="flex flex-col justify-center gap-4">

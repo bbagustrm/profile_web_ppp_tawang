@@ -51,58 +51,60 @@ export default function SaranaPrasaranaSection() {
         penunjang
     }
     return (
-        <div className="py-16 px-8 lg:px-16 xl:px-24 bg-white text-[#163d4a] space-y-16">
-            <div className="flex justify-between md:items-center gap-12 flex-col md:flex-row text-[#163d4a]">
-                <div className="flex items-start gap-4 ">
-                    <div className="w-1.5 h-20 bg-teal-500" />
-                    <div className="flex flex-col justify-center gap-4">
-                        <h6>DOKUMENTASI</h6>
-                        <h2>Sarana dan Prasarana</h2>
+        <div className="w-full py-16 px-8 md:px-16 lg:px-24 bg-white text-[#163d4a] space-y-16">
+            <div className="container mx-auto space-y-16">
+                <div className="flex justify-between md:items-center gap-12 flex-col md:flex-row text-[#163d4a]">
+                    <div className="flex items-start gap-4 ">
+                        <div className="w-1.5 h-20 bg-teal-500" />
+                        <div className="flex flex-col justify-center gap-4">
+                            <h6>DOKUMENTASI</h6>
+                            <h2>Sarana dan Prasarana</h2>
+                        </div>
                     </div>
                 </div>
+                <Tabs value={selectedTab} onValueChange={setSelectedTab} className="w-full space-y-8 text-[#163d4a]">
+                    <div className="overflow-x-auto">
+                        <TabsList className="w-max whitespace-nowrap flex gap-2">
+                            <TabsTrigger value="pokok" className="px-8">Pokok</TabsTrigger>
+                            <TabsTrigger value="fungsional" className="px-8">Fungsional</TabsTrigger>
+                            <TabsTrigger value="penunjang" className="px-8">Penunjang</TabsTrigger>
+                        </TabsList>
+                    </div>
+
+                    {Object.entries(data).map(([key, items]) => (
+                        <TabsContent key={key} value={key}>
+                            <Carousel opts={{ align: "start" }} className="w-full">
+                                <CarouselContent>
+                                    {items.map((item, index) => (
+                                        <CarouselItem
+                                            key={index}
+                                            className="md:basis-1/2 lg:basis-1/3 px-2"
+                                        >
+                                            <Card className="overflow-hidden">
+                                                <CardContent className="p-0">
+                                                    <Image
+                                                        src={item.image}
+                                                        alt={item.title}
+                                                        width={600}
+                                                        height={400}
+                                                        className="w-full h-48 object-cover"
+                                                    />
+                                                    <div className="p-4 text-center font-medium">
+                                                        {item.title}
+                                                    </div>
+                                                </CardContent>
+                                            </Card>
+                                        </CarouselItem>
+                                    ))}
+                                </CarouselContent>
+                                <CarouselPrevious className={"absolute top-1/2 left-4"} />
+                                <CarouselNext className={"absolute top-1/2 right-4"} />
+                            </Carousel>
+                        </TabsContent>
+                    ))}
+                </Tabs>
+
             </div>
-            <Tabs value={selectedTab} onValueChange={setSelectedTab} className="w-full space-y-8 text-[#163d4a]">
-                <div className="overflow-x-auto">
-                    <TabsList className="w-max whitespace-nowrap flex gap-2">
-                        <TabsTrigger value="pokok" className="px-8">Pokok</TabsTrigger>
-                        <TabsTrigger value="fungsional" className="px-8">Fungsional</TabsTrigger>
-                        <TabsTrigger value="penunjang" className="px-8">Penunjang</TabsTrigger>
-                    </TabsList>
-                </div>
-
-                {Object.entries(data).map(([key, items]) => (
-                    <TabsContent key={key} value={key}>
-                        <Carousel opts={{ align: "start" }} className="w-full">
-                            <CarouselContent>
-                                {items.map((item, index) => (
-                                    <CarouselItem
-                                        key={index}
-                                        className="md:basis-1/2 lg:basis-1/3 px-2"
-                                    >
-                                        <Card className="overflow-hidden">
-                                            <CardContent className="p-0">
-                                                <Image
-                                                    src={item.image}
-                                                    alt={item.title}
-                                                    width={600}
-                                                    height={400}
-                                                    className="w-full h-64 object-cover"
-                                                />
-                                                <div className="p-4 text-center font-medium">
-                                                    {item.title}
-                                                </div>
-                                            </CardContent>
-                                        </Card>
-                                    </CarouselItem>
-                                ))}
-                            </CarouselContent>
-                            <CarouselPrevious className={"absolute top-1/2 left-4"} />
-                            <CarouselNext className={"absolute top-1/2 right-4"} />
-                        </Carousel>
-                    </TabsContent>
-                ))}
-            </Tabs>
-
         </div>
     );
 }

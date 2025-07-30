@@ -8,7 +8,7 @@ import {MapPin, Phone} from "phosphor-react";
 export default function Footer() {
     return (
         <footer className="bg-[#163d4a] text-white">
-            <div className="container mx-auto px-8 lg:px-16 xl:px-24">
+            <div className="container mx-auto">
                 {/* Main Footer Content */}
                 <div className="py-12 flex flex-col gap-12 md:flex-row md:justify-between lg:flex-nowrap md:gap-8">
                     {/* Logo and Address Section */}

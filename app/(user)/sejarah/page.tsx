@@ -7,7 +7,7 @@ export default function SejarahPage() {
         <>
             <Navbar/>
             <div className="relative min-h-screen">
-                <HeroSection2 title={"Arsip Sejarah"} image={"/hero.png"} description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut tellus dolor."}/>
+                <HeroSection2 title={"Arsip Sejarah"} image={"/hero.png"} description={"Jejak perjalanan dan pencapaian kami."}/>
                 <div className="container h-96 mx-auto px-4 flex justify-center items-center">
                     <p>Konten Segera Hadir!</p>
                 </div>

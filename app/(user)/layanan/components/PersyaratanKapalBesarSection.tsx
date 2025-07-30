@@ -47,7 +47,7 @@ export default function PersyaratanKapalKecilSection() {
 
     return (
         <div className="flex flex-col items-center gap-8">
-            <Card className="w-full text-[#163d4a]">
+            <Card className="w-full text-[#163d4a] shadow-card">
                 <CardHeader className="space-y-4">
                     <CardTitle><h3>Persyaratan Dokumen Kapal Perikanan Nelayan Besar {">"} 5 GT</h3></CardTitle>
                 </CardHeader>
