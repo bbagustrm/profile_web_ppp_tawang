@@ -1,6 +1,6 @@
 import React from "react";
 import SidebarAdmin from "./components/SidebarAdmin";
-import { SidebarProvider } from "@/components/ui/sidebar"
+import { SidebarProvider} from "@/components/ui/sidebar"
 
 
 export default function LayoutAuth({
@@ -11,10 +11,7 @@ export default function LayoutAuth({
     return (
         <SidebarProvider>
             <div className="w-full flex  ">
-                <div className="flex">
-                    <SidebarAdmin />
-                </div>
-
+                <SidebarAdmin />
                 <main className="flex-1">
                     {children}
                 </main>

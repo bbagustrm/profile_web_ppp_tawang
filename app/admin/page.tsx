@@ -2,6 +2,8 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import BeritaList from "./components/BeritaList";
+import {SidebarTrigger} from "@/components/ui/sidebar";
+import React from "react";
 
 export default function AdminPage() {
     return (
@@ -11,9 +13,8 @@ export default function AdminPage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center py-4">
                         <div className="flex items-center space-x-4">
-                            <div>
-                                <h4 className="text-[#163d4a]">Admin Dashboard</h4>
-                            </div>
+                            <SidebarTrigger className="absolute left-2" />
+                            <h4 className="text-[#163d4a]">Admin Dashboard</h4>
                         </div>
                         <div className="flex items-center space-x-3">
                             <Avatar>

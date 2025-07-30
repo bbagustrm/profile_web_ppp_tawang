@@ -26,6 +26,9 @@ const fontMono = Kaushan_Script({
 export const metadata: Metadata = {
   title: "PPP Tawang",
   description: "Profile Web PPP Tawang",
+    icons: {
+        icon: '/favicon.ico',
+    },
 };
 
 export default function RootLayout({
