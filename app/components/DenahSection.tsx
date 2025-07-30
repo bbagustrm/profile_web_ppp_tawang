@@ -81,7 +81,7 @@ export default function DenahSection() {
                         <div className="lg:sticky lg:top-8 lg:h-fit">
                             <div className="relative aspect-square rounded-lg overflow-hidden border-2 border-border">
                                 <Image
-                                    src={activeContent?.mapImage || '/map1.png'}
+                                    src={activeContent?.mapImage || '/map/kantor.png'}
                                     alt="Denah Image"
                                     fill
                                     priority
