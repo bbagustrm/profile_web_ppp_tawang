@@ -32,7 +32,7 @@ const contentData = [
         icon: <Fish size={32} weight="fill" className="text-teal-600" />,
         time: '13.00 - 15.00 WIB',
         description: 'Pasar ikan laut di sekitar PPP Tawang tidak hanya menjadi pusat jual beli hasil laut segar dan kering, tetapi juga destinasi favorit untuk mencari oleh-oleh khas pesisir. Buka setiap hari pukul 03.00–16.00 WIB, pasar ini menyediakan berbagai pilihan ikan segar hasil tangkapan langsung dari nelayan, serta aneka ikan kering seperti ikan asin, teri, dan udang kering yang awet dan cocok dibawa pulang.',
-        images: ['/tpi/tpi1.png', '/tpi/tpi2.png', '/tpi/tpi3.png', '/tpi/tpi4.png'],
+        images: ['/tpi/tpi1.png', '/tpi/tpi2.png', '/tpi/tpi3.png', '/tpi/tpi4.png', '/tpi/tpi5.png', '/tpi/tpi6.png'],
         mapImage: '/map/tpi.png'
     },
     {
@@ -59,7 +59,7 @@ const contentData = [
         icon: <ForkKnife size={32} weight="fill" className="text-teal-600"/>,
         time: 'Buka 08.00 - 18.00',
         description: 'Area kios dan kuliner di PPP Tawang buka setiap hari pukul 08.00 hingga 18.00 WIB, menghadirkan berbagai jajanan dan produk UMKM lokal yang menggugah selera. Berlokasi di tepi sungai, tempat ini sering dijadikan lokasi bersantai dan bermain oleh masyarakat, terutama di sore hari. Suasana sungai yang tenang berpadu dengan keramahan penjual dan ragam kuliner khas menjadikan area ini pilihan tepat untuk menikmati waktu bersama keluarga atau teman.',
-        images: ['/umkm/umkm1.png'],
+        images: ['/umkm/umkm1.png', '/umkm/umkm2.png', '/umkm/umkm3.png', '/umkm/umkm4.png', '/umkm/umkm5.png'],
         mapImage: '/map/umkm.png'
     }
 ];
