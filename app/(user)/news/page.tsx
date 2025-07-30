@@ -23,7 +23,7 @@ export default function NewsPage() {
             <div className="relative min-h-screen bg-white">
                 <HeroSection2
                     title={"Berita Terbaru"}
-                    image={"/berita.png"}
+                    image={"/berita.jpeg"}
                     description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut tellus dolor."}
                 />
                 <div className="container mx-auto py-16 px-8 text-[#163d4a]">
