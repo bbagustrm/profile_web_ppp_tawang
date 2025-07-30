@@ -1,5 +1,7 @@
 'use client'
 
+import { useState, useEffect } from 'react';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import HeroSection2 from "@/app/components/HeroSection2";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
@@ -14,9 +16,217 @@ import {
 } from "@/components/ui/select"
 import { Input } from "@/components/ui/input";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationEllipsis, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";
+import Link from "next/link";
+
+interface NewsItem {
+    id: number;
+    title: string;
+    content: string;
+    image_url: string;
+    created_at: string;
+}
+
+interface PaginationInfo {
+    total: number;
+    totalPages: number;
+    currentPage: number;
+    hasNext: boolean;
+    hasPrev: boolean;
+}
+
+function stripHtml(html: string) {
+    return html.replace(/<[^>]*>?/gm, '');
+}
 
 export default function NewsPage() {
+    const [news, setNews] = useState<NewsItem[]>([]);
+    const [recentNews, setRecentNews] = useState<NewsItem[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [sortOrder, setSortOrder] = useState<'terbaru' | 'terlama'>('terbaru');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pagination, setPagination] = useState<PaginationInfo>({
+        total: 0,
+        totalPages: 0,
+        currentPage: 1,
+        hasNext: false,
+        hasPrev: false
+    });
+
+    const itemsPerPage = 6;
+    const supabase = createClientComponentClient();
+
+    // Format date function
+    const formatDate = (dateString: string) => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('id-ID', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+    };
+
+    // Fetch news with search, filter, and pagination
+    const fetchNews = async (page: number = 1, search: string = '', sort: string = 'terbaru') => {
+        setLoading(true);
+        try {
+            let query = supabase
+                .from('berita')
+                .select('*', { count: 'exact' });
+
+            // Apply search filter
+            if (search.trim()) {
+                query = query.or(`title.ilike.%${search}%,content.ilike.%${search}%`);
+            }
+
+            // Apply sorting
+            if (sort === 'terbaru') {
+                query = query.order('created_at', { ascending: false });
+            } else {
+                query = query.order('created_at', { ascending: true });
+            }
+
+            // Apply pagination
+            const from = (page - 1) * itemsPerPage;
+            const to = from + itemsPerPage - 1;
+            query = query.range(from, to);
+
+            const { data, error, count } = await query;
+
+            if (error) {
+                console.error('Error fetching news:', error);
+                return;
+            }
+
+            setNews(data || []);
+
+            // Update pagination info
+            const totalPages = Math.ceil((count || 0) / itemsPerPage);
+            setPagination({
+                total: count || 0,
+                totalPages,
+                currentPage: page,
+                hasNext: page < totalPages,
+                hasPrev: page > 1
+            });
+
+        } catch (error) {
+            console.error('Error:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Fetch recent news for sidebar
+    const fetchRecentNews = async () => {
+        try {
+            const { data, error } = await supabase
+                .from("berita")
+                .select("*")
+                .order("created_at", { ascending: false })
+                .limit(5);
+
+            if (error) {
+                console.error('Error fetching recent news:', error);
+                return;
+            }
+
+            setRecentNews(data || []);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    // Initial fetch
+    useEffect(() => {
+        fetchNews(1, searchTerm, sortOrder);
+        fetchRecentNews();
+    }, []);
+
+    // Handle search
+    const handleSearch = (value: string) => {
+        setSearchTerm(value);
+        setCurrentPage(1);
+        fetchNews(1, value, sortOrder);
+    };
+
+    // Handle sort change
+    const handleSortChange = (value: 'terbaru' | 'terlama') => {
+        setSortOrder(value);
+        setCurrentPage(1);
+        fetchNews(1, searchTerm, value);
+    };
+
+    // Handle pagination
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+        fetchNews(page, searchTerm, sortOrder);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // Generate pagination numbers
+    const generatePaginationNumbers = () => {
+        const { currentPage, totalPages } = pagination;
+        const pages = [];
+        const maxVisiblePages = 5;
+
+        if (totalPages <= maxVisiblePages) {
+            for (let i = 1; i <= totalPages; i++) {
+                pages.push(i);
+            }
+        } else {
+            if (currentPage <= 3) {
+                for (let i = 1; i <= 4; i++) {
+                    pages.push(i);
+                }
+                pages.push('ellipsis');
+                pages.push(totalPages);
+            } else if (currentPage >= totalPages - 2) {
+                pages.push(1);
+                pages.push('ellipsis');
+                for (let i = totalPages - 3; i <= totalPages; i++) {
+                    pages.push(i);
+                }
+            } else {
+                pages.push(1);
+                pages.push('ellipsis');
+                for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+                    pages.push(i);
+                }
+                pages.push('ellipsis');
+                pages.push(totalPages);
+            }
+        }
+
+        return pages;
+    };
+
+    // Loading skeleton component
+    const NewsCardSkeleton = () => (
+        <Card className="flex flex-col md:flex-row gap-2">
+            <Skeleton className="w-full md:w-1/3 h-48 rounded-bl-md rounded-tl-md" />
+            <CardContent className="flex-1 w-full md:w-1/3 py-4 space-y-2">
+                <Skeleton className="h-6 w-3/4" />
+                <Skeleton className="h-4 w-1/4" />
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-2/3" />
+                <Skeleton className="h-10 w-24 mt-4" />
+            </CardContent>
+        </Card>
+    );
+
+    const RecentNewsSkeleton = () => (
+        <div className="mb-6 space-y-2">
+            <Skeleton className="h-4 w-1/3" />
+            <Skeleton className="h-5 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-2/3" />
+        </div>
+    );
+
     return (
         <div>
             <Navbar />
@@ -24,19 +234,27 @@ export default function NewsPage() {
                 <HeroSection2
                     title={"Berita Terbaru"}
                     image={"/berita.jpeg"}
-                    description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut tellus dolor."}
+                    description={"Dapatkan informasi terkini dan terpercaya seputar berbagai topik menarik"}
                 />
                 <div className="container mx-auto py-16 px-8 text-[#163d4a]">
                     <div className="flex justify-between md:items-start gap-12 flex-col md:flex-row">
                         {/* Left Section */}
                         <div className="w-full md:w-[70%] flex flex-col gap-12">
                             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                                <Input placeholder="Cari berita..." className="w-1/2" />
-                                <Select defaultValue="terbaru" >
+                                <Input
+                                    placeholder="Cari berita..."
+                                    className="w-full md:w-1/2"
+                                    value={searchTerm}
+                                    onChange={(e) => handleSearch(e.target.value)}
+                                />
+                                <Select
+                                    value={sortOrder}
+                                    onValueChange={handleSortChange}
+                                >
                                     <SelectTrigger className="w-full md:w-1/4">
                                         <SelectValue placeholder="Urutkan" />
                                     </SelectTrigger>
-                                    <SelectContent >
+                                    <SelectContent>
                                         <SelectItem value="terbaru">Terbaru</SelectItem>
                                         <SelectItem value="terlama">Terlama</SelectItem>
                                     </SelectContent>
@@ -44,72 +262,129 @@ export default function NewsPage() {
                             </div>
 
                             {/* Cards */}
-                            <div className="flex flex-col gap-6 ">
-                                {[1, 2, 3].map((item) => (
-                                    <Card key={item} className="flex flex-col md:flex-row gap-2 text-[#163d4a]">
-                                        <Image
-                                            src="/hero.png"
-                                            alt="image"
-                                            width={280}
-                                            height={200}
-                                            className="w-full md:w-1/3 rounded-bl-md rounded-tl-md object-cover"
-                                        />
-                                        <CardContent className="flex-1 w-full md:w-1/3 py-4 space-y-2">
-                                            <h3 className="text-lg font-semibold">Judul Berita</h3>
-                                            <p className="text-sm text-gray-500">24 Juli 2025</p>
-                                            <p className="text-sm text-gray-700 mb-2 line-clamp-3">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium ad aliquid amet atque blanditiis consectetur deserunt dignissimos, distinctio doloremque dolorum et eveniet iure libero magnam natus neque nostrum praesentium quod repudiandae sit suscipit veritatis voluptas. Aliquid animi cumque dolores magnam pariatur quasi quia repellat. Beatae laborum nemo neque porro!
-                                            </p>
-                                            <Button className='bg-teal-500' >Lihat Detail</Button>
-                                        </CardContent>
-                                    </Card>
-                                ))}
+                            <div className="flex flex-col gap-6">
+                                {loading ? (
+                                    // Loading skeletons
+                                    Array.from({ length: 3 }).map((_, index) => (
+                                        <NewsCardSkeleton key={index} />
+                                    ))
+                                ) : news.length > 0 ? (
+                                    // News cards
+                                    news.map((item) => (
+                                        <Card key={item.id} className="flex flex-col md:flex-row gap-2 text-[#163d4a] hover:shadow-lg transition-shadow">
+                                            <Image
+                                                src={item.image_url || "/hero.png"}
+                                                alt={item.title}
+                                                width={280}
+                                                height={200}
+                                                className="w-full md:w-1/3 h-48 rounded-bl-md rounded-tl-md object-cover"
+                                            />
+                                            <CardContent className="flex-1 w-full md:w-2/3 py-4 space-y-2">
+                                                <h3 className="text-lg font-semibold hover:text-teal-600 transition-colors">
+                                                    {item.title}
+                                                </h3>
+                                                <p className="text-sm text-gray-500">
+                                                    {formatDate(item.created_at)}
+                                                </p>
+                                                <p className="text-sm text-gray-700 mb-2 line-clamp-3">
+                                                    {stripHtml(item.content)}
+                                                </p>
+                                                <Link href={`/news/${item.id}`}>
+                                                    <Button className='bg-teal-500 hover:bg-teal-600 transition-colors'>
+                                                        Lihat Detail
+                                                    </Button>
+                                                </Link>
+                                            </CardContent>
+                                        </Card>
+                                    ))
+                                ) : (
+                                    // No results
+                                    <div className="text-center py-12">
+                                        <p className="text-gray-500 text-lg">
+                                            {searchTerm ? `Tidak ditemukan berita dengan kata kunci "${searchTerm}"` : 'Belum ada berita tersedia'}
+                                        </p>
+                                    </div>
+                                )}
                             </div>
 
                             {/* Pagination */}
-                            <div className="pt-8">
-                                <Pagination>
-                                    <PaginationContent>
-                                        <PaginationItem>
-                                            <PaginationPrevious href="#" />
-                                        </PaginationItem>
-                                        <PaginationItem>
-                                            <PaginationLink href="#" isActive>
-                                                1
-                                            </PaginationLink>
-                                        </PaginationItem>
-                                        <PaginationItem>
-                                            <PaginationLink href="#">2</PaginationLink>
-                                        </PaginationItem>
-                                        <PaginationItem>
-                                            <PaginationLink href="#">3</PaginationLink>
-                                        </PaginationItem>
-                                        <PaginationItem>
-                                            <PaginationEllipsis />
-                                        </PaginationItem>
-                                        <PaginationItem>
-                                            <PaginationNext href="#" />
-                                        </PaginationItem>
-                                    </PaginationContent>
-                                </Pagination>
-                            </div>
+                            {!loading && pagination.totalPages > 1 && (
+                                <div className="pt-8">
+                                    <Pagination>
+                                        <PaginationContent>
+                                            {pagination.hasPrev && (
+                                                <PaginationItem>
+                                                    <PaginationPrevious
+                                                        href="#"
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            handlePageChange(currentPage - 1);
+                                                        }}
+                                                    />
+                                                </PaginationItem>
+                                            )}
+
+                                            {generatePaginationNumbers().map((page, index) => (
+                                                <PaginationItem key={index}>
+                                                    {page === 'ellipsis' ? (
+                                                        <PaginationEllipsis />
+                                                    ) : (
+                                                        <PaginationLink
+                                                            href="#"
+                                                            isActive={page === currentPage}
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                handlePageChange(page as number);
+                                                            }}
+                                                        >
+                                                            {page}
+                                                        </PaginationLink>
+                                                    )}
+                                                </PaginationItem>
+                                            ))}
+
+                                            {pagination.hasNext && (
+                                                <PaginationItem>
+                                                    <PaginationNext
+                                                        href="#"
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            handlePageChange(currentPage + 1);
+                                                        }}
+                                                    />
+                                                </PaginationItem>
+                                            )}
+                                        </PaginationContent>
+                                    </Pagination>
+
+
+                                </div>
+                            )}
                         </div>
 
                         {/* Right Section */}
                         <div className="hidden md:block md:w-[30%] space-y-6 text-[#163d4a]">
                             <h4 className="text-teal-600 font-bold mb-4">Berita Terkini</h4>
 
-                            {[1, 2, 3].map((item) => (
-                                <div key={item} className="mb-6 space-y-2">
-                                    <p className="text-sm mb-1 text-teal-600 font-medium">4 Juli 2025 </p>
-                                    <h3 className="text-base font-semibold text-gray-800 leading-snug">
-                                        Lorem ipsum dolor sit amet, consectetur elit
-                                    </h3>
-                                    <p className="text-sm text-gray-600 line-clamp-2">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultricies dui nunc...
-                                    </p>
-                                </div>
-                            ))}
+                            {loading ? (
+                                // Recent news skeletons
+                                Array.from({ length: 5 }).map((_, index) => (
+                                    <RecentNewsSkeleton key={index} />
+                                ))
+                            ) : (
+                                recentNews.map((item) => (
+                                    <Link href={`/news/${item.id}`} key={item.id}>
+                                        <div className="mb-6 space-y-2 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors">
+                                            <h3 className="text-base font-semibold text-gray-800 leading-snug hover:text-teal-600 transition-colors">
+                                                {item.title}
+                                            </h3>
+                                            <p className="text-sm text-gray-600 line-clamp-2">
+                                                {stripHtml(item.content)}
+                                            </p>
+                                        </div>
+                                    </Link>
+                                ))
+                            )}
                         </div>
                     </div>
                 </div>
