@@ -2,10 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import HeroSection2 from "@/app/components/HeroSection2";
-import Navbar from "@/app/components/Navbar";
-import Footer from "@/app/components/Footer";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card"
 import {
     Select,
@@ -24,7 +20,7 @@ interface NewsItem {
     id: number;
     title: string;
     content: string;
-    image_url: string;
+    image_path: string;
     created_at: string;
 }
 
@@ -42,7 +38,6 @@ function stripHtml(html: string) {
 
 export default function NewsPage() {
     const [news, setNews] = useState<NewsItem[]>([]);
-    const [recentNews, setRecentNews] = useState<NewsItem[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
     const [sortOrder, setSortOrder] = useState<'terbaru' | 'terlama'>('terbaru');
@@ -119,30 +114,9 @@ export default function NewsPage() {
         }
     };
 
-    // Fetch recent news for sidebar
-    const fetchRecentNews = async () => {
-        try {
-            const { data, error } = await supabase
-                .from("berita")
-                .select("*")
-                .order("created_at", { ascending: false })
-                .limit(5);
-
-            if (error) {
-                console.error('Error fetching recent news:', error);
-                return;
-            }
-
-            setRecentNews(data || []);
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    };
-
     // Initial fetch
     useEffect(() => {
         fetchNews(1, searchTerm, sortOrder);
-        fetchRecentNews();
     }, []);
 
     // Handle search
@@ -203,193 +177,139 @@ export default function NewsPage() {
         return pages;
     };
 
-    // Loading skeleton component
-    const NewsCardSkeleton = () => (
-        <Card className="flex flex-col md:flex-row gap-2">
-            <Skeleton className="w-full md:w-1/3 h-48 rounded-bl-md rounded-tl-md" />
-            <CardContent className="flex-1 w-full md:w-1/3 py-4 space-y-2">
-                <Skeleton className="h-6 w-3/4" />
-                <Skeleton className="h-4 w-1/4" />
-                <Skeleton className="h-4 w-full" />
-                <Skeleton className="h-4 w-full" />
-                <Skeleton className="h-4 w-2/3" />
-                <Skeleton className="h-10 w-24 mt-4" />
-            </CardContent>
-        </Card>
-    );
-
-    const RecentNewsSkeleton = () => (
-        <div className="mb-6 space-y-2">
-            <Skeleton className="h-4 w-1/3" />
-            <Skeleton className="h-5 w-full" />
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-2/3" />
-        </div>
-    );
-
     return (
-        <div>
-            <Navbar />
-            <div className="relative min-h-screen bg-white">
-                <HeroSection2
-                    title={"Berita Terbaru"}
-                    image={"/berita.jpeg"}
-                    description={"Dapatkan informasi terkini dan terpercaya seputar berbagai topik menarik"}
+        <div className="w-full md:w-[70%] flex flex-col gap-12">
+            {/* Search & Sort */}
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+                <Input
+                    placeholder="Cari berita..."
+                    className="w-full md:w-1/2 bg-white"
+                    value={searchTerm}
+                    onChange={(e) => handleSearch(e.target.value)}
                 />
-                <div className="container mx-auto py-16 px-8 text-[#163d4a]">
-                    <div className="flex justify-between md:items-start gap-12 flex-col md:flex-row">
-                        {/* Left Section */}
-                        <div className="w-full md:w-[70%] flex flex-col gap-12">
-                            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                                <Input
-                                    placeholder="Cari berita..."
-                                    className="w-full md:w-1/2"
-                                    value={searchTerm}
-                                    onChange={(e) => handleSearch(e.target.value)}
-                                />
-                                <Select
-                                    value={sortOrder}
-                                    onValueChange={handleSortChange}
-                                >
-                                    <SelectTrigger className="w-full md:w-1/4">
-                                        <SelectValue placeholder="Urutkan" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="terbaru">Terbaru</SelectItem>
-                                        <SelectItem value="terlama">Terlama</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                            </div>
-
-                            {/* Cards */}
-                            <div className="flex flex-col gap-6">
-                                {loading ? (
-                                    // Loading skeletons
-                                    Array.from({ length: 3 }).map((_, index) => (
-                                        <NewsCardSkeleton key={index} />
-                                    ))
-                                ) : news.length > 0 ? (
-                                    // News cards
-                                    news.map((item) => (
-                                        <Card key={item.id} className="flex flex-col md:flex-row gap-2 text-[#163d4a] hover:shadow-lg transition-shadow">
-                                            <Image
-                                                src={item.image_url || "/hero.png"}
-                                                alt={item.title}
-                                                width={280}
-                                                height={200}
-                                                className="w-full md:w-1/3 h-48 rounded-bl-md rounded-tl-md object-cover"
-                                            />
-                                            <CardContent className="flex-1 w-full md:w-2/3 py-4 space-y-2">
-                                                <h3 className="text-lg font-semibold hover:text-teal-600 transition-colors">
-                                                    {item.title}
-                                                </h3>
-                                                <p className="text-sm text-gray-500">
-                                                    {formatDate(item.created_at)}
-                                                </p>
-                                                <p className="text-sm text-gray-700 mb-2 line-clamp-3">
-                                                    {stripHtml(item.content)}
-                                                </p>
-                                                <Link href={`/news/${item.id}`}>
-                                                    <Button className='bg-teal-500 hover:bg-teal-600 transition-colors'>
-                                                        Lihat Detail
-                                                    </Button>
-                                                </Link>
-                                            </CardContent>
-                                        </Card>
-                                    ))
-                                ) : (
-                                    // No results
-                                    <div className="text-center py-12">
-                                        <p className="text-gray-500 text-lg">
-                                            {searchTerm ? `Tidak ditemukan berita dengan kata kunci "${searchTerm}"` : 'Belum ada berita tersedia'}
-                                        </p>
-                                    </div>
-                                )}
-                            </div>
-
-                            {/* Pagination */}
-                            {!loading && pagination.totalPages > 1 && (
-                                <div className="pt-8">
-                                    <Pagination>
-                                        <PaginationContent>
-                                            {pagination.hasPrev && (
-                                                <PaginationItem>
-                                                    <PaginationPrevious
-                                                        href="#"
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            handlePageChange(currentPage - 1);
-                                                        }}
-                                                    />
-                                                </PaginationItem>
-                                            )}
-
-                                            {generatePaginationNumbers().map((page, index) => (
-                                                <PaginationItem key={index}>
-                                                    {page === 'ellipsis' ? (
-                                                        <PaginationEllipsis />
-                                                    ) : (
-                                                        <PaginationLink
-                                                            href="#"
-                                                            isActive={page === currentPage}
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-                                                                handlePageChange(page as number);
-                                                            }}
-                                                        >
-                                                            {page}
-                                                        </PaginationLink>
-                                                    )}
-                                                </PaginationItem>
-                                            ))}
-
-                                            {pagination.hasNext && (
-                                                <PaginationItem>
-                                                    <PaginationNext
-                                                        href="#"
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            handlePageChange(currentPage + 1);
-                                                        }}
-                                                    />
-                                                </PaginationItem>
-                                            )}
-                                        </PaginationContent>
-                                    </Pagination>
-
-
-                                </div>
-                            )}
-                        </div>
-
-                        {/* Right Section */}
-                        <div className="hidden md:block md:w-[30%] space-y-6 text-[#163d4a]">
-                            <h4 className="text-teal-600 font-bold mb-4">Berita Terkini</h4>
-
-                            {loading ? (
-                                // Recent news skeletons
-                                Array.from({ length: 5 }).map((_, index) => (
-                                    <RecentNewsSkeleton key={index} />
-                                ))
-                            ) : (
-                                recentNews.map((item) => (
-                                    <Link href={`/news/${item.id}`} key={item.id}>
-                                        <div className="mb-6 space-y-2 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors">
-                                            <h3 className="text-base font-semibold text-gray-800 leading-snug hover:text-teal-600 transition-colors">
-                                                {item.title}
-                                            </h3>
-                                            <p className="text-sm text-gray-600 line-clamp-2">
-                                                {stripHtml(item.content)}
-                                            </p>
-                                        </div>
-                                    </Link>
-                                ))
-                            )}
-                        </div>
-                    </div>
-                </div>
+                <Select value={sortOrder} onValueChange={handleSortChange}>
+                    <SelectTrigger className="w-1/6 bg-white">
+                        <SelectValue placeholder="Urutkan" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="terbaru"><p className="font-normal text-sm">Terbaru</p></SelectItem>
+                        <SelectItem value="terlama"><p className="font-normal text-sm">Terlama</p></SelectItem>
+                    </SelectContent>
+                </Select>
             </div>
-            <Footer />
+
+            {/* Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
+                {loading ? (
+                    // Loading skeletons
+                    Array.from({ length: 6 }).map((_, index) => (
+                        <Card key={index} className="flex flex-col gap-2">
+                            <Skeleton className="w-full h-48 rounded-t-md" />
+                            <CardContent className="py-4 px-4 space-y-2">
+                                <Skeleton className="h-6 w-3/4" />
+                                <Skeleton className="h-4 w-1/4" />
+                                <Skeleton className="h-4 w-full" />
+                                <Skeleton className="h-4 w-full" />
+                                <Skeleton className="h-4 w-2/3" />
+                                <Skeleton className="h-10 w-24 mt-4" />
+                            </CardContent>
+                        </Card>
+                    ))
+                ) : news.length > 0 ? (
+                    // News cards
+                    news.map((item) => (
+                        <Link href={`/news/${item.id}`} key={item.id}>
+                            <Card className="group text-[#163d4a] shadow-card hover:shadow-md rounded-sm transition-shadow flex flex-col cursor-pointer overflow-hidden">
+                                <Image
+                                    src={item.image_path || "/hero.png"}
+                                    alt={item.title}
+                                    width={400}
+                                    height={240}
+                                    className="w-full h-36 object-cover rounded-t-md transition-transform duration-300 ease-in-out group-hover:scale-105"
+                                />
+                                <CardContent className="py-4 px-4 space-y-2">
+                                    <h3 className="text-lg font-semibold group-hover:text-teal-600 transition-colors">
+                                        {item.title}
+                                    </h3>
+                                    <p className="text-xs text-gray-500">
+                                        {formatDate(item.created_at)}
+                                    </p>
+                                    <p className="text-sm text-gray-700 mb-2 line-clamp-3">
+                                        {stripHtml(item.content)}
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </Link>
+                    ))
+                ) : (
+                    // No results
+                    <div className="col-span-full text-center py-12">
+                        <p className="text-gray-500 text-lg">
+                            {searchTerm
+                                ? `Tidak ditemukan berita dengan kata kunci "${searchTerm}"`
+                                : "Belum ada berita tersedia"}
+                        </p>
+                    </div>
+                )}
+            </div>
+
+            {/* Pagination */}
+            {!loading && pagination.totalPages > 1 && (
+                <div className="pt-8">
+                    <Pagination>
+                        <PaginationContent>
+                            {pagination.hasPrev && (
+                                <PaginationItem>
+                                    <PaginationPrevious
+                                        href="#"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            handlePageChange(currentPage - 1);
+                                        }}
+                                    />
+                                </PaginationItem>
+                            )}
+
+                            {generatePaginationNumbers().map((page, index) => (
+                                <PaginationItem key={index}>
+                                    {page === "ellipsis" ? (
+                                        <PaginationEllipsis />
+                                    ) : (
+                                        <PaginationLink
+                                            href="#"
+                                            isActive={page === currentPage}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                handlePageChange(page as number);
+                                            }}
+                                            className={`transition-colors  ${
+                                                page === currentPage
+                                                    ? "bg-teal-600 text-white hover:text-white hover:bg-teal-500"
+                                                    : "bg-white text-gray-700 "
+                                            }`}
+                                        >
+                                            {page}
+                                        </PaginationLink>
+                                    )}
+                                </PaginationItem>
+                            ))}
+
+                            {pagination.hasNext && (
+                                <PaginationItem>
+                                    <PaginationNext
+                                        href="#"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            handlePageChange(currentPage + 1);
+                                        }}
+                                    />
+                                </PaginationItem>
+                            )}
+                        </PaginationContent>
+                    </Pagination>
+                </div>
+            )}
         </div>
     );
+
 }
