@@ -12,7 +12,7 @@ import Link from "next/link"
 import { useRouter, usePathname } from "next/navigation"
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import clsx from "clsx"
-import {ArrowLeft, ArrowRight} from "lucide-react";
+import {ArrowLeft} from "lucide-react";
 
 export default function SidebarAdmin() {
     const router = useRouter()
