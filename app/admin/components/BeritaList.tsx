@@ -51,6 +51,10 @@ interface Berita {
     created_at: string;
 }
 
+function stripHtml(html: string) {
+    return html.replace(/<[^>]*>?/gm, '');
+}
+
 export default function BeritaList() {
     const [berita, setBerita] = useState<Berita[]>([]);
     const [loading, setLoading] = useState(true);
@@ -309,7 +313,7 @@ export default function BeritaList() {
 
                                             <TableCell className="p-4">
                                                 <p className="text-sm text-gray-600 leading-relaxed line-clamp-1 max-w-72">
-                                                    {item.content}
+                                                    {stripHtml(item.content)}
                                                 </p>
                                             </TableCell>
 

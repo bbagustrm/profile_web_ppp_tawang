@@ -34,6 +34,10 @@ interface Berita {
     created_at: string;
 }
 
+function stripHtml(html: string) {
+    return html.replace(/<[^>]*>?/gm, '');
+}
+
 export default function HeroSection() {
     const supabase = createClientComponentClient();
     const [berita, setBerita] = useState<Berita[]>([]);
@@ -154,7 +158,7 @@ export default function HeroSection() {
                                                 <div className="absolute inset-0 z-10 flex flex-col justify-end px-4 py-2 gap-2 text-white">
                                                     <Badge variant="secondary" className='w-fit'>Terbaru</Badge>
                                                     <h5 className="line-clamp-1">{item.title}</h5>
-                                                    <p className="text-xs line-clamp-2">{item.content}</p>
+                                                    <p className="text-xs line-clamp-2">{stripHtml(item.content)}</p>
                                                 </div>
                                                 <div className="absolute inset-0 bg-black/30 z-0" />
                                             </Card>
