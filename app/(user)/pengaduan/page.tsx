@@ -18,16 +18,16 @@ export default function PengaduanPage() {
             <Navbar/>
             <div className="relative min-h-screen">
                 <HeroSection2 title={"Pengaduan"} image={"/hero.png"} description={"Pengaduan dan Aspirasi Berbasis Digital"}/>
-                <div className="container mx-auto mt-12 flex justify-center items-center px-4">
-                    <Card className="w-full max-w-sm">
+                <div className="container mx-auto mt-12 flex justify-center items-center px-4 text-[#163d4a] ]">
+                    <Card className="w-full max-w-sm shadow-card rounded-md">
                         <CardHeader>
                             <CardTitle><h4>Link Pengaduan</h4></CardTitle>
-                            <CardDescription><p>Sampaikan keluhan, masukan, dan aspirasi Anda kepada PPP Tawang.</p></CardDescription>
+                            <CardDescription><p className="text-sm">Sampaikan keluhan, masukan, dan aspirasi Anda kepada PPP Tawang.</p></CardDescription>
                         </CardHeader>
                         <CardContent>
                             <Link href="https://bit.ly/PengaduanPelabuhanTawang">
-                                <Button variant="outline" size="icon" className="size-8 w-full py-6">
-                                    <p>Link Pengaduan</p>
+                                <Button variant="secondary" size="icon" className="w-full py-4">
+                                    <p className="text-sm">Link Pengaduan</p>
                                     <ChevronRightIcon />
                                 </Button>
                             </Link>

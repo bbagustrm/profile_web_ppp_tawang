@@ -115,10 +115,10 @@ export default function Navbar() {
                                     variant="link"
                                     className={`relative p-8 rounded-none text-white hover:no-underline transition-colors duration-300
                                     ${pathname === item.href
-                                        ? `border-b-2 ${isScrolled ? 'border-[#163d4a]' : 'border-white'} group-hover:[&:not(:hover)]:border-transparent`
+                                        ? `border-b-2 ${isScrolled ? 'border-teal-600' : 'border-white'} group-hover:[&:not(:hover)]:border-transparent`
                                         : ''
                                     }
-                                    hover:border-b-2 ${isScrolled ? 'hover:border-[#163d4a] text-[#163d4a]' : 'hover:border-white text-white'}
+                                    hover:border-b-2 ${isScrolled ? 'hover:border-teal-600 text-[#163d4a]' : 'hover:border-white text-white'}
                                 `}
                                 >
                                     {item.label}

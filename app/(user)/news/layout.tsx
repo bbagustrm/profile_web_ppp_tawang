@@ -82,7 +82,7 @@ export default function LayoutAuth({ children } : Readonly<{
                     <div className="flex justify-between md:items-start gap-12 flex-col md:flex-row">
                         {children}
                         {/* Right Section */}
-                        <div className="hidden ld::block lg:[30%] space-y-6 text-[#163d4a]">
+                        <div className="hidden lg:block lg:w-[30%] space-y-6 text-[#163d4a]">
                             <h4 className="text-teal-600 font-bold">Berita Terkini</h4>
                             <Separator orientation="horizontal" className="w-full"/>
                             {loading ? (
@@ -94,16 +94,15 @@ export default function LayoutAuth({ children } : Readonly<{
                                 recentNews.map((item) => (
                                     <Link href={`/news/${item.id}`} key={item.id}>
                                         <div className="space-y-2 cursor-pointer hover:bg-gray-100 p-4 transition-colors group">
-                                            <h3 className="text-base font-semibold leading-snug group-hover:text-teal-600 transition-colors">
+                                            <h3 className="text-sm font-semibold leading-snug group-hover:text-teal-600 transition-colors line-clamp-1">
                                                 {item.title}
                                             </h3>
-                                            <p className="text-sm text-gray-600 line-clamp-2">
+                                            <p className="text-xs text-gray-600 line-clamp-2">
                                                 {stripHtml(item.content)}
                                             </p>
                                         </div>
                                         <Separator orientation="horizontal" className="w-full"/>
                                     </Link>
-
                                 ))
                             )}
                         </div>

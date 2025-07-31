@@ -219,7 +219,7 @@ export default function NewsPage() {
                     // News cards
                     news.map((item) => (
                         <Link href={`/news/${item.id}`} key={item.id}>
-                            <Card className="group text-[#163d4a] shadow-card hover:shadow-md rounded-sm transition-shadow flex flex-col cursor-pointer overflow-hidden">
+                            <Card className="group text-[#163d4a] h-full shadow-card hover:shadow-md rounded-sm transition-shadow flex flex-col cursor-pointer overflow-hidden">
                                 <Image
                                     src={item.image_path || "/hero.png"}
                                     alt={item.title}
@@ -293,7 +293,6 @@ export default function NewsPage() {
                                     )}
                                 </PaginationItem>
                             ))}
-
                             {pagination.hasNext && (
                                 <PaginationItem>
                                     <PaginationNext

@@ -18,7 +18,7 @@ import {
 import { Badge } from "@/components/ui/badge"
 import Image from "next/image";
 import { MapPin, Cube } from "phosphor-react";
-import { ArrowRight } from "lucide-react";
+import {ArrowRight, ChevronRightIcon} from "lucide-react";
 import { Button } from "@/components/ui/button"
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -175,6 +175,34 @@ export default function HeroSection() {
                         <CarouselNext className={"absolute top-1/2 right-4"} />
                     </Carousel>
                 </div>
+                <div className="bg-teal-500 overflow-hidden pb-2">
+                    <Link href="/pengaduan">
+                        <Button
+                            variant="secondary"
+                            size="icon"
+                            className="w-full bg-transparent hover:bg-transparent hover:text-black"
+                        >
+                            <div className="marquee-container">
+                                <div className="marquee-content">
+                                    <div className="marquee-item">
+                                        <p className="text-sm">
+                                            <span>[PENGADUAN] Sampaikan keluhan, masukan, dan aspirasi Anda dengan mudah melalui layanan pengaduan PPP Tawang. </span>
+                                        </p>
+                                        <ArrowRight size={20} className="md:w-6 md:h-6 ml-4" />
+                                    </div>
+
+                                    <div className="marquee-item">
+                                        <p className="text-sm">
+                                            <span>[PENGADUAN] Sampaikan keluhan, masukan, dan aspirasi Anda dengan mudah melalui layanan pengaduan PPP Tawang. S</span>
+                                        </p>
+                                        <ArrowRight size={20} className="md:w-6 md:h-6 ml-4" />
+                                    </div>
+                                </div>
+                            </div>
+                        </Button>
+                    </Link>
+                </div>
+
             </div>
         </div>
     );

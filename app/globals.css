@@ -185,6 +185,30 @@ a {
     font-weight: 600;
     margin: 0.75rem 0 0
   }
+
+  .marquee-container {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .marquee-content {
+    display: flex;
+    animation: marquee-seamless 15s linear infinite;
+  }
+
+  .marquee-item {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding-right: 4rem; /* Spacing antar item */
+    min-width: 100%;
+  }
+
+  @keyframes marquee-seamless {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+
 }
 
 
