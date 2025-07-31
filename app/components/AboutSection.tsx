@@ -20,7 +20,7 @@ export default function AboutSection() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {[
                         { title: "Profile", img: "/profile.jpg", link: "/about" },
-                        { title: "Arsip Sejarah", img: "/sejarah.png", link: "/sejarah" },
+                        { title: "Arsip Sejarah", img: "/galeri.png", link: "/galeri" },
                         { title: "UMKM", img: "/umkm.png", link: "/umkm" },
                     ].map((item, index) => (
                         <Card key={index} className="w-full shadow-sm rounded-xl overflow-hidden">

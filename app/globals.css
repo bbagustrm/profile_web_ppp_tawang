@@ -209,6 +209,58 @@ a {
     100% { transform: translateX(-100%); }
   }
 
+  @keyframes marquee-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes marquee-right {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  /* Classes untuk marquee */
+  .animate-marquee-left {
+    animation: marquee-left linear infinite;
+  }
+
+  .animate-marquee-right {
+    animation: marquee-right linear infinite;
+  }
+
+  /* Pause animation saat hover */
+  .pause-animation {
+    animation-play-state: paused !important;
+  }
+
+  /* Alternative hover pause jika diperlukan */
+  .animate-marquee-left:hover,
+  .animate-marquee-right:hover {
+    animation-play-state: paused;
+  }
+
+  /* Smooth transitions untuk hover effects */
+  .marquee-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .marquee-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .marquee-overlay {
+    transition: opacity 0.3s ease;
+  }
+
 }
 
 

@@ -55,7 +55,7 @@ export default function Navbar() {
             dropdown: true,
             items: [
                 { href: '/about', label: 'Profile' },
-                { href: '/sejarah', label: 'Sejarah' },
+                { href: '/galeri', label: 'Galeri' },
                 { href: '/umkm', label: 'UMKM' },
                 ]
         }
@@ -87,7 +87,7 @@ export default function Navbar() {
                                         <Button
                                             variant="link"
                                             className={`relative p-8 rounded-none text-white hover:no-underline transition-colors duration-300
-                                            ${pathname.startsWith('/about') || pathname === '/umkm' || pathname === '/sejarah'
+                                            ${pathname.startsWith('/about') || pathname === '/umkm' || pathname === '/galeri'
                                                 ? `border-b-2 ${isScrolled ? 'border-[#163d4a]' : 'border-white'} group-hover:[&:not(:hover)]:border-transparent`
                                                 : ''
                                             }
