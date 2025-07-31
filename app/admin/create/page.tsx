@@ -13,14 +13,14 @@ export default function CreateBeritaPage() {
             <div className="bg-white border-b border-slate-200 shadow-sm">
                 <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center py-4">
-                        <div className="flex items-center space-x-4">
+                        <Link href="/admin" className="flex items-center space-x-4">
                             <div className="p-2 ">
                                 <ArrowLeft className="w-4 h-4" />
                             </div>
                             <div>
                                 <h4 className="text-[#163d4a]">Tambah Berita Baru</h4>
                             </div>
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </div>
