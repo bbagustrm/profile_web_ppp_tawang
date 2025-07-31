@@ -6,9 +6,21 @@ import {useState, useRef} from "react";
 import {Card, CardContent} from "@/components/ui/card";
 import Image from "next/image";
 
-const MarqueeCarousel = ({ items, title, direction = "left", speed = 50 }) => {
-    const [hoveredIndex, setHoveredIndex] = useState(null);
-    const containerRef = useRef(null);
+type MarqueeItem = {
+    title: string;
+    image: string;
+};
+
+type MarqueeCarouselProps = {
+    items: MarqueeItem[];
+    title: string;
+    direction?: "left" | "right";
+    speed?: number;
+};
+
+const MarqueeCarousel = ({ items, title, direction = "left", speed = 50 }: MarqueeCarouselProps) => {
+    const [hoveredIndex, setHoveredIndex] = useState<string | null>(null);
+    const containerRef = useRef<HTMLDivElement | null>(null);
     const [isPaused, setIsPaused] = useState(false);
 
     return (
