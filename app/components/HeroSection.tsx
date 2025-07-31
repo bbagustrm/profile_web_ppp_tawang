@@ -18,7 +18,7 @@ import {
 import { Badge } from "@/components/ui/badge"
 import Image from "next/image";
 import { MapPin, Cube } from "phosphor-react";
-import {ArrowRight, ChevronRightIcon} from "lucide-react";
+import {ArrowRight} from "lucide-react";
 import { Button } from "@/components/ui/button"
 import Link from "next/link";
 import { useEffect, useState } from "react";
