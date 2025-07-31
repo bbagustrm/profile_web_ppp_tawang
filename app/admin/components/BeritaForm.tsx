@@ -109,6 +109,10 @@ export default function BeritaForm({ berita }: BeritaFormProps) {
             newErrors.isi = 'Isi berita minimal 50 karakter'
         }
 
+        if (!berita && !image) {
+            newErrors.image = 'Gambar wajib diunggah'
+        }
+
         setErrors(newErrors)
         return Object.keys(newErrors).length === 0
     }
@@ -240,8 +244,7 @@ export default function BeritaForm({ berita }: BeritaFormProps) {
             <div className="space-y-2">
                 <Label className="text-sm font-semibold text-slate-700 flex items-center">
                     <ImageIcon className="w-4 h-4 mr-2 text-blue-600" />
-                    Gambar Utama Berita
-                    <span className="text-slate-400 ml-1 font-normal">(Opsional)</span>
+                    Gambar Utama Berita <span className="text-red-500 ml-1">*</span>
                 </Label>
 
                 {!imagePreview ? (
