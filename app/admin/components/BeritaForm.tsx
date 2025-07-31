@@ -325,7 +325,6 @@ export default function BeritaForm({ berita }: BeritaFormProps) {
                 <RichTextEditor
                     content={isi}
                     onChange={setIsi}
-                    placeholder="Tulis isi berita secara lengkap dan informatif. Anda dapat menambahkan format teks, gambar, dan link."
                 />
 
                 <div className="flex justify-between text-sm">
