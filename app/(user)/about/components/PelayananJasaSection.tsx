@@ -87,7 +87,11 @@ export default function PelayananJasaSection() {
                                 <p>17.</p>
                                 <p>Pelayanan Sewa Lahan</p>
                             </div>
-                        </div>
+                            <div className="flex gap-4">
+                                <p>18.</p>
+                                <p>Pelayanan Pas Masuk</p>
+                            </div>
+                            </div>
                     </div>
 
                 </div>

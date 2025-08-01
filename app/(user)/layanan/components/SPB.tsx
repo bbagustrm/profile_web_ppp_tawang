@@ -56,6 +56,11 @@ export default function SPBSection() {
                             <CheckCircle size={32} weight="fill" className={"text-teal-500"}/>
                             <p className='w-full'>Perjanjian kerja laut</p>
                         </div>
+
+                        <div className="flex items-center gap-4">
+                            <CheckCircle size={32} weight="fill" className={"text-teal-500"}/>
+                            <p className='w-full'>Jaminan asuransi/BPJS ketenagakerjaan</p>
+                        </div>
                     </CardContent>
                 </Card>
                 {/*right*/}

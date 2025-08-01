@@ -30,8 +30,8 @@ const contentData = [
         id: 'tpi',
         title: 'Tempat Pelelangan Ikan',
         icon: <Fish size={32} weight="fill" className="text-teal-600" />,
-        time: '13.00 - 15.00 WIB',
-        description: 'Pasar ikan laut di sekitar PPP Tawang tidak hanya menjadi pusat jual beli hasil laut segar dan kering, tetapi juga destinasi favorit untuk mencari oleh-oleh khas pesisir. Buka setiap hari pukul 03.00–16.00 WIB, pasar ini menyediakan berbagai pilihan ikan segar hasil tangkapan langsung dari nelayan, serta aneka ikan kering seperti ikan asin, teri, dan udang kering yang awet dan cocok dibawa pulang.',
+        time: '06.00 – 10.00 & 13.00 – 15.00 WIB',
+        description: 'Tempat Pelelangan Ikan (TPI) di kawasan PPP Tawang menjadi pusat utama distribusi hasil tangkapan nelayan. Kegiatan lelang berlangsung dua sesi setiap harinya, yaitu pagi hari pukul 06.00–10.00 WIB dan siang hari pukul 13.00–15.00 WIB atau hingga selesai. Suasana TPI sangat dinamis, dengan proses tawar-menawar antara nelayan dan pedagang yang berlangsung cepat dan efisien. TPI ini juga menjadi tempat belajar menarik tentang mekanisme pasar tradisional perikanan bagi pengunjung yang ingin mengenal lebih dekat aktivitas pesisir.',
         images: ['/tpi/tpi1.png', '/tpi/tpi2.png', '/tpi/tpi3.png', '/tpi/tpi4.png', '/tpi/tpi5.png', '/tpi/tpi6.png'],
         mapImage: '/map/tpi.png'
     },
@@ -39,8 +39,8 @@ const contentData = [
         id: 'pasar',
         title: 'Pasar Ikan Laut',
         icon: <Storefront size={32} weight="fill" className="text-teal-600"/>,
-        time: '03.00 - 16.00 WIB',
-        description: 'Pasar ikan laut di sekitar PPP Tawang tidak hanya menjadi pusat jual beli hasil laut segar dan kering, tetapi juga destinasi favorit untuk mencari oleh-oleh khas pesisir. Buka setiap hari pukul 03.00–16.00 WIB, pasar ini menyediakan berbagai pilihan ikan segar hasil tangkapan langsung dari nelayan, serta aneka ikan kering seperti ikan asin, teri, dan udang kering yang awet dan cocok dibawa pulang.',
+        time: '06.00 – 10.00 & 12.00 – 18.00 WIB',
+        description: 'Pasar Ikan Laut di sekitar PPP Tawang buka setiap hari dengan dua sesi aktivitas utama: pagi hari pukul 06.00–10.00 WIB dan siang hingga sore pukul 12.00–18.00 WIB. Di sini, pengunjung dapat membeli berbagai hasil laut segar langsung dari nelayan, seperti ikan, cumi, dan udang, serta aneka produk olahan dan ikan kering seperti ikan asin dan teri. Pasar ini juga dikenal sebagai tempat favorit untuk mencari oleh-oleh khas pesisir karena pilihan produknya yang lengkap dan harga yang bersahabat.',
         images: ['/pasar/pasar1.png', '/pasar/pasar2.png', '/pasar/pasar3.png', '/pasar/pasar4.png', '/pasar/pasar5.png', '/pasar/pasar6.png'],
         mapImage: '/map/pasar.png'
     },

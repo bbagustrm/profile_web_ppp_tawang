@@ -60,7 +60,7 @@ a {
     @apply font-sans text-sm font-semibold;
   }
   p {
-    @apply font-sans text-base;
+    @apply font-sans text-base leading-relaxed;
   }
   button {
     @apply font-sans text-base font-bold;
