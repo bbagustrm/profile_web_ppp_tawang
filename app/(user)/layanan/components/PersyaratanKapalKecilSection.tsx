@@ -13,23 +13,27 @@ export default function PersyaratanKapalKecilSection() {
                 <CardContent className="space-y-2">
                     <div className="flex items-center gap-4">
                         <CheckCircle size={32} weight="fill" className={"text-teal-500"}/>
-                        <p className='w-full'>SIUP (Surat Izin Usaha Perikanan)</p>
+                        <p className='w-full'><span className="font-bold">Scan PDF KTP</span></p>
                     </div>
                     <div className="flex items-center gap-4">
                         <CheckCircle size={32} weight="fill" className={"text-teal-500"}/>
-                        <p className='w-full'>PPKP (Pas Kecil Kapal Perikanan)</p>
+                        <p className='w-full'><span className="font-bold">Foto kapal terbaru dari samping </span> (jelas nama dan tanda selar)</p>
                     </div>
                     <div className="flex items-center gap-4">
                         <CheckCircle size={32} weight="fill" className={"text-teal-500"}/>
-                        <p className='w-full'>SKKP (Surat Keterangan Kapal Perikanan)</p>
+                        <p className='w-full'><span className="font-bold">Scan PDF Pas Kecil</span> (depan belakang)</p>
                     </div>
                     <div className="flex items-center gap-4">
                         <CheckCircle size={32} weight="fill" className={"text-teal-500"}/>
-                        <p className='w-full'>BKP (Buku Kapal Perikanan)</p>
+                        <p className='w-full'><span className="font-bold">Scan PDF Surat Pernyataan</span></p>
                     </div>
                     <div className="flex items-center gap-4">
                         <CheckCircle size={32} weight="fill" className={"text-teal-500"}/>
-                        <p className='w-full'>SIPI (Surat Izin Penangkapan Ikan)</p>
+                        <p className='w-full'><span className="font-bold">Scan PDF Sertifikat Standar</span> (depan belakang)</p>
+                    </div>
+                    <div className="flex items-center gap-4">
+                        <CheckCircle size={32} weight="fill" className={"text-teal-500"}/>
+                        <p className='w-full'><span className="font-bold">Scan PDF NIB</span> (depan belakang)</p>
                     </div>
                 </CardContent>
             </Card>
