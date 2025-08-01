@@ -70,7 +70,7 @@ export default function HeroSection() {
                 alt="Hero Image"
                 fill
                 priority
-                className="object-cover brightness-75"
+                className="object-cover brightness-90"
             />
             <div className="absolute inset-0 flex flex-col justify-between">
                 <div className="h-full flex flex-row gap-8 md:gap-0 justify-between items-center px-8 md:px-20 lg:px-32 space-y-4 translate-y-8">
