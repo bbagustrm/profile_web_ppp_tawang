@@ -6,7 +6,6 @@ import { Theme } from "@radix-ui/themes";
 import { Analytics } from '@vercel/analytics/react'
 import { Toaster } from "@/components/ui/sonner"
 
-
 const fontSans = Plus_Jakarta_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
