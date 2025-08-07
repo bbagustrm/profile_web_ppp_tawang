@@ -98,8 +98,8 @@ export default function BeritaForm({ berita }: BeritaFormProps) {
             newErrors.judul = 'Judul berita wajib diisi'
         } else if (judul.length < 10) {
             newErrors.judul = 'Judul minimal 10 karakter'
-        } else if (judul.length > 100) {
-            newErrors.judul = 'Judul maksimal 100 karakter'
+        } else if (judul.length > 200) {
+            newErrors.judul = 'Judul maksimal 200 karakter'
         }
 
         const plainTextContent = stripHtml(isi);
@@ -232,10 +232,10 @@ export default function BeritaForm({ berita }: BeritaFormProps) {
                 />
                 <div className="flex justify-between text-sm">
                     <span className={errors.judul ? 'text-red-600' : 'text-slate-500'}>
-                        {errors.judul || 'Minimal 10 karakter, maksimal 100 karakter'}
+                        {errors.judul || 'Minimal 10 karakter, maksimal 200 karakter'}
                     </span>
                     <span className={`text-xs ${judul.length > 100 ? 'text-red-600' : 'text-slate-400'}`}>
-                        {judul.length}/100
+                        {judul.length}/200
                     </span>
                 </div>
             </div>
