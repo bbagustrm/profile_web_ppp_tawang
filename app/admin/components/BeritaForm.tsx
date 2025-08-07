@@ -234,7 +234,7 @@ export default function BeritaForm({ berita }: BeritaFormProps) {
                     <span className={errors.judul ? 'text-red-600' : 'text-slate-500'}>
                         {errors.judul || 'Minimal 10 karakter, maksimal 200 karakter'}
                     </span>
-                    <span className={`text-xs ${judul.length > 100 ? 'text-red-600' : 'text-slate-400'}`}>
+                    <span className={`text-xs ${judul.length > 200 ? 'text-red-600' : 'text-slate-400'}`}>
                         {judul.length}/200
                     </span>
                 </div>
