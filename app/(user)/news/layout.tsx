@@ -78,11 +78,11 @@ export default function LayoutAuth({ children } : Readonly<{
                     image={"/berita.png"}
                     description={"Informasi terkini dan terpercaya dari kami."}
                 />
-                <div className="container mx-auto py-4 md:py-12 lg:py-16 md:px-8 text-[#163d4a]">
-                    <div className="flex justify-between md:items-start gap-12 flex-col md:flex-row">
+                <div className="container mx-auto py-4 md:py-12 lg:py-16 text-[#163d4a]">
+                    <div className="flex justify-between md:items-start gap-8 flex-col md:flex-row">
                         {children}
                         {/* Right Section */}
-                        <div className="hidden lg:block lg:w-[30%] space-y-6 text-[#163d4a]">
+                        <div className="hidden lg:block lg:w-[25%] space-y-6 text-[#163d4a]">
                             <h4 className="text-teal-600 font-bold">Berita Terkini</h4>
                             <Separator orientation="horizontal" className="w-full"/>
                             {loading ? (

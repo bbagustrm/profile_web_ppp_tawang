@@ -178,7 +178,7 @@ export default function NewsPage() {
     };
 
     return (
-        <div className="w-full lg:[80%] flex flex-col gap-12 px-8 py-4">
+        <div className="w-full lg:[75%] flex flex-col gap-12 px-8 py-4">
             {/* Search & Sort */}
             <div className="flex md:justify-between md:items-center gap-4">
                 <Input
