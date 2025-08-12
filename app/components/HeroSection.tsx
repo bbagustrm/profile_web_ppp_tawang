@@ -106,7 +106,7 @@ export default function HeroSection() {
                             <PopoverContent side="left" sideOffset={24} className="space-y-4 z-40 text-[#163d4a]">
                                 <h5>Model Design 3D</h5>
                                 <p>Program KKN Pembuatan Design Koridor untuk PPP Tawang</p>
-                                <Link href='/'>
+                                <Link href='/koridor'>
                                     <Button variant="secondary" size="icon" className='mt-4 size-8 w-full font-semibold'>
                                         Jelajahi Program
                                         <ArrowRight size={20} className="md:w-6 md:h-6"/>
