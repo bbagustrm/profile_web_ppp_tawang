@@ -60,12 +60,12 @@ export default function KoridorPage() {
                     description={"Program KKN IDBU-83 Universitas Diponegoro"}
                 />
 
-                <div className="container mx-auto mt-12 px-4 text-[#163d4a] max-w-7xl">
+                <div className="container mx-auto mt-12 text-[#163d4a] ">
                     {/* Main Content Section */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[60%_40%] gap-8 mb-12">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[50%_40%] px-4 md:px-0 gap-4 md:gap-8 justify-center items-center mb-12">
                         {/* Left Side - Media Display Section */}
                         <div>
-                            <Card className="mb-4">
+                            <Card className="mb-4 ">
                                 <CardContent className="p-0">
                                     {/* Main Media Display */}
                                     <div className="relative bg-muted rounded-t-lg overflow-hidden" style={{ aspectRatio: '16/9' }}>
@@ -88,40 +88,32 @@ export default function KoridorPage() {
                                     </div>
 
                                     {/* Carousel Navigation */}
-                                    <div className="p-4">
+                                    <div className="p-2">
                                         <Carousel opts={{ align: "start", loop: false }} className="w-full">
-                                            <CarouselContent className="ml-1">
+                                            <CarouselContent >
                                                 {mediaItems.map((item, index) => (
                                                     <CarouselItem
                                                         key={index}
-                                                        className="pl-1 basis-1/3 md:basis-1/5"
+                                                        className=" basis-1/2 md:basis-1/4"
                                                     >
-                                                        <div className="p-1">
-                                                            <Card
-                                                                className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
-                                                                    currentMediaIndex === index
-                                                                        ? 'ring-2 ring-primary shadow-md'
-                                                                        : 'hover:ring-1 hover:ring-muted-foreground'
-                                                                }`}
-                                                                onClick={() => setCurrentMediaIndex(index)}
-                                                            >
-                                                                <CardContent className="p-1">
-                                                                    <div className="relative aspect-video rounded overflow-hidden">
-                                                                        <img
-                                                                            src={item.thumbnail}
-                                                                            alt={item.title}
-                                                                            className="w-full h-full object-cover"
-                                                                        />
-                                                                        <Badge
-                                                                            variant="secondary"
-                                                                            className="absolute top-0.5 right-0.5 text-xs px-1 py-0 text-[10px]"
-                                                                        >
-                                                                            {item.type === 'video' ? 'VID' : 'IMG'}
-                                                                        </Badge>
-                                                                    </div>
-                                                                </CardContent>
-                                                            </Card>
-                                                        </div>
+                                                        <Card
+                                                            className={`cursor-pointer transition-all overflow-hidden duration-200 ${
+                                                                currentMediaIndex === index
+                                                                    ? 'border-[3px] border-teal-500'
+                                                                    : 'hover:border-[3px] hover:border-teal-500'
+                                                            }`}
+                                                            onClick={() => setCurrentMediaIndex(index)}
+                                                        >
+                                                            <CardContent className="p-0">
+                                                                <div className="relative aspect-video overflow-hidden">
+                                                                    <img
+                                                                        src={item.thumbnail}
+                                                                        alt={item.title}
+                                                                        className="w-full h-full object-cover"
+                                                                    />
+                                                                </div>
+                                                            </CardContent>
+                                                        </Card>
                                                     </CarouselItem>
                                                 ))}
                                             </CarouselContent>
@@ -136,14 +128,14 @@ export default function KoridorPage() {
 
                         {/* Right Side - Scrollable Description */}
                         <div className="flex flex-col">
-                            <Card className="flex-1 mb-4">
-                                <CardHeader className="p-4 border-b-2 border-border">
-                                    <CardTitle className="text-xl text-[#163d4a] leading-tight ">
-                                        <h3 className="leading-normal">Redesain Dermaga dan Koridor Pedagang Ikan di Pelabuhan Perikanan Pantai (P3) Tawang</h3>
+                            <Card className="flex-1 mb-4 bg-transparent border-0 shadow-none">
+                                <CardHeader className="p-0 py-4 border-b-2 border-border">
+                                    <CardTitle className="text-[#163d4a] leading-tight ">
+                                        <h3 className="leading-normal text-2xl">Redesain Dermaga dan Koridor Pedagang Ikan di P3 Tawang</h3>
                                     </CardTitle>
                                 </CardHeader>
-                                <CardContent className="px-0">
-                                    <ScrollArea className="h-[400px] p-4">
+                                <CardContent className="p-0">
+                                    <ScrollArea className="h-full md:h-[180px] lg:h-[260px] py-4">
                                         <div className="space-y-4 text-sm text-muted-foreground leading-relaxed text-justify">
                                             <p>
                                                 Kuliah Kerja Nyata (KKN) Multidisiplin Universitas kami dilaksanakan di Pelabuhan Perikanan Pantai (PPP) Desa Gempolsewu, Kecamatan Rowosari, Kabupaten Kendal, yang menjadi pusat aktivitas ekonomi sektor perikanan. Tim KKN melakukan observasi langsung terhadap kondisi kawasan bersama pihak pengelola, menemukan bahwa PPP memiliki tiga komponen utama: tempat pelelangan ikan, dua zona kios pedagang ikan (70 kios dekat dermaga dan 48 kios di koridor belakang), serta kios pedagang sembako di pintu masuk. Aktivitas ekonomi cukup dinamis, namun distribusi pengunjung belum merata di seluruh zona kios.
@@ -153,12 +145,12 @@ export default function KoridorPage() {
                                             </p>
                                         </div>
                                     </ScrollArea>
-                                    <div className="flex gap-3 p-4 pb-0 mb-0 border-t-2 border-border justify-between items-center">
-                                        <Button onClick={handleViewPDF} variant="outline" className="flex-1 p-4">
+                                    <div className="flex gap-3 py-4 md:px-4 pb-0 mb-0 border-t-2 border-border items-center">
+                                        <Button onClick={handleViewPDF} variant="outline" className="flex-1 md:flex-none py-4 w-fit">
                                             <Eye className="w-4 h-4 mr-2" />
                                             Lihat Detail
                                         </Button>
-                                        <Button onClick={handleDownloadPDF} className="flex-1 p-4" >
+                                        <Button variant="secondary" onClick={handleDownloadPDF} className="flex-1 md:flex-none py-4 w-fit" >
                                             <Download className="w-4 h-4 mr-2" />
                                             Download File
                                         </Button>
