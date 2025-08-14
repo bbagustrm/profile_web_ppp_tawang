@@ -9,10 +9,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Eye, Download } from "lucide-react"
-
 // Data untuk carousel media
 const mediaItems = [
-    { type: 'video', src: 'https://www.youtube.com/watch?v=poJsqc81r4c', title: 'Video Koridor', thumbnail: 'kelompok1.jpg' },
+    { type: 'video', src: 'https://www.youtube.com/embed/poJsqc81r4c?si=zU0uOtzKJkvuKV4N', title: 'Video Koridor', thumbnail: 'kelompok1.jpg' },
     { type: 'image', src: '/koridor/gerbang.jpg', title: 'Kios 48', thumbnail: '/koridor/gerbang.jpg' },
     { type: 'image', src: '/koridor/dermaga (0).jpg', title: 'Gerbang Dermaga', thumbnail: '/koridor/dermaga (0).jpg' },
     { type: 'image', src: '/koridor/dermaga (1).jpg', title: 'Dermaga', thumbnail: '/koridor/dermaga (1).jpg' },
